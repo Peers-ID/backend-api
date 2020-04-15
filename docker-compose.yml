@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+
+    node:
+        build:
+            context: ./node
+            args:
+                - NODE_VERSION=10.19.0
+                - PROJECT_PATH=/apps/peers_be/
+                - NODE_ENV=development
+                - YARN=false
+        volumes:
+            - ../:/apps/peers_be
+        entrypoint: run-nodock "node api/api.js"
+        tty: true
+
+    mysql:
+        build:
+            context: ./mysql
+            args:
+                - MYSQL_DATABASE=rds_psql_db
+                - MYSQL_USER=peers_db
+                - MYSQL_PASSWORD=4LiP##12sDB123
+                - MYSQL_ROOT_PASSWORD=4LiP##12sDB123
+        volumes:
+            - ./data/mysql/:/apps/peers_be/data
+        expose:
+            - "3306"
+
+    nginx:
+        build:
+            context: ./nginx
+            args:
+                - WEB_REVERSE_PROXY_PORT=8000
+                - WEB_SSL=false
+                - SELF_SIGNED=false
+                - NO_DEFAULT=false
+        volumes:
+            - ./data/logs/nginx/:/apps/peers_be/log/nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        tty: true
+
+

@@ -64,121 +64,31 @@ const LoanController = () => {
 
         const list = async (req, res) => {
                 try {
-                        let page=1, limit=10, column='createdAt', sort='desc', status=0, keyword='';
+                        let condition = {where:{}};
 
-                        if(req.query.page !== undefined){ page = +req.query.page }
-                        if(req.query.row !== undefined){ limit = +req.query.row }
-                        if(req.query.column !== undefined){ column = req.query.column }
-                        if(req.query.sort !== undefined){ sort = req.query.sort }
-                        if(req.query.status !== undefined){ status = req.query.status }
+                        if(req.query.page !== undefined && req.query.row !== undefined){
+                                condition.limit = Number(req.query.row);
+                                condition.offset = req.query.page -1;
+                        }
+
+                        if(req.query.column !== undefined && req.query.sort !== undefined){ condition.order = [[req.query.column, req.query.sort]] }
+
+                        if(req.query.member_id !== undefined){ condition.where.member_id = Number(req.query.member_id) }
+                        if(req.query.koperasi_id !== undefined){ condition.where.koperasi_id = Number(req.query.koperasi_id) }
+                        if(req.query.status !== undefined){ condition.where.is_loan_approved = req.query.status }
                         if(req.query.keyword !== undefined){ status = req.query.keyword }
 
-                        const members_loan = await Loan.findAll({
-                                where:{
-                                        is_loan_approved:status,
-                                        // $or: [
-                                        //         {
-                                        //             member_name:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             member_handphone:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             ao_name:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             jumlah_loan:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             total_disbursed:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             tenor:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             tenor_cycle:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             service_type:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             cicilan_per_bln:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             approved_date:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         },
-                                        //         {
-                                        //             createdAt:
-                                        //             {
-                                        //                 $like: '%don%'
-                                        //             }
-                                        //         }
-                                        // ]
-                                },
-                                offset:page-1,
-                                limit:limit,
-                                order: [[column, sort]]
-                        });
+                        const members_loan = await Loan.findAll(condition);
+                        const count = await Loan.count(condition);
 
                         return res.status(200).json({
                                 status: 200,
                                 data: members_loan,
-                                message: "Success retrieve data."
-                        });
-
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        const list_disbursed_by_kop_id = async (req, res) => {
-                const { kop_id } = req.params;
-                try {
-                        const member = await Loan.findAll({
-                                where: {
-                                        koperasi_id:kop_id,
-                                        is_loan_approved:0
-                                },
-                                order: [
-                                        ['createdAt', 'DESC']
-                                ],
-                        });
-
-                        return res.status(200).json({
-                                status: 200,
-                                data: member,
-                                message: "Success retrieve data."
+                                message: {
+                                        page: req.query.page,
+                                        row: req.query.row,
+                                        total: count,
+                                        message: "Success retrieve data."}
                         });
 
                 } catch (err) {
@@ -190,7 +100,7 @@ const LoanController = () => {
         const view = async (req, res) => {
                 const { id } = req.params;
                 try {
-                        const member = await Loan.findAll({
+                        const member = await Loan.findOne({
                                 where: {
                                         id:id
                                 },
@@ -199,60 +109,6 @@ const LoanController = () => {
                         return res.status(200).json({
                                 status: 200,
                                 data: member,
-                                message: "Success retrieve data."
-                        });
-
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        const view_by_member_id = async (req, res) => {
-                const { member_id } = req.params;
-                try {
-                        const member = await Loan.findAll({
-                                where: {
-                                        member_id:member_id
-                                },
-                        });
-
-                        return res.status(200).json({
-                                status: 200,
-                                data: member,
-                                message: "Success retrieve data."
-                        });
-
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        const view_by_kop_id = async (req, res) => {
-                const { kop_id } = req.params;
-
-                try {
-                        let page=1, limit=10, column='createdAt', sort='desc', status=0;
-
-                        if(req.query.page !== undefined){ page = +req.query.page }
-                        if(req.query.row !== undefined){ limit = +req.query.row }
-                        if(req.query.column !== undefined){ column = req.query.column }
-                        if(req.query.sort !== undefined){ sort = req.query.sort }
-                        if(req.query.status !== undefined){ status = req.query.status }
-
-                        const members_loan = await Loan.findAll({
-                                where: {
-                                        koperasi_id:kop_id
-                                },
-                                offset:page-1,
-                                limit:limit,
-                                order: [[column, sort]]
-                        });
-
-                        return res.status(200).json({
-                                status: 200,
-                                data: members_loan,
                                 message: "Success retrieve data."
                         });
 
@@ -340,10 +196,7 @@ const LoanController = () => {
         return {
                 add,
                 list,
-                list_disbursed_by_kop_id,
                 view,
-                view_by_member_id,
-                view_by_kop_id,
                 loan_approval
         };
 };

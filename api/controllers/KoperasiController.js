@@ -10,83 +10,95 @@ const KoperasiController = () => {
         const add = async (req, res) => {
                 const { body, decoded } = req;
 
-                const t = await sequelize.transaction();
-
-                try {
-                        const koperasi = await Koperasi.create({
-                                nama_koperasi: body.nama_koperasi,
-                                no_badan_hukum: body.no_badan_hukum,
-                                tgl_badan_hukum: body.tgl_badan_hukum,
-                                no_perubahan_anggaran_dasar: body.no_perubahan_anggaran_dasar,
-                                tgl_perubahan_anggaran_dasar: body.tgl_perubahan_anggaran_dasar,
-                                tgl_rat_terakhir: body.tgl_rat_terakhir,
-                                alamat: body.alamat,
-                                kelurahan_desa: body.kelurahan_desa,
-                                kecamatan: body.kecamatan,
-                                kabupaten: body.kabupaten,
-                                provinsi: body.provinsi,
-                                bentuk_koperasi: body.bentuk_koperasi,
-                                jenis_koperasi: body.jenis_koperasi,
-                                kelompok_koperasi: body.kelompok_koperasi,
-                                sektor_usaha: body.sektor_usaha,
-                                nama_ketua: body.nama_ketua,
-                                nama_sekretaris: body.nama_sekretaris,
-                                nama_bendahara: body.nama_bendahara,
-                                foto_ktp_ketua: body.foto_ktp_ketua,
-                                jml_anggota_pria: body.jml_anggota_pria,
-                                jml_anggota_wanita: body.jml_anggota_wanita,
-                                total_anggota: body.total_anggota,
-                                total_manajer: body.total_manajer,
-                                total_karyawan: body.total_karyawan,
-                                no_induk_koperasi: body.no_induk_koperasi,
-                                status_nik: body.status_nik,
-                                status_grade: body.status_grade,
-                                hp_pengurus: body.hp_pengurus,
-                                email_pengurus: body.email_pengurus
-                        }, { transaction: t });
-
-                        const user = await User.create({
-                                koperasi_id: koperasi.id,
-                                fullname: body.nama_koperasi,
-                                phone_mobile: body.hp_pengurus,
-                                birthdate: Date.now(),
-                                email: body.email_pengurus,
-                                password: "Peers"+body.nama_koperasi.substr(0, 1)+body.hp_pengurus.substr(-4),
-                                role: "Admin Koperasi",
-                                ak_id: 0,
-                                status: "active"
-                        }, { transaction: t });
-
-                        const approvalConfig = await KoperasiApprovalConfig.create({
-                                koperasi_id: koperasi.id,
-                                ao_can_approved: 0
-                        }, { transaction: t });
-
-                        const cutOffConfig = await KoperasiCutOffConfig.create({
-                                koperasi_id: koperasi.id,
-                                hours: 0,
-                                minutes:0
-                        }, { transaction: t });
-
-                        const token = authService().issue({ id: user.id });
-
-                        await t.commit();
-
-                        return res.status(201).json({
-                                status: 201,
-                                data: { token, user },
-                                message: "Registered successfully"
-                        });
-
-                } catch (err) {
-                        await t.rollback();
-
-                        return res.status(200).json({
-                                status: 500,
-                                data: "",
-                                message: "Error Add Koperasi: " + err
-                        });
+                if (!req.files || Object.keys(req.files).length === 0) {
+                        return res.send({ status: 500, data: "", message: "Image not found!"});
                 }
+                var now = Date.now();
+                var nama_kop = body.nama_koperasi.split(" ");
+                let fotoKtpKetua = req.files.foto_ktp_ketua;
+
+                fotoKtpKetua.mv('/apps/peers_be/pictures/koperasi/Kop-'+ nama_kop[0] +'-'+ now + '.jpg', async function(err) {
+                        if (err)
+                                return res.send({ status: 500, data: "", message: "Failed to upload image!"});
+
+                                const t = await sequelize.transaction();
+
+                                try {
+                                        const koperasi = await Koperasi.create({
+                                                nama_koperasi: body.nama_koperasi,
+                                                no_badan_hukum: body.no_badan_hukum,
+                                                tgl_badan_hukum: body.tgl_badan_hukum,
+                                                no_perubahan_anggaran_dasar: body.no_perubahan_anggaran_dasar,
+                                                tgl_perubahan_anggaran_dasar: body.tgl_perubahan_anggaran_dasar,
+                                                tgl_rat_terakhir: body.tgl_rat_terakhir,
+                                                alamat: body.alamat,
+                                                kelurahan_desa: body.kelurahan_desa,
+                                                kecamatan: body.kecamatan,
+                                                kabupaten: body.kabupaten,
+                                                provinsi: body.provinsi,
+                                                bentuk_koperasi: body.bentuk_koperasi,
+                                                jenis_koperasi: body.jenis_koperasi,
+                                                kelompok_koperasi: body.kelompok_koperasi,
+                                                sektor_usaha: body.sektor_usaha,
+                                                nama_ketua: body.nama_ketua,
+                                                nama_sekretaris: body.nama_sekretaris,
+                                                nama_bendahara: body.nama_bendahara,
+                                                foto_ktp_ketua: 'Kop-'+ nama_kop[0] +'-'+ now + '.jpg',
+                                                jml_anggota_pria: body.jml_anggota_pria,
+                                                jml_anggota_wanita: body.jml_anggota_wanita,
+                                                total_anggota: body.total_anggota,
+                                                total_manajer: body.total_manajer,
+                                                total_karyawan: body.total_karyawan,
+                                                no_induk_koperasi: body.no_induk_koperasi,
+                                                status_nik: body.status_nik,
+                                                status_grade: body.status_grade,
+                                                hp_pengurus: body.hp_pengurus,
+                                                email_pengurus: body.email_pengurus
+                                        }, { transaction: t });
+
+                                        const user = await User.create({
+                                                koperasi_id: koperasi.id,
+                                                fullname: body.nama_koperasi,
+                                                phone_mobile: body.hp_pengurus,
+                                                birthdate: Date.now(),
+                                                email: body.email_pengurus,
+                                                password: "Peers"+body.nama_koperasi.substr(0, 1)+body.hp_pengurus.substr(-4),
+                                                role: "Admin Koperasi",
+                                                ak_id: 0,
+                                                status: "active"
+                                        }, { transaction: t });
+
+                                        const approvalConfig = await KoperasiApprovalConfig.create({
+                                                koperasi_id: koperasi.id,
+                                                ao_can_approved: 0
+                                        }, { transaction: t });
+
+                                        const cutOffConfig = await KoperasiCutOffConfig.create({
+                                                koperasi_id: koperasi.id,
+                                                hours: 0,
+                                                minutes:0
+                                        }, { transaction: t });
+
+                                        const token = authService().issue({ id: user.id });
+
+                                        await t.commit();
+
+                                        return res.status(201).json({
+                                                status: 201,
+                                                data: { token, user },
+                                                message: "Registered successfully"
+                                        });
+
+                                } catch (err) {
+                                        await t.rollback();
+
+                                        return res.status(200).json({
+                                                status: 500,
+                                                data: "",
+                                                message: "Error Add Koperasi: " + err
+                                        });
+                                }
+                });
         };
 
         const list = async (req, res) => {

@@ -1,5 +1,7 @@
 const Member = require('../models/Member');
 const Loan = require('../models/Loan');
+const Config = require('../models/Config');
+const Axios = require('axios');
 
 const MemberController = () => {
 
@@ -268,13 +270,83 @@ const MemberController = () => {
 
         };
 
+        const get_picture = async (req, res) => {
+                const { member_id } = req.params;
+                try {
+                        const member = await Loan.findOne({
+                                attributes: ['member_photo_url'],
+                                where: {
+                                        member_id:member_id
+                                },
+                        });
+
+                        return res.status(200).json({
+                                status: 200,
+                                data: member,
+                                message: "Success retrieve data."
+                        });
+
+                } catch (err) {
+                        console.log(err);
+                        return res.status(500).json({ msg: 'Internal server error' });
+                }
+        };
+
+        const miscall = async (req, res) => {
+                const { member_hp } = req.body;
+                try {
+                                  Promise.all([
+                                            Config.findOne({
+                                                      where: {
+                                                              env: 'dev',
+                                                              key: 'citcall-url'
+                                                      }
+                                            }),
+                                            Config.findOne({
+                                                      where: {
+                                                              env: 'dev',
+                                                              key: 'citcall-auth'
+                                                      }
+                                            })
+                                  ])
+                                  .then(([url, auth]) => {
+                                          Axios({
+                                                  method: 'post',
+                                                  url: url.value,
+                                                  headers: {
+                                                          'Content-Type': 'application/json',
+                                                          'Authorization': 'Apikey ' + auth.value},
+                                                  data: {
+                                                  	"msisdn": member_hp.toString(),
+                                                  	"gateway": 1
+                                                  }
+                                          })
+                                          .then(function (response) {
+                                                  return res.status(200).json({
+                                                          status: 200,
+                                                          data: response.data,
+                                                          message: "Success making a call."
+                                                  });
+                                          });
+                                  })
+                                  .catch((err) => {
+                                          console.error(err);
+                                  });
+                } catch (err) {
+                        console.log(err);
+                        return res.status(500).json({ msg: 'Internal server error' });
+                }
+        };
+
         return {
                 add,
                 list,
                 view,
                 view_by_phone,
                 edit,
-                change_picture
+                change_picture,
+                get_picture,
+                miscall
         };
 };
 

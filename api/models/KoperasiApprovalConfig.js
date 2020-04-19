@@ -11,6 +11,7 @@ const tableName = 'form_koperasi_approval_config';
 const KoperasiApprovalConfig = sequelize.define('KoperasiApprovalConfig', {
         koperasi_id: {
                 type: Sequelize.INTEGER,
+                unique: true,
                 allowNull: false, defaultValue:0
         },
         ao_can_approved: {

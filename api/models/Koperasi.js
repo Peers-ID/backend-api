@@ -83,7 +83,7 @@ const Koperasi = sequelize.define('Koperasi', {
         },
         foto_ktp_ketua: {
                 type: Sequelize.STRING,
-                allowNull: false
+                allowNull: true
         },
         jml_anggota_pria: {
                 type: Sequelize.INTEGER,

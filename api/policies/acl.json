@@ -73,23 +73,28 @@
                                 "action": "allow"
                         },
                         {
-                                "resource": "loan_member/*",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "loan_koperasi/*",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
                                 "resource": "loan_approval/*",
                                 "methods": ["GET"],
                                 "action": "allow"
                         },
                         {
+                                "resource": "collection",
+                                "methods": ["POST", "GET", "PUT"],
+                                "action": "allow"
+                        },
+                        {
+                                "resource": "collection/*",
+                                "methods": ["POST", "GET", "PUT"],
+                                "action": "allow"
+                        },
+                        {
                                 "resource": "users/change_password",
                                 "methods": ["POST"],
+                                "action": "allow"
+                        },
+                        {
+                                "resource": "config",
+                                "methods": ["POST", "GET", "PUT"],
                                 "action": "allow"
                         }
                 ]

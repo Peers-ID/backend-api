@@ -82,17 +82,30 @@ const UserController = () => {
         const view_ao_by_akId = async (req, res) => {
                 const ak_id = req.params.akId;
                 try {
-                        const users = await User.findAll({
-                                where: {
-                                        role: "Admin AO",
-                                        ak_id:ak_id
-                                },
-                        });
+                        let condition = {
+                                where: { role: "Admin AO", ak_id:ak_id }
+                        };
+
+                        if(req.query.page !== undefined && req.query.row !== undefined){
+                                condition.limit = Number(req.query.row);
+                                condition.offset = req.query.page -1;
+                        }
+
+                        if(req.query.column !== undefined && req.query.sort !== undefined){
+                                condition.order = [[req.query.column, req.query.sort]]
+                        }
+
+                        const users = await User.findAll(condition);
+                        const count = await User.count(condition);
 
                         return res.status(200).json({
                                 status: 200,
                                 data: users,
-                                message: "Success retrieve data."
+                                message: {
+                                        page: req.query.page,
+                                        row: req.query.row,
+                                        total: count,
+                                        message: "Success retrieve data."}
                         });
 
                 } catch (err) {

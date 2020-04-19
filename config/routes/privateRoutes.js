@@ -26,6 +26,8 @@ const privateRoutes = {
         'PUT /member/:member_id': 'MemberController.edit',
         'GET /member/phone/:mobile_phone': 'MemberController.view_by_phone',
         'POST /member/picture/:member_id': 'MemberController.change_picture',
+        'GET /member/picture/:member_id': 'MemberController.get_picture',
+        'POST /member/miscall': 'MemberController.miscall',
 
         'POST /member_config': 'MemberConfigController.insert',
         'GET /member_config': 'MemberConfigController.list',
@@ -39,12 +41,17 @@ const privateRoutes = {
         'POST /loan': 'LoanController.add',
         'GET /loan': 'LoanController.list',
         'GET /loan/:id': 'LoanController.view',
-        'GET /loan_member/:member_id': 'LoanController.view_by_member_id',
-        'GET /loan_koperasi/:kop_id': 'LoanController.view_by_kop_id',
 
         'GET /loan_approval/:member_id/:is_approved': 'LoanController.loan_approval',
 
-        'GET /loan/disbursed/:kop_id': 'LoanController.list_disbursed_by_kop_id'
+        'POST /collection': 'CollectionController.add',
+        'GET /collection': 'CollectionController.list',
+        'GET /collection/:id': 'CollectionController.view',
+
+        'POST /config': 'ConfigController.add',
+        'GET /config': 'ConfigController.list',
+        'GET /config/:id': 'ConfigController.view',
+        'PUT /config/:id': 'ConfigController.edit',
 
 };
 

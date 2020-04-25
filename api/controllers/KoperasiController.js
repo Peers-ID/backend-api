@@ -17,7 +17,7 @@ const KoperasiController = () => {
                 var nama_kop = body.nama_koperasi.split(" ");
                 let fotoKtpKetua = req.files.foto_ktp_ketua;
 
-                fotoKtpKetua.mv('/apps/peers_be/pictures/koperasi/Kop-'+ nama_kop[0] +'-'+ now + '.jpg', async function(err) {
+                fotoKtpKetua.mv('/home/dev_peers_id/backend-api/pictures/koperasi/Kop-'+ nama_kop[0] +'-'+ now + '.jpg', async function(err) {
                         if (err)
                                 return res.send({ status: 500, data: "", message: "Failed to upload image!"});
 

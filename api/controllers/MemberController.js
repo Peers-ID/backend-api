@@ -238,7 +238,7 @@ const MemberController = () => {
 
                         let memberPicture = req.files.image;
 
-                        memberPicture.mv('/apps/peers_be/pictures/ID-' + member_id + '-' + now + '.jpg', async function(err) {
+                        memberPicture.mv('/home/dev_peers_id/backend-api/pictures/ID-' + member_id + '-' + now + '.jpg', async function(err) {
                                 if (err)
                                         return res.status(500).send(err);
 

@@ -7,10 +7,8 @@ const LoanFormulaConfigController = () => {
         const add = async (req, res) => {
                 const { body, decoded } = req;
 
-                const t = await sequelize.transaction();
-
                 try {
-                        const LoanFormula = await LoanFormulaConfig.upsert({
+                        await LoanFormulaConfig.upsert({
                                 koperasi_id: body.koperasi_id,
                                 formula_name: body.formula_name,
                                 min_loan_amount: body.min_loan_amount,
@@ -22,20 +20,21 @@ const LoanFormulaConfigController = () => {
                                 service_type: body.service_type,
                                 service_amount: body.service_amount,
                                 service_cycle: body.service_cycle
-                        },
-                        { transaction: t });
-
-                        await LoanFormulaConfig.findOne({
-                                where: {
-                                        koperasi_id: body.koperasi_id
-                                }
-                        },
-                        { transaction: t })
+                        })
+                        .then(async () => {
+                                return await LoanFormulaConfig.findOne({
+                                        where: {
+                                                koperasi_id: body.koperasi_id
+                                        }
+                                })
+                        })
                         .then(async (getID) => {
 
                                 if (Array.isArray(body.other_fee) && body.other_fee.length){
                                         var otherFee = new Array();
                                         var items = new Object();
+
+                                        const t = await sequelize.transaction();
 
                                         for (i = 0; i < body.other_fee.length; i++) {
                                                 items.formula_id = getID.id;
@@ -59,11 +58,11 @@ const LoanFormulaConfigController = () => {
                                                 otherFee
                                         ,
                                         { transaction: t });
+
+                                        await t.commit();
                                 }
 
                         });
-
-                        await t.commit();
 
                         return res.status(201).json({
                                 status: 201,

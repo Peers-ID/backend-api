@@ -1,16 +1,16 @@
 const development = {
-        database: 'rds_psql_db',
-        username: 'peers_db',
-        password: '4LiP##12sDB123',
-        host: 'rm-d9jn88w055g679jx9.mysql.ap-southeast-5.rds.aliyuncs.com',
+        database: 'peers_db',
+        username: 'root',
+        password: 'root123',
+        host: 'localhost',
         dialect: 'mysql',
 };
 
 const testing = {
-        database: 'rds_psql_db',
-        username: 'peers_db',
-        password: '4LiP##12sDB123',
-        host: 'rm-d9jn88w055g679jx9.mysql.ap-southeast-5.rds.aliyuncs.com',
+        database: 'peers_db',
+        username: 'developer',
+        password: '4LiP##12sDBDev123',
+        host: '10.128.0.3',
         dialect: 'mysql',
 };
 

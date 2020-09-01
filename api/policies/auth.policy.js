@@ -3,7 +3,7 @@ const JWTService = require('../services/auth.service');
 // Format token: "Authorization: Bearer [token]" atau "token: [token]"
 module.exports = (req, res, next) => {
 
-        if(req.path !== "/api/v1/login"){
+        if( (req.path !== "/api/v1/login") && (req.path !== "/api/v1/forgot_password") ){
                 let tokenToVerify;
 
                 if (req.header('Authorization')) {

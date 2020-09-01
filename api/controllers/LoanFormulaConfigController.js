@@ -10,7 +10,7 @@ const LoanFormulaConfigController = () => {
                 const t = await sequelize.transaction();
 
                 try {
-                        const LoanFormula = await LoanFormulaConfig.upsert({
+                        await LoanFormulaConfig.upsert({
                                 koperasi_id: body.koperasi_id,
                                 formula_name: body.formula_name,
                                 min_loan_amount: body.min_loan_amount,
@@ -22,15 +22,14 @@ const LoanFormulaConfigController = () => {
                                 service_type: body.service_type,
                                 service_amount: body.service_amount,
                                 service_cycle: body.service_cycle
-                        },
-                        { transaction: t });
-
-                        await LoanFormulaConfig.findOne({
-                                where: {
-                                        koperasi_id: body.koperasi_id
-                                }
-                        },
-                        { transaction: t })
+                        })
+                        .then(async () => {
+                                return await LoanFormulaConfig.findOne({
+                                        where: {
+                                                koperasi_id: body.koperasi_id
+                                        }
+                                })
+                        })
                         .then(async (getID) => {
 
                                 if (Array.isArray(body.other_fee) && body.other_fee.length){
@@ -59,11 +58,11 @@ const LoanFormulaConfigController = () => {
                                                 otherFee
                                         ,
                                         { transaction: t });
+
+                                        await t.commit();
                                 }
 
                         });
-
-                        await t.commit();
 
                         return res.status(201).json({
                                 status: 201,
@@ -77,7 +76,7 @@ const LoanFormulaConfigController = () => {
                         return res.status(200).json({
                                 status: 500,
                                 data: "",
-                                message: "Error Add LoanFormulaConfig: " + err
+                                message: "Gagal. Cek dan lengkapi semua inputan anda."
                         });
                 }
         };

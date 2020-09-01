@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
+const emailService = require('../services/email.service');
 
 const UserController = () => {
 
@@ -20,6 +21,12 @@ const UserController = () => {
                                 ak_id: decoded.id
                         });
                         const token = authService().issue({ id: user.id });
+
+                        if(user){
+                                const password = body.fullname.substr(0, 1) + body.birthdate + body.phone_mobile.substr(-4);
+
+                                emailService().welcomeMessage(body.fullname, body.email, password);
+                        }
 
                         return res.status(201).json({
                                 status: 201,
@@ -82,17 +89,30 @@ const UserController = () => {
         const view_ao_by_akId = async (req, res) => {
                 const ak_id = req.params.akId;
                 try {
-                        const users = await User.findAll({
-                                where: {
-                                        role: "Admin AO",
-                                        ak_id:ak_id
-                                },
-                        });
+                        let condition = {
+                                where: { role: "Admin AO", ak_id:ak_id }
+                        };
+
+                        if(req.query.page !== undefined && req.query.row !== undefined){
+                                condition.limit = Number(req.query.row);
+                                condition.offset = req.query.page -1;
+                        }
+
+                        if(req.query.column !== undefined && req.query.sort !== undefined){
+                                condition.order = [[req.query.column, req.query.sort]]
+                        }
+
+                        const users = await User.findAll(condition);
+                        const count = await User.count(condition);
 
                         return res.status(200).json({
                                 status: 200,
                                 data: users,
-                                message: "Success retrieve data."
+                                message: {
+                                        page: req.query.page,
+                                        row: req.query.row,
+                                        total: count,
+                                        message: "Success retrieve data."}
                         });
 
                 } catch (err) {
@@ -211,7 +231,6 @@ const UserController = () => {
                                         message: "Invalid email or password"
                                 });
                         } catch (err) {
-                                // console.log(err);
                                 return res.status(500).json({
                                         status: 500,
                                         data: "",
@@ -288,6 +307,38 @@ const UserController = () => {
                 });
         };
 
+        const forgot_password = async (req, res) => {
+                const { email } = req.body;
+
+                try {
+                        const user = await User.findOne({
+                                                where: { email }
+                                });
+
+                        if (!user) {
+                                return res.status(200).json({
+                                        status: 400,
+                                        data: "",
+                                        message: "User not found"
+                                });
+                        }else{
+                                var result = emailService().forgotPassword(email);
+
+                                return res.status(200).json({
+                                        status: 200,
+                                        data: [],
+                                        message: result
+                                });
+                        }
+                } catch (err) {
+                        return res.status(200).json({
+                                status: 500,
+                                data: "",
+                                message: "Error: " + err
+                        });
+                }
+        };
+
 
         const validate = (req, res) => {
                 const { token } = req.body;
@@ -331,6 +382,7 @@ const UserController = () => {
                 edit_ao_status,
                 login,
                 change_password,
+                forgot_password,
                 validate,
                 getAll,
         };

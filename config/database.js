@@ -11,14 +11,14 @@ switch (process.env.NODE_ENV) {
                         connection.production.database,
                         connection.production.username,
                         connection.production.password, {
-                        host: connection.production.host,
-                        dialect: connection.production.dialect,
-                        pool: {
-                                max: 5,
-                                min: 0,
-                                idle: 10000,
+                                host: connection.production.host,
+                                dialect: connection.production.dialect,
+                                pool: {
+                                        max: 5,
+                                        min: 0,
+                                        idle: 10000,
+                                },
                         },
-                },
                 );
                 break;
         case 'testing':
@@ -26,14 +26,14 @@ switch (process.env.NODE_ENV) {
                         connection.testing.database,
                         connection.testing.username,
                         connection.testing.password, {
-                        host: connection.testing.host,
-                        dialect: connection.testing.dialect,
-                        pool: {
-                                max: 5,
-                                min: 0,
-                                idle: 10000,
+                                host: connection.testing.host,
+                                dialect: connection.testing.dialect,
+                                pool: {
+                                        max: 5,
+                                        min: 0,
+                                        idle: 10000,
+                                },
                         },
-                },
                 );
                 break;
         default:

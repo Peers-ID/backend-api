@@ -20,23 +20,28 @@ const LoanFormulaConfig = sequelize.define('LoanFormulaConfig', {
         },
         min_loan_amount: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
+                defaultValue: null
         },
         max_loan_amount: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
+                defaultValue: null
         },
         kelipatan: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
+                defaultValue: null
         },
         min_tenure: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
+                defaultValue: null
         },
         max_tenure: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
+                defaultValue: null
         },
         tenure_cycle: {
                 type: Sequelize.STRING,
@@ -48,7 +53,8 @@ const LoanFormulaConfig = sequelize.define('LoanFormulaConfig', {
         },
         service_amount: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
+                defaultValue: null
         },
         service_cycle: {
                 type: Sequelize.STRING,

@@ -13,12 +13,12 @@
         },
         "scripts": {
                 "start": "npm run nodemon",
-                "dev": "cross-env NODE_ENV=development node ./api/api.js",
+                "dev": "cross-env NODE_ENV=development DEBUG=email-templates node ./api/api.js",
                 "nodemon": "nodemon --exec npm run dev",
                 "lint": "eslint ./api/. ./config/. ./test/.",
                 "prepush": "npm test",
                 "pretest": "npm run lint",
-                "production": "cross-env NODE_ENV=production node ./api/api.js",
+                "prod": "cross-env NODE_ENV=production DEBUG=email-templates node ./api/api.js",
                 "test-ci": "jest --coverage --forceExit"
         },
         "jest": {
@@ -31,6 +31,8 @@
                 ]
         },
         "dependencies": {
+                "@sendgrid/mail": "^7.1.0",
+                "axios": "^0.19.2",
                 "bcrypt-nodejs": "^0.0.3",
                 "body-parser": "^1.18.2",
                 "core-js": "^2.6.9",
@@ -42,6 +44,7 @@
                 "helmet": "^3.12.0",
                 "jsonwebtoken": "^8.2.1",
                 "mysql2": "^2.1.0",
+                "nodemailer": "^6.4.6",
                 "sequelize": "5.21.5",
                 "sqlite3": "^4.0.0"
         },

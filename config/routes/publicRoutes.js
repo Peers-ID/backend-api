@@ -1,6 +1,6 @@
 const publicRoutes = {
 
-      'POST /validate': 'UserController.validate'
+      'POST /validate': 'UserController.validate',
 
 };
 

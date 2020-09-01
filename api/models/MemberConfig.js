@@ -65,7 +65,6 @@ const MemberConfig = sequelize.define('MemberConfig', {
         alamat_ktp_nomer: {
                 type: Sequelize.INTEGER,
                 allowNull: false, defaultValue:0,
-                unique: true
         },
         alamat_ktp_rt: {
                 type: Sequelize.INTEGER,
@@ -110,7 +109,6 @@ const MemberConfig = sequelize.define('MemberConfig', {
         alamat_domisili_nomer: {
                 type: Sequelize.INTEGER,
                 allowNull: false, defaultValue:0,
-                unique: true
         },
         alamat_domisili_rt: {
                 type: Sequelize.INTEGER,

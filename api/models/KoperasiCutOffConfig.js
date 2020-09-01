@@ -11,6 +11,7 @@ const tableName = 'koperasi_cutoff_time';
 const KoperasiCutOffConfig = sequelize.define('KoperasiCutOffConfig', {
         koperasi_id: {
                 type: Sequelize.INTEGER,
+                unique: true,
                 allowNull: false, defaultValue:0
         },
         hours: {

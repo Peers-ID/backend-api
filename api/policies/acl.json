@@ -100,7 +100,7 @@
                 ]
         },
         {
-                "group": "Admin AO",
+                "group": "AO/CMO/Sales",
                 "permissions": [
                         {
                                 "resource": "*",

@@ -3,11 +3,11 @@ const LoanParameter = require('../models/v2/LoanParameter');
 const LoanParameterController = () => {
 
     const add = async (req, res) => {
-        const {body} = req;
+        const {body, decoded} = req;
 
         try {
             var data = {
-                id_koperasi: body.id_koperasi,
+                id_koperasi: decoded.koperasi_id,
                 hari_per_bulan: body.hari_per_bulan,
                 id_angsuran_sebagian: body.id_angsuran_sebagian,
                 id_masa_tenggang: body.id_masa_tenggang,
@@ -20,13 +20,13 @@ const LoanParameterController = () => {
 
             await LoanParameter.findOne({
                 where: {
-                    id_koperasi: body.id_koperasi
+                    id_koperasi: decoded.koperasi_id
                 }
             }).then(async (isExistLoanParameter) => {
                 if (isExistLoanParameter) {
                     await LoanParameter.update(data, {
                         where: {
-                            id_koperasi: body.id_koperasi
+                            id_koperasi: decoded.koperasi_id
                         }
                     });
 
@@ -55,12 +55,12 @@ const LoanParameterController = () => {
     };
 
     const view = async (req, res) => {
-        const {id} = req.params;
+        const {decoded} = req;
 
         try {
             const loan_parameter = await LoanParameter.findAll({
                 where: {
-                    id_koperasi: id
+                    id_koperasi: decoded.koperasi_id
                 }
             });
 

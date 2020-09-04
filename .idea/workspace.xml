@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f845e3f7-4325-4024-a9e1-ac9a805e7eaf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/controllers/LoanProductController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/controllers/TblLoanController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/models/v2/AccountRoleManagement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/models/v2/LoanProduct.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/models/v2/TblLoan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/controllers/LoanParameterController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/LoanParameterController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/Member.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/Member.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/policies/acl.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/policies/acl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/privateRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/privateRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/peersdb.zip" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,8 +142,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="292" column="29" lean-forward="true" selection-start-line="292" selection-start-column="29" selection-end-line="292" selection-end-column="29" />
+            <state relative-caret-position="403">
+              <caret line="277" column="46" lean-forward="true" selection-start-line="277" selection-start-column="46" selection-end-line="277" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -402,12 +391,12 @@
       <workItem from="1595212106116" duration="844000" />
       <workItem from="1598925365727" duration="42285000" />
       <workItem from="1599062795614" duration="7692000" />
-      <workItem from="1599149626354" duration="22704000" />
+      <workItem from="1599149626354" duration="23294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79780000" />
+    <option name="totallyTimeSpent" value="80370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -421,7 +410,7 @@
   <component name="ToolWindowManager">
     <frame x="1358" y="-5" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2647504" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -762,8 +751,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="292" column="29" lean-forward="true" selection-start-line="292" selection-start-column="29" selection-end-line="292" selection-end-column="29" />
+        <state relative-caret-position="403">
+          <caret line="277" column="46" lean-forward="true" selection-start-line="277" selection-start-column="46" selection-end-line="277" selection-end-column="46" />
         </state>
       </provider>
     </entry>

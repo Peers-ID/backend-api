@@ -58,7 +58,7 @@ const privateRoutes = {
     /*------------------------------------- Phase 2 -----------------------------------*/
 
     'POST /loan/add/parameter': 'LoanParameterController.add',
-    'GET /loan/add/parameter': 'LoanParameterController.view',
+    'GET /loan/add/parameter': 'LoanParameterController.view', //TODO rename the endpoint later
     'GET /master/cicilan_sebagian': 'MasterDataController.cicilan_sebagian',
     'GET /master/dasar_denda': 'MasterDataController.dasar_denda',
     'GET /master/dasar_pelunasan': 'MasterDataController.dasar_pelunasan',
@@ -72,6 +72,8 @@ const privateRoutes = {
     'POST /loan/view': 'TblLoanController.view',
     'PUT /loan/status/update': 'TblLoanController.update_status',
     'POST /loan/list': 'TblLoanController.list',
+    'GET /loan/list/member/:id_member': 'TblLoanController.view_per_member',
+    'POST /loan/add/due_date': 'TblLoanController.loan_collection',
 };
 
 module.exports = privateRoutes;

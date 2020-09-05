@@ -8,6 +8,10 @@ const LoanProduct = sequelize.define('LoanProduct', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    id_parameter: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     nama_produk: {
         type: Sequelize.STRING,
         allowNull: false

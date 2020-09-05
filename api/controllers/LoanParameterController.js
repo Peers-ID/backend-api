@@ -68,7 +68,7 @@ const LoanParameterController = () => {
                 return res.status(200).json({
                     status: 200,
                     data: loan_parameter,
-                    message: "Success retrieve data."
+                    message: "Success retrieve data"
                 });
             } else {
                 return res.status(404).json({

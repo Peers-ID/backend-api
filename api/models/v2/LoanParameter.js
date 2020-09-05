@@ -39,6 +39,11 @@ const LoanParameter = sequelize.define('LoanParameter', {
     id_urutan_simpanan: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        default: 'active'
     }
 }, {
     hooks,

@@ -45,8 +45,8 @@ const UserController = () => {
                     }).then((role) => {
                         if (role) {
                             return res.status(200).json({
-                                status: 500,
-                                data: [user.id],
+                                status: 200,
+                                data: {},
                                 message: "Inserted Successfully"
                             });
                         } else {

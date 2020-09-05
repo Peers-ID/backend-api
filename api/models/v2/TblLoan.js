@@ -9,22 +9,40 @@ const TblLoan = sequelize.define('TblLoan', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    nama_produk: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     id_koperasi: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
     id_member: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true
+        allowNull: false
+    },
+    nama_member: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     id_ao: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true
+        allowNull: false
+    },
+    nama_ao: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     id_status: {
         type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    nama_status: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    desc_status: {
+        type: Sequelize.STRING,
         allowNull: false
     },
     jumlah_pencairan: {

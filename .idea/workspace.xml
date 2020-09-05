@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f845e3f7-4325-4024-a9e1-ac9a805e7eaf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/peersdb.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/models/v2/TblLoanCollection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/LoanParameterController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/LoanParameterController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/LoanProductController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/LoanProductController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/TblLoanController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/TblLoanController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/UserController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models/v2/LoanParameter.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/v2/LoanParameter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models/v2/LoanProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/v2/LoanProduct.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models/v2/TblLoan.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/v2/TblLoan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes/privateRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/privateRoutes.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,25 +67,26 @@
     <session id="507818692">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.49" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="2" />
           <entry key="gitignore" value="1" />
-          <entry key="js" value="78" />
+          <entry key="js" value="91" />
           <entry key="json" value="9" />
           <entry key="sql" value="4" />
-          <entry key="ts" value="9" />
+          <entry key="ts" value="11" />
           <entry key="yml" value="1" />
         </counts>
       </usages-collector>
@@ -84,25 +94,25 @@
         <counts>
           <entry key=".env file" value="2" />
           <entry key="JSON" value="9" />
-          <entry key="JavaScript" value="78" />
+          <entry key="JavaScript" value="91" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SQL" value="2" />
           <entry key="Scratch" value="2" />
-          <entry key="TypeScript" value="9" />
+          <entry key="TypeScript" value="11" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
           <entry key="ESLintLanguageService" value="5" />
-          <entry key="TypeScriptServerServiceImpl" value="4" />
+          <entry key="TypeScriptServerServiceImpl" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="12" />
           <entry key="gitignore" value="11" />
-          <entry key="js" value="5673" />
+          <entry key="js" value="8814" />
           <entry key="json" value="21" />
           <entry key="sql" value="36" />
           <entry key="txt" value="8" />
@@ -112,7 +122,7 @@
         <counts>
           <entry key=".env file" value="12" />
           <entry key="JSON" value="21" />
-          <entry key="JavaScript" value="5673" />
+          <entry key="JavaScript" value="8814" />
           <entry key="PLAIN_TEXT" value="19" />
           <entry key="Scratch" value="36" />
         </counts>
@@ -122,19 +132,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/models/User.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-119">
-              <caret line="2" column="60" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/controllers/LoanParameterController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-901">
-              <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="272">
+              <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -142,8 +143,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="277" column="46" lean-forward="true" selection-start-line="277" selection-start-column="46" selection-end-line="277" selection-end-column="46" />
+            <state relative-caret-position="559">
+              <caret line="451" lean-forward="true" selection-start-line="451" selection-end-line="451" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/controllers/LoanController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="188" column="16" selection-start-line="188" selection-start-column="16" selection-end-line="188" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -151,26 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/models/Member.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1253">
+            <state relative-caret-position="760">
               <caret line="246" selection-start-line="246" selection-end-line="246" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoan.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="66" column="58" lean-forward="true" selection-start-line="66" selection-start-column="58" selection-end-line="66" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -178,8 +170,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/policies/acl.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="103" column="32" lean-forward="true" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
+            <state relative-caret-position="1751">
+              <caret line="103" column="32" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/controllers/LoanProductController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoanCollection.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/models/v2/LoanParameter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoan.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/sequelize/types/lib/model.d.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="1360" column="2" selection-start-line="1360" selection-start-column="2" selection-end-line="1360" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -188,36 +225,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bcryptService</find>
-      <find>koperasi_id</find>
-      <find>password</find>
-      <find>unique</find>
-      <find>Uni</find>
-      <find>edit_ao_status</find>
-      <find>create</find>
-      <find>when</find>
-      <find>then</find>
-      <find>&quot; +</find>
-      <find>data:</find>
-      <find>/loan/add/</find>
-      <find>Access denied</find>
-      <find>/loan/add</find>
-      <find>loan</find>
-      <find>Admin AO</find>
-      <find>findAll</find>
-      <find>id_product_loan</find>
-      <find>where: {id</find>
       <find>attributes</find>
       <find>.update</find>
       <find>join</find>
       <find>required:false</find>
       <find>include:</find>
       <find>associate</find>
-      <find>findOne</find>
       <find>findAll({</find>
       <find>id_member</find>
       <find>loan/*</find>
       <find>foreign</find>
+      <find>user</find>
+      <find>findOne</find>
+      <find>await</find>
+      <find>Identi</find>
+      <find>Date</find>
+      <find>Date.now()</find>
+      <find>default:</find>
+      <find>loan/parameter</find>
+      <find>/parameter</find>
+      <find>approve_max_1jt</find>
+      <find>loan_due</find>
+      <find>add_account</find>
+      <find>due_date</find>
+      <find>undefined</find>
+      <find>id_parameter</find>
+      <find>start_date_epoch</find>
+      <find>integer</find>
+      <find>=== null</find>
+      <find>due</find>
+      <find>loan_satuan_tenor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -232,7 +269,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d71158b7-2e37-497a-981e-acac9bcf5362/console.sql" />
         <option value="$PROJECT_DIR$/config/connection.js" />
         <option value="$PROJECT_DIR$/api/models/v2/LoanParameters.js" />
-        <option value="$PROJECT_DIR$/api/models/v2/LoanParameter.js" />
         <option value="$PROJECT_DIR$/api/controllers/v2/LoanParameterController.js" />
         <option value="$PROJECT_DIR$/api/api.js" />
         <option value="$PROJECT_DIR$/api/models/v2/MasterData.js" />
@@ -242,20 +278,22 @@
         <option value="$PROJECT_DIR$/api/models/v2/MstSimpanan.js" />
         <option value="$PROJECT_DIR$/api/controllers/MasterDataController.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/api/models/v2/LoanProduct.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d71158b7-2e37-497a-981e-acac9bcf5362/console_1.sql" />
-        <option value="$PROJECT_DIR$/api/controllers/LoanParameterController.js" />
-        <option value="$PROJECT_DIR$/api/controllers/LoanProductController.js" />
         <option value="$PROJECT_DIR$/api/models/v2/AccountManagment.js" />
         <option value="$PROJECT_DIR$/api/models/v2/AccountManagement.js" />
         <option value="$PROJECT_DIR$/api/models/v2/AccountRoleManagement.js" />
-        <option value="$PROJECT_DIR$/api/controllers/UserController.js" />
         <option value="$PROJECT_DIR$/api/policies/acl.json" />
-        <option value="$PROJECT_DIR$/config/routes/privateRoutes.js" />
         <option value="$PROJECT_DIR$/api/models/User.js" />
         <option value="$PROJECT_DIR$/api/models/Member.js" />
-        <option value="$PROJECT_DIR$/api/controllers/TblLoanController.js" />
+        <option value="$PROJECT_DIR$/api/models/v2/LoanProduct.js" />
+        <option value="$PROJECT_DIR$/api/controllers/LoanProductController.js" />
+        <option value="$PROJECT_DIR$/api/models/v2/LoanParameter.js" />
+        <option value="$PROJECT_DIR$/config/routes/privateRoutes.js" />
+        <option value="$PROJECT_DIR$/api/controllers/UserController.js" />
+        <option value="$PROJECT_DIR$/api/controllers/LoanParameterController.js" />
+        <option value="$PROJECT_DIR$/api/models/v2/TblLoanCollection.js" />
         <option value="$PROJECT_DIR$/api/models/v2/TblLoan.js" />
+        <option value="$PROJECT_DIR$/api/controllers/TblLoanController.js" />
       </list>
     </option>
   </component>
@@ -276,16 +314,17 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1368" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1378" />
-    <option name="height" value="733" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -332,12 +371,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="SearchEverywhereHistoryKey" value="acl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/policies/acl.json&#10;private&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/config/routes/privateRoutes.js&#10;Member&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/MemberController.js&#10;LoanCon&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.en&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/.env&#10;grunt&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/node_modules/core-js/Gruntfile.js&#10;LoanControl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.env&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="RoleMa&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/v2/AccountRoleManagement.js&#10;LoanPara&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanParameterController.js&#10;LoanPro&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanProductController.js&#10;LoanPr&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/v2/LoanProduct.js&#10;LoanContro&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;acl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/policies/acl.json&#10;private&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/config/routes/privateRoutes.js&#10;Member&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/MemberController.js&#10;LoanCon&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.en&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/.env&#10;grunt&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/node_modules/core-js/Gruntfile.js&#10;LoanControl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.env&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="H:/SFA/Discount/Oracle Script" />
@@ -355,6 +393,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="H:\My Data\Peers\Backend\backend-api\api\models\v2" />
+      <recent name="H:\My Data\Peers\Backend\backend-api" />
       <recent name="H:\My Data\Peers\Backend\backend-api\api\controllers" />
       <recent name="H:\My Data\Peers\Backend\backend-api\api\controllers\v2" />
     </key>
@@ -391,12 +430,13 @@
       <workItem from="1595212106116" duration="844000" />
       <workItem from="1598925365727" duration="42285000" />
       <workItem from="1599062795614" duration="7692000" />
-      <workItem from="1599149626354" duration="23294000" />
+      <workItem from="1599149626354" duration="23439000" />
+      <workItem from="1599277121871" duration="17576000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80370000" />
+    <option name="totallyTimeSpent" value="98091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -408,9 +448,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-5" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2677761" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -426,7 +467,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32879046" />
       <window_info anchor="bottom" id="TypeScript" order="10" weight="0.32879046" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.35093698" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.35093698" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.516184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -441,16 +482,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/node/globals.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="1108" column="8" selection-start-line="1108" selection-start-column="8" selection-end-line="1108" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -615,13 +646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/v2/LoanParameter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/KoperasiController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
@@ -636,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/v2/AccountRoleManagement.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-838">
-          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/models/Loan.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -650,31 +667,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/v2/LoanProduct.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="15" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/LoanProductController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="49" lean-forward="true" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/models/v2/MstDasarCicilanSebagian.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/UserController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -693,66 +689,115 @@
         <state relative-caret-position="-2175" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/sequelize/types/lib/model.d.ts">
+    <entry file="file://$PROJECT_DIR$/api/models/User.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="2477" column="16" selection-start-line="2477" selection-start-column="16" selection-end-line="2477" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="66" column="58" lean-forward="true" selection-start-line="66" selection-start-column="58" selection-end-line="66" selection-end-column="58" />
+        <state relative-caret-position="-187">
+          <caret line="2" column="60" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/policies/acl.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="103" column="32" lean-forward="true" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/LoanParameterController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-901">
-          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/User.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="2" column="60" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoan.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/LoanController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="172" column="51" lean-forward="true" selection-start-line="172" selection-start-column="51" selection-end-line="172" selection-end-column="51" />
+        <state relative-caret-position="1751">
+          <caret line="103" column="32" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/models/Member.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1253">
+        <state relative-caret-position="760">
           <caret line="246" selection-start-line="246" selection-end-line="246" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/UserController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="55" column="25" lean-forward="true" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/LoanController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="188" column="16" selection-start-line="188" selection-start-column="16" selection-end-line="188" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/v2/LoanProduct.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/v2/AccountRoleManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/LoanProductController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/v2/LoanParameter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/LoanParameterController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoanCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2005">
+          <caret line="806" column="4" selection-start-line="806" selection-start-column="4" selection-end-line="806" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/sequelize/types/lib/model.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="1360" column="2" selection-start-line="1360" selection-start-column="2" selection-end-line="1360" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoan.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="277" column="46" lean-forward="true" selection-start-line="277" selection-start-column="46" selection-end-line="277" selection-end-column="46" />
+        <state relative-caret-position="559">
+          <caret line="451" lean-forward="true" selection-start-line="451" selection-end-line="451" />
         </state>
       </provider>
     </entry>

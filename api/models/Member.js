@@ -18,113 +18,85 @@ const Member = sequelize.define('Member', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    member_handphone: {
-        type: Sequelize.STRING,
+    no_identitas: {
+        type: Sequelize.INTEGER,
         allowNull: false
+    },
+    member_handphone: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: true
     },
     jenis_identitas: {
         type: Sequelize.STRING,
         allowNull: true
     },
-    no_identitas: {
-        type: Sequelize.STRING,
-        allowNull: true,
-        unique: true
-    },
     nama_lengkap: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     tanggal_lahir: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: false
     },
     tempat_lahir: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     jenis_kelamin: {
         type: Sequelize.STRING,
-        allowNull: true
-    },
-    nama_gadis_ibu: {
-        type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     status_perkawinan: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     pendidikan_terakhir: {
         type: Sequelize.STRING,
         allowNull: true
     },
-
+    nama_gadis_ibu: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     alamat_ktp_jalan: {
         type: Sequelize.STRING,
-        allowNull: true
-    },
-    alamat_ktp_nomer: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    alamat_ktp_rt: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
-    },
-    alamat_ktp_rw: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
+        allowNull: false
     },
     alamat_ktp_kelurahan: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     alamat_ktp_kecamatan: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     alamat_ktp_kota: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     alamat_ktp_provinsi: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     alamat_ktp_status_tempat_tinggal: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     alamat_ktp_lama_tinggal: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
+        type: Sequelize.STRING,
+        allowNull: false
     },
     domisili_sesuai_ktp: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
+        type: Sequelize.STRING,
+        allowNull: true
     },
     alamat_domisili_jalan: {
         type: Sequelize.STRING,
         allowNull: true
-    },
-    alamat_domisili_nomer: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    alamat_domisili_rt: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
-    },
-    alamat_domisili_rw: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
     },
     alamat_domisili_kelurahan: {
         type: Sequelize.STRING,
@@ -147,19 +119,16 @@ const Member = sequelize.define('Member', {
         allowNull: true
     },
     alamat_domisili_lama_tempat_tinggal: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
-    },
-
-    memiliki_npwp: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
-    },
-    nomer_npwp: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    memiliki_npwp: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    nomer_npwp: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
     pekerja_usaha: {
         type: Sequelize.STRING,
@@ -169,41 +138,21 @@ const Member = sequelize.define('Member', {
         type: Sequelize.STRING,
         allowNull: true
     },
-    posisi_jabatan: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
     nama_perusahaan: {
         type: Sequelize.STRING,
         allowNull: true
     },
     lama_bekerja: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
+        type: Sequelize.STRING,
+        allowNull: true
     },
     penghasilan_omset: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
+        allowNull: true
     },
     alamat_kantor_jalan: {
         type: Sequelize.STRING,
         allowNull: true
-    },
-    alamat_kantor_nomer: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    alamat_kantor_rt: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
-    },
-    alamat_kantor_rw: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
     },
     alamat_kantor_kelurahan: {
         type: Sequelize.STRING,
@@ -221,25 +170,62 @@ const Member = sequelize.define('Member', {
         type: Sequelize.STRING,
         allowNull: true
     },
-
-    nama: {
+    nama_pasangan: {
         type: Sequelize.STRING,
         allowNull: true
     },
-    no_hp: {
+    no_identitas_pasangan: {
         type: Sequelize.STRING,
         allowNull: true
     },
-    hubungan: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    is_verified: {
+    no_hp_pasangan: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0
+        allowNull: true
+    },
+    nama_penjamin: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    no_hp_penjamin: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    hubungan_penjamin: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dokumen_ktp: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    dokumen_sim: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dokumen_kk: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dokumen_keterangan_kerja: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dokumen_slip_gaji: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dokumen_akta_nikah: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dokumen_bpkb: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dokumen_lainnya: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
-
 }, {
     hooks,
     tableName

@@ -29,13 +29,58 @@ const TblLoanCollection = sequelize.define('TblLoanCollection', {
         type: Sequelize.DATE,
         allowNull: true
     },
-    paid_loan: {
+    angsuran: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
+        default: 0
     },
-    paid_status: {
+    pembayaran_ke: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
+    pokok: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
+    bunga: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
+    total_tagihan: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        default: 0
+    },
+    denda: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
+    simpanan_wajib: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
+    simpanan_sukarela: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
+    setoran: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
+    status_pembayaran: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    created_by: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 }, {
     hooks,

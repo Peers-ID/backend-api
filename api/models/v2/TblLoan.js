@@ -57,6 +57,18 @@ const TblLoan = sequelize.define('TblLoan', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    utang_pokok: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    bunga_pinjaman: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    member_photo_url: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     approved_by: {
         type: Sequelize.STRING,
         allowNull: true

@@ -23,6 +23,7 @@ const TblLoanController = () => {
         var loan_tenor;
         var loan_satuan_tenor;
         var hari_per_bulan;
+        var simpanan_wajib;
 
         try {
             var data = {
@@ -33,7 +34,9 @@ const TblLoanController = () => {
                 id_status: body.id_status,
                 jumlah_pencairan: body.jumlah_pencairan,
                 jumlah_pengajuan: body.jumlah_pengajuan,
-                jumlah_cicilan: body.jumlah_cicilan
+                jumlah_cicilan: body.jumlah_cicilan,
+                utang_pokok: body.utang_pokok,
+                bunga_pinjaman: body.bunga_pinjaman
             };
 
             await TblLoan.findOne({
@@ -64,9 +67,9 @@ const TblLoanController = () => {
                         });
 
                         data.nama_produk = produk.nama_produk;
-
                         loan_tenor = produk.tenor;
                         loan_satuan_tenor = produk.satuan_tenor;
+                        simpanan_wajib = produk.simpanan_wajib;
                     });
 
                     await Member.findOne({
@@ -226,13 +229,20 @@ const TblLoanController = () => {
                                 }
 
                                 var due_date_iso = new Date(start_date_iso + pengali * 24 * 60 * 60 * 1000).toISOString();
-
+                                var total_tagihan = loan.utang_pokok + loan.bunga_pinjaman + simpanan_wajib;
                                 var collection = {
                                     id_koperasi: decoded.koperasi_id,
                                     id_produk: body.id_produk,
                                     id_member: body.id_member,
                                     id_loan: loan.id,
-                                    loan_due_date: due_date_iso
+                                    loan_due_date: due_date_iso,
+                                    angsuran: 1,
+                                    pembayaran_ke: 1,
+                                    pokok: loan.utang_pokok,
+                                    bunga: loan.bunga_pinjaman,
+                                    simpanan_wajib: simpanan_wajib,
+                                    total_tagihan: total_tagihan,
+                                    created_by: "system"
                                 };
 
                                 await TblLoanCollection.create(collection);

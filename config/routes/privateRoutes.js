@@ -45,9 +45,9 @@ const privateRoutes = {
 
     'GET /loan_approval/:loan_id/:is_approved': 'LoanController.loan_approval',
 
-    'POST /collection': 'CollectionController.add',
-    'GET /collection': 'CollectionController.list',
-    'GET /collection/:id': 'CollectionController.view',
+    // 'POST /collection': 'CollectionController.add',
+    // 'GET /collection': 'CollectionController.list',
+    // 'GET /collection/:id': 'CollectionController.view',
 
     'POST /config': 'ConfigController.add',
     'GET /config': 'ConfigController.list',
@@ -74,6 +74,8 @@ const privateRoutes = {
     'POST /loan/list': 'TblLoanController.list',
     'GET /loan/list/member/:id_member': 'TblLoanController.view_per_member',
     'POST /loan/add/due_date': 'TblLoanController.loan_collection',
+    'POST /collection/list': 'TblLoanCollectionController.view',
+    'POST /collection/add': 'TblLoanCollectionController.add',
 };
 
 module.exports = privateRoutes;

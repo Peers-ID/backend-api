@@ -1,382 +1,420 @@
 const Member = require('../models/Member');
-const Loan = require('../models/Loan');
+const TblLoan = require('../models/v2/TblLoan');
 const Koperasi = require('../models/Koperasi');
 const Config = require('../models/Config');
 const Axios = require('axios');
 
 const MemberController = () => {
 
-        const add = async (req, res) => {
-                const { body, decoded } = req;
+    const add = async (req, res) => {
+        const {body, decoded} = req;
 
-                try {
-                        await Koperasi.findOne({
-                                where: {
-                                        id:body.koperasi_id
-                                },
-                        })
-                        .then(async (koperasi) => {
-                                if(decoded.role !== "Admin AO"){
+        try {
+            //anggota sudah terdaftar, no_identitas dalam 1 koperasi yang sama
+            //anggota baru
+            //status pinjaman pending persetujuan, pending pencairan
+            //status pinjaman aktif
+
+            var data = {
+                koperasi_id: decoded.koperasi_id,
+                ao_id: decoded.id,
+                no_identitas: body.no_identitas,
+                member_handphone: body.member_handphone,
+                email: body.email,
+                jenis_identitas: body.jenis_identitas,
+                nama_lengkap: body.nama_lengkap,
+                tempat_lahir: body.tempat_lahir,
+                tanggal_lahir: body.tanggal_lahir,
+                jenis_kelamin: body.jenis_kelamin,
+                status_perkawinan: body.status_perkawinan,
+                pendidikan_terakhir: body.pendidikan_terakhir,
+                nama_gadis_ibu: body.nama_gadis_ibu,
+
+                alamat_ktp_jalan: body.alamat_ktp_jalan,
+                alamat_ktp_kelurahan: body.alamat_ktp_kelurahan,
+                alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
+                alamat_ktp_kota: body.alamat_ktp_kota,
+                alamat_ktp_provinsi: body.alamat_ktp_provinsi,
+                alamat_ktp_status_tempat_tinggal: body.alamat_ktp_status_tempat_tinggal,
+                alamat_ktp_lama_tinggal: body.alamat_ktp_lama_tinggal,
+
+                domisili_sesuai_ktp: body.domisili_sesuai_ktp,
+                alamat_domisili_jalan: body.alamat_domisili_jalan,
+                alamat_domisili_kelurahan: body.alamat_domisili_kelurahan,
+                alamat_domisili_kecamatan: body.alamat_domisili_kecamatan,
+                alamat_domisili_kota: body.alamat_domisili_kota,
+                alamat_domisili_provinsi: body.alamat_domisili_provinsi,
+                alamat_domisili_status_tempat_tinggal: body.alamat_domisili_status_tempat_tinggal,
+                alamat_domisili_lama_tempat_tinggal: body.alamat_domisili_lama_tempat_tinggal,
+
+                memiliki_npwp: body.memiliki_npwp,
+                nomer_npwp: body.nomer_npwp,
+                pekerja_usaha: body.pekerja_usaha,
+                bidang_pekerja: body.bidang_pekerja,
+                nama_perusahaan: body.nama_perusahaan,
+                lama_bekerja: body.lama_bekerja,
+                penghasilan_omset: body.penghasilan_omset,
+                alamat_kantor_jalan: body.alamat_kantor_jalan,
+                alamat_kantor_kelurahan: body.alamat_kantor_kelurahan,
+                alamat_kantor_kecamatan: body.alamat_kantor_kecamatan,
+                alamat_kantor_kota: body.alamat_kantor_kota,
+                alamat_kantor_provinsi: body.alamat_kantor_provinsi,
+
+                is_verified: body.is_verified,
+
+                nama_pasangan: body.nama_pasangan,
+                no_identitas_pasangan: body.no_identitas_pasangan,
+                no_hp_pasangan: body.no_hp_pasangan,
+                nama_penjamin: body.nama_penjamin,
+                no_hp_penjamin: body.no_hp_penjamin,
+                hubungan_penjamin: body.hubungan_penjamin,
+                dokumen_ktp: body.dokumen_ktp,
+                dokumen_sim: body.dokumen_sim,
+                dokumen_kk: body.dokumen_kk,
+                dokumen_keterangan_kerja: body.dokumen_keterangan_kerja,
+                dokumen_slip_gaji: body.dokumen_slip_gaji,
+                dokumen_akta_nikah: body.dokumen_akta_nikah,
+                dokumen_bpkb: body.dokumen_bpkb,
+                dokumen_lainnya: body.dokumen_lainnya
+            };
+
+            await Koperasi.findOne({
+                where: {
+                    id: decoded.koperasi_id
+                },
+            })
+                .then(async (koperasi) => {
+                    if (decoded.role !== "AO/CMO/Sales") {
+                        return res.status(200).json({
+                            status: 400,
+                            data: [],
+                            message: "Unauthorized. You are not AO!"
+                        });
+                    }
+                    if (koperasi) {
+                        await Member.findOne({
+                            where: {
+                                no_identitas: body.no_identitas
+                            }
+                        }).then(async (member) => {
+                            if (member) {
+                                await TblLoan.findOne({
+                                    where: {
+                                        id_member: member.member_id
+                                    }
+                                }).then(async (loan) => {
+                                    if (loan) {
                                         return res.status(200).json({
-                                                status: 400,
-                                                data: [],
-                                                message: "Unauthorized. You are not AO!"
+                                            status: 401,
+                                            data: loan,
+                                            message: "Pinjaman sedang berjalan"
                                         });
-                                }
-                                if(koperasi){
-                                        const member = await Member.create({
-                                                koperasi_id: body.koperasi_id,
-                                                ao_id: decoded.id,
-                                                member_handphone: body.member_handphone,
-                                                jenis_identitas: body.jenis_identitas,
-                                                no_identitas: body.no_identitas,
-                                                nama_lengkap: body.nama_lengkap,
-                                                tanggal_lahir: body.tanggal_lahir,
-                                                tempat_lahir: body.tempat_lahir,
-                                                jenis_kelamin: body.jenis_kelamin,
-                                                nama_gadis_ibu: body.nama_gadis_ibu,
-                                                status_perkawinan: body.status_perkawinan,
-                                                pendidikan_terakhir: body.pendidikan_terakhir,
-
-                                                alamat_ktp_jalan: body.alamat_ktp_jalan,
-                                                alamat_ktp_nomer: body.alamat_ktp_nomer,
-                                                alamat_ktp_rt: body.alamat_ktp_rt,
-                                                alamat_ktp_rw: body.alamat_ktp_rw,
-                                                alamat_ktp_kelurahan: body.alamat_ktp_kelurahan,
-                                                alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
-                                                alamat_ktp_kota: body.alamat_ktp_kota,
-                                                alamat_ktp_provinsi: body.alamat_ktp_provinsi,
-                                                alamat_ktp_status_tempat_tinggal: body.alamat_ktp_status_tempat_tinggal,
-                                                alamat_ktp_lama_tinggal: body.alamat_ktp_lama_tinggal,
-
-                                                domisili_sesuai_ktp: body.domisili_sesuai_ktp,
-                                                alamat_domisili_jalan: body.alamat_domisili_jalan,
-                                                alamat_domisili_nomer: body.alamat_domisili_nomer,
-                                                alamat_domisili_rt: body.alamat_domisili_rt,
-                                                alamat_domisili_rw: body.alamat_domisili_rw,
-                                                alamat_domisili_kelurahan: body.alamat_domisili_kelurahan,
-                                                alamat_domisili_kecamatan: body.alamat_domisili_kecamatan,
-                                                alamat_domisili_kota: body.alamat_domisili_kota,
-                                                alamat_domisili_provinsi: body.alamat_domisili_provinsi,
-                                                alamat_domisili_status_tempat_tinggal: body.alamat_domisili_status_tempat_tinggal,
-                                                alamat_domisili_lama_tempat_tinggal: body.alamat_domisili_lama_tempat_tinggal,
-
-                                                memiliki_npwp: body.memiliki_npwp,
-                                                nomer_npwp: body.nomer_npwp,
-                                                pekerja_usaha: body.pekerja_usaha,
-                                                bidang_pekerja: body.bidang_pekerja,
-                                                posisi_jabatan: body.posisi_jabatan,
-                                                nama_perusahaan: body.nama_perusahaan,
-                                                lama_bekerja: body.lama_bekerja,
-                                                penghasilan_omset: body.penghasilan_omset,
-                                                alamat_kantor_jalan: body.alamat_kantor_jalan,
-                                                alamat_kantor_nomer: body.alamat_kantor_nomer,
-                                                alamat_kantor_rt: body.alamat_kantor_rt,
-                                                alamat_kantor_rw: body.alamat_kantor_rw,
-                                                alamat_kantor_kelurahan: body.alamat_kantor_kelurahan,
-                                                alamat_kantor_kecamatan: body.alamat_kantor_kecamatan,
-                                                alamat_kantor_kota: body.alamat_kantor_kota,
-                                                alamat_kantor_provinsi: body.alamat_kantor_provinsi,
-
-                                                is_verified: body.is_verified,
-
-                                                nama: body.nama,
-                                                no_hp: body.no_hp,
-                                                hubungan: body.hubungan
-                                        });
-
-                                        return res.status(201).json({
-                                                status: 201,
-                                                data: { member },
-                                                message: "Member registered successfully"
-                                        });
-                                }else{
+                                    } else {
                                         return res.status(200).json({
-                                                status: 400,
-                                                data: [],
-                                                message: "Koperasi is not exist!"
+                                            status: 200,
+                                            data: member,
+                                            message: "Anggota sudah terdaftar"
                                         });
-                                }
-                        });
-
-                } catch (err) {
-                        return res.status(200).json({
-                                status: 500,
-                                data: "",
-                                message: "Error: " + err
-                        });
-                }
-
-        };
-
-        const list = async (req, res) => {
-                try {
-                        const member = await Member.findAll();
-
-                        return res.status(200).json({
-                                status: 200,
-                                data: member,
-                                message: "Success retrieve data."
-                        });
-
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        const view = async (req, res) => {
-                const { member_id } = req.params;
-                try {
-                        const member = await Member.findAll({
-                                where: {
-                                        member_id:member_id
-                                },
-                        });
-
-                        return res.status(200).json({
-                                status: 200,
-                                data: member,
-                                message: "Success retrieve data."
-                        });
-
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        const view_by_phone = async (req, res) => {
-                const { mobile_phone } = req.params;
-                try {
-                        const member = await Member.findAll({
-                                attributes: ['member_id', 'nama_lengkap', 'no_identitas', 'tanggal_lahir', 'jenis_kelamin', 'nama_gadis_ibu', 'nomer_npwp'],
-                                where: {
-                                        member_handphone:mobile_phone
-                                },
-                        });
-
-                        return res.status(200).json({
-                                status: 200,
-                                data: member,
-                                message: "Success retrieve data."
-                        });
-
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        const edit = async (req, res) => {
-                const { body } = req;
-                const { member_id } = req.params;
-                try {
-                        const member = await Member.update(
-                                {
-                                        member_handphone: body.member_handphone,
-                                        jenis_identitas: body.jenis_identitas,
-                                        no_identitas: body.no_identitas,
-                                        nama_lengkap: body.nama_lengkap,
-                                        tanggal_lahir: body.tanggal_lahir,
-                                        tempat_lahir: body.tempat_lahir,
-                                        jenis_kelamin: body.jenis_kelamin,
-                                        nama_gadis_ibu: body.nama_gadis_ibu,
-                                        status_perkawinan: body.status_perkawinan,
-                                        pendidikan_terakhir: body.pendidikan_terakhir,
-
-                                        alamat_ktp_jalan: body.alamat_ktp_jalan,
-                                        alamat_ktp_nomer: body.alamat_ktp_nomer,
-                                        alamat_ktp_rt: body.alamat_ktp_rt,
-                                        alamat_ktp_rw: body.alamat_ktp_rw,
-                                        alamat_ktp_kelurahan: body.alamat_ktp_kelurahan,
-                                        alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
-                                        alamat_ktp_kota: body.alamat_ktp_kota,
-                                        alamat_ktp_provinsi: body.alamat_ktp_provinsi,
-                                        alamat_ktp_status_tempat_tinggal: body.alamat_ktp_status_tempat_tinggal,
-                                        alamat_ktp_lama_tinggal: body.alamat_ktp_lama_tinggal,
-
-                                        domisili_sesuai_ktp: body.domisili_sesuai_ktp,
-                                        alamat_domisili_jalan: body.alamat_domisili_jalan,
-                                        alamat_domisili_nomer: body.alamat_domisili_nomer,
-                                        alamat_domisili_rt: body.alamat_domisili_rt,
-                                        alamat_domisili_rw: body.alamat_domisili_rw,
-                                        alamat_domisili_kelurahan: body.alamat_domisili_kelurahan,
-                                        alamat_domisili_kecamatan: body.alamat_domisili_kecamatan,
-                                        alamat_domisili_kota: body.alamat_domisili_kota,
-                                        alamat_domisili_provinsi: body.alamat_domisili_provinsi,
-                                        alamat_domisili_status_tempat_tinggal: body.alamat_domisili_status_tempat_tinggal,
-                                        alamat_domisili_lama_tempat_tinggal: body.alamat_domisili_lama_tempat_tinggal,
-
-                                        memiliki_npwp: body.memiliki_npwp,
-                                        nomer_npwp: body.nomer_npwp,
-                                        pekerja_usaha: body.pekerja_usaha,
-                                        bidang_pekerja: body.bidang_pekerja,
-                                        posisi_jabatan: body.posisi_jabatan,
-                                        nama_perusahaan: body.nama_perusahaan,
-                                        lama_bekerja: body.lama_bekerja,
-                                        penghasilan_omset: body.penghasilan_omset,
-                                        alamat_kantor_jalan: body.alamat_kantor_jalan,
-                                        alamat_kantor_nomer: body.alamat_kantor_nomer,
-                                        alamat_kantor_rt: body.alamat_kantor_rt,
-                                        alamat_kantor_rw: body.alamat_kantor_rw,
-                                        alamat_kantor_kelurahan: body.alamat_kantor_kelurahan,
-                                        alamat_kantor_kecamatan: body.alamat_kantor_kecamatan,
-                                        alamat_kantor_kota: body.alamat_kantor_kota,
-                                        alamat_kantor_provinsi: body.alamat_kantor_provinsi,
-
-                                        nama: body.nama,
-                                        no_hp: body.no_hp,
-                                        hubungan: body.hubungan
-                                }
-                        , {
-                                  where: {
-                                          member_id:member_id
-                                  }
-                        });
-
-                        if(member){
-                                return res.status(200).json({
-                                        status: 201,
-                                        data: [],
-                                        message: "Success update data."
+                                    }
                                 });
-                        }
+                            } else {
+                                //insert to db
+                                await Member.create(data);
 
-                        return res.status(200).json({
-                                status: 400,
-                                data: [],
-                                message: "Failed to update data!"
+                                return res.status(201).json({
+                                    status: 201,
+                                    data: data,
+                                    message: "Member registered successfully"
+                                });
+                            }
                         });
+                    } else {
+                        return res.status(200).json({
+                            status: 400,
+                            data: [],
+                            message: "Koperasi is not exist!"
+                        });
+                    }
+                });
 
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: "",
+                message: "Error: " + err
+            });
+        }
+
+    };
+
+    const list = async (req, res) => {
+        try {
+            const member = await Member.findAll();
+
+            return res.status(200).json({
+                status: 200,
+                data: member,
+                message: "Success retrieve data."
+            });
+
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
+
+    const view = async (req, res) => {
+        const {member_id} = req.params;
+        try {
+            const member = await Member.findAll({
+                where: {
+                    member_id: member_id
+                },
+            });
+
+            return res.status(200).json({
+                status: 200,
+                data: member,
+                message: "Success retrieve data."
+            });
+
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
+
+    const view_by_phone = async (req, res) => {
+        const {mobile_phone} = req.params;
+        try {
+            const member = await Member.findAll({
+                attributes: ['member_id', 'nama_lengkap', 'no_identitas', 'tanggal_lahir', 'jenis_kelamin', 'nama_gadis_ibu', 'nomer_npwp'],
+                where: {
+                    member_handphone: mobile_phone
+                },
+            });
+
+            return res.status(200).json({
+                status: 200,
+                data: member,
+                message: "Success retrieve data."
+            });
+
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
+
+    const edit = async (req, res) => {
+        const {body} = req;
+        const {member_id} = req.params;
+        try {
+            const member = await Member.update(
+                {
+                    member_handphone: body.member_handphone,
+                    jenis_identitas: body.jenis_identitas,
+                    no_identitas: body.no_identitas,
+                    nama_lengkap: body.nama_lengkap,
+                    tanggal_lahir: body.tanggal_lahir,
+                    tempat_lahir: body.tempat_lahir,
+                    jenis_kelamin: body.jenis_kelamin,
+                    nama_gadis_ibu: body.nama_gadis_ibu,
+                    status_perkawinan: body.status_perkawinan,
+                    pendidikan_terakhir: body.pendidikan_terakhir,
+
+                    alamat_ktp_jalan: body.alamat_ktp_jalan,
+                    alamat_ktp_nomer: body.alamat_ktp_nomer,
+                    alamat_ktp_rt: body.alamat_ktp_rt,
+                    alamat_ktp_rw: body.alamat_ktp_rw,
+                    alamat_ktp_kelurahan: body.alamat_ktp_kelurahan,
+                    alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
+                    alamat_ktp_kota: body.alamat_ktp_kota,
+                    alamat_ktp_provinsi: body.alamat_ktp_provinsi,
+                    alamat_ktp_status_tempat_tinggal: body.alamat_ktp_status_tempat_tinggal,
+                    alamat_ktp_lama_tinggal: body.alamat_ktp_lama_tinggal,
+
+                    domisili_sesuai_ktp: body.domisili_sesuai_ktp,
+                    alamat_domisili_jalan: body.alamat_domisili_jalan,
+                    alamat_domisili_nomer: body.alamat_domisili_nomer,
+                    alamat_domisili_rt: body.alamat_domisili_rt,
+                    alamat_domisili_rw: body.alamat_domisili_rw,
+                    alamat_domisili_kelurahan: body.alamat_domisili_kelurahan,
+                    alamat_domisili_kecamatan: body.alamat_domisili_kecamatan,
+                    alamat_domisili_kota: body.alamat_domisili_kota,
+                    alamat_domisili_provinsi: body.alamat_domisili_provinsi,
+                    alamat_domisili_status_tempat_tinggal: body.alamat_domisili_status_tempat_tinggal,
+                    alamat_domisili_lama_tempat_tinggal: body.alamat_domisili_lama_tempat_tinggal,
+
+                    memiliki_npwp: body.memiliki_npwp,
+                    nomer_npwp: body.nomer_npwp,
+                    pekerja_usaha: body.pekerja_usaha,
+                    bidang_pekerja: body.bidang_pekerja,
+                    posisi_jabatan: body.posisi_jabatan,
+                    nama_perusahaan: body.nama_perusahaan,
+                    lama_bekerja: body.lama_bekerja,
+                    penghasilan_omset: body.penghasilan_omset,
+                    alamat_kantor_jalan: body.alamat_kantor_jalan,
+                    alamat_kantor_nomer: body.alamat_kantor_nomer,
+                    alamat_kantor_rt: body.alamat_kantor_rt,
+                    alamat_kantor_rw: body.alamat_kantor_rw,
+                    alamat_kantor_kelurahan: body.alamat_kantor_kelurahan,
+                    alamat_kantor_kecamatan: body.alamat_kantor_kecamatan,
+                    alamat_kantor_kota: body.alamat_kantor_kota,
+                    alamat_kantor_provinsi: body.alamat_kantor_provinsi,
+
+                    nama: body.nama,
+                    no_hp: body.no_hp,
+                    hubungan: body.hubungan
                 }
-        };
+                , {
+                    where: {
+                        member_id: member_id
+                    }
+                });
 
-        const change_picture = async (req, res) => {
-                const { member_id } = req.params;
+            if (member) {
+                return res.status(200).json({
+                    status: 201,
+                    data: [],
+                    message: "Success update data."
+                });
+            }
 
-                try {
-                        if (!req.files || Object.keys(req.files).length === 0) {
-                                return res.status(400).send('No files were uploaded.');
+            return res.status(200).json({
+                status: 400,
+                data: [],
+                message: "Failed to update data!"
+            });
+
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
+
+    const change_picture = async (req, res) => {
+        const {member_id} = req.params;
+
+        try {
+            if (!req.files || Object.keys(req.files).length === 0) {
+                return res.status(400).send('No files were uploaded.');
+            }
+            var now = Date.now();
+
+            let memberPicture = req.files.image;
+
+            memberPicture.mv('/home/dev_peers_id/backend-api/pictures/ID-' + member_id + '-' + now + '.jpg', async function (err) {
+                if (err)
+                    return res.status(500).send(err);
+
+                await TblLoan.update(
+                    {
+                        member_photo_url: 'ID-' + member_id + '-' + now + '.jpg',
+                    }
+                    , {
+                        where: {
+                            id_member: member_id
                         }
-                        var now = Date.now();
-
-                        let memberPicture = req.files.image;
-
-                        memberPicture.mv('/home/dev_peers_id/backend-api/pictures/ID-' + member_id + '-' + now + '.jpg', async function(err) {
-                                if (err)
-                                        return res.status(500).send(err);
-
-                                        const member = await Loan.update(
-                                                {
-                                                        member_photo_url: 'ID-' + member_id + '-' + now + '.jpg',
-                                                }
-                                        , {
-                                                  where: {
-                                                          member_id:member_id
-                                                  }
-                                        });
-                                        return res.status(201).json({
-                                                status: 201,
-                                                data: [],
-                                                message: "Profile picture updated!"
-                                        });
-                        });
+                    });
+                return res.status(201).json({
+                    status: 201,
+                    data: [],
+                    message: "Profile picture updated!"
+                });
+            });
 
 
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: "",
+                message: "Error: " + err
+            });
+        }
 
-                } catch (err) {
-                        return res.status(200).json({
-                                status: 500,
-                                data: "",
-                                message: "Error: " + err
-                        });
-                }
+    };
 
-        };
+    const get_picture = async (req, res) => {
+        const {member_id} = req.params;
+        try {
+            const member = await TblLoan.findOne({
+                attributes: ['member_photo_url'],
+                where: {
+                    id_member: member_id
+                },
+            });
 
-        const get_picture = async (req, res) => {
-                const { member_id } = req.params;
-                try {
-                        const member = await Loan.findOne({
-                                attributes: ['member_photo_url'],
-                                where: {
-                                        member_id:member_id
-                                },
-                        });
+            return res.status(200).json({
+                status: 200,
+                data: member,
+                message: "Success retrieve data."
+            });
 
-                        return res.status(200).json({
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
+
+    const miscall = async (req, res) => {
+        const {member_hp} = req.body;
+        try {
+            Promise.all([
+                Config.findOne({
+                    where: {
+                        env: 'dev',
+                        key: 'citcall-url'
+                    }
+                }),
+                Config.findOne({
+                    where: {
+                        env: 'dev',
+                        key: 'citcall-auth'
+                    }
+                })
+            ])
+                .then(([url, auth]) => {
+                    Axios({
+                        method: 'post',
+                        url: url.value,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Basic ' + auth.value
+                        },
+                        data: {
+                            "msisdn": member_hp.toString(),
+                            "gateway": 1
+                        }
+                    })
+                        .then(function (response) {
+                            return res.status(200).json({
                                 status: 200,
-                                data: member,
-                                message: "Success retrieve data."
+                                data: response.data,
+                                message: "Success making a call."
+                            });
                         });
+                })
+                .catch((err) => {
+                    console.error(err);
+                    return res.status(500).json({msg: err});
+                });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
 
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        const miscall = async (req, res) => {
-                const { member_hp } = req.body;
-                try {
-                                  Promise.all([
-                                            Config.findOne({
-                                                      where: {
-                                                              env: 'dev',
-                                                              key: 'citcall-url'
-                                                      }
-                                            }),
-                                            Config.findOne({
-                                                      where: {
-                                                              env: 'dev',
-                                                              key: 'citcall-auth'
-                                                      }
-                                            })
-                                  ])
-                                  .then(([url, auth]) => {
-                                          Axios({
-                                                  method: 'post',
-                                                  url: url.value,
-                                                  headers: {
-                                                          'Content-Type': 'application/json',
-                                                          'Authorization': 'Basic ' + auth.value},
-                                                  data: {
-                                                  	"msisdn": member_hp.toString(),
-                                                  	"gateway": 1
-                                                  }
-                                          })
-                                          .then(function (response) {
-                                                  return res.status(200).json({
-                                                          status: 200,
-                                                          data: response.data,
-                                                          message: "Success making a call."
-                                                  });
-                                          });
-                                  })
-                                  .catch((err) => {
-                                          console.error(err);
-                                          return res.status(500).json({ msg: err });
-                                  });
-                } catch (err) {
-                        console.log(err);
-                        return res.status(500).json({ msg: 'Internal server error' });
-                }
-        };
-
-        return {
-                add,
-                list,
-                view,
-                view_by_phone,
-                edit,
-                change_picture,
-                get_picture,
-                miscall
-        };
+    return {
+        add,
+        list,
+        view,
+        view_by_phone,
+        edit,
+        change_picture,
+        get_picture,
+        miscall
+    };
 };
 
 module.exports = MemberController;

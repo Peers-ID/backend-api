@@ -202,20 +202,23 @@ const TblLoanCollectionController = () => {
 
 
     const view = async (req, res) => {
+        let condition = { where:{} };
         const {body, decoded} = req;
 
         try {
             var id_koperasi = decoded.koperasi_id;
             var id_member = body.id_member;
 
-            await TblLoanCollection.findAll({
-                where: {
-                    id_koperasi: id_koperasi,
-                    id_member: id_member,
-                    angsuran: body.angsuran,
-                    created_by: "system"
-                }
-            }).then(async (collection) => {
+            if (req.body.angsuran !== undefined) {
+                condition.where.id_member = body.id_member;
+                condition.where.angsuran = body.angsuran;
+                condition.where.created_by = "system";
+            } else {
+                condition.where.id_member = body.id_member;
+                condition.where.created_by = "system";
+            }
+
+            await TblLoanCollection.findAll(condition).then(async (collection) => {
                 if (collection) {
                     return res.status(200).json({
                         status: 200,

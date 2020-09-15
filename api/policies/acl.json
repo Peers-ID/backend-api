@@ -1,127 +1,96 @@
 [
-        {
-                "group": "Admin Peers",
-                "permissions": [
-                        {
-                                "resource": "*",
-                                "methods": "*",
-                                "action": "allow"
-                        }
-                ]
-        },
-        {
-                "group": "Admin Koperasi",
-                "permissions": [
-                        {
-                                "resource": "koperasi/approval/*",
-                                "methods": ["GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "koperasi/cutoff/*",
-                                "methods": ["GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "ao/*",
-                                "methods": ["POST", "GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "member",
-                                "methods": ["POST", "GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "member/*",
-                                "methods": ["POST", "GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "member/phone/*",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "member_config/*",
-                                "methods": ["POST", "GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "loan/formula",
-                                "methods": ["POST", "GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "loan/formula/*",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "loan/other_fee/*",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "loan",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "loan/*",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "loan_approval/*",
-                                "methods": ["GET"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "collection",
-                                "methods": ["POST", "GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "collection/*",
-                                "methods": ["POST", "GET", "PUT"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "users/change_password",
-                                "methods": ["POST"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "config",
-                                "methods": ["POST", "GET", "PUT"],
-                                "action": "allow"
-                        }
-                ]
-        },
-        {
-                "group": "AO/CMO/Sales",
-                "permissions": [
-                        {
-                                "resource": "*",
-                                "methods": "*",
-                                "action": "allow"
-                        }
-                ]
-        },
-        {
-                "group": "guest",
-                "permissions": [
-                        {
-                                "resource": "login/",
-                                "methods": ["POST"],
-                                "action": "allow"
-                        },
-                        {
-                                "resource": "forgot_password/",
-                                "methods": ["POST"],
-                                "action": "allow"
-                        }
-                ]
-        }
+  {
+    "group": "Admin Peers",
+    "permissions": [
+      {
+        "resource": "koperasi",
+        "methods": "*",
+        "action": "allow"
+      }
+    ]
+  },
+  {
+    "group": "Admin Koperasi",
+    "permissions": [
+      {
+        "resource": "account/add",
+        "methods": ["POST"],
+        "action": "allow"
+      },
+      {
+        "resource": "member_config/*",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "loan/add/parameter",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "loan/add/product",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "master/*",
+        "methods": ["GET"],
+        "action": "allow"
+      }
+    ]
+  },
+  {
+    "group": "Super Admin Koperasi",
+    "permissions": [
+      {
+        "resource": "account",
+        "methods": "*",
+        "action": "allow"
+      }
+    ]
+  },
+  {
+    "group": "AO/CMO/Sales",
+    "permissions": [
+      {
+        "resource": "member",
+        "methods": ["POST"],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/add",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "collection/*",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "member_config/*",
+        "methods": ["GET"],
+        "action": "allow"
+      }
+    ]
+  },
+  {
+    "group": "guest",
+    "permissions": [
+      {
+        "resource": "login/",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "forgot_password/",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      }
+    ]
+  }
 ]

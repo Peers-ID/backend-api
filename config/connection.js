@@ -1,5 +1,5 @@
 const development = {
-        database: 'peers_db',
+        database: 'peers_db_v2',
         username: 'root',
         password: 'root123',
         host: 'localhost',
@@ -7,7 +7,7 @@ const development = {
 };
 
 const testing = {
-        database: 'peers_db',
+        database: 'peers_db_v2',
         username: 'developer',
         password: '4LiP##12sDBDev123',
         host: '10.128.0.3',

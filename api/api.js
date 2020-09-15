@@ -74,4 +74,4 @@ process.on('SIGTERM', () => {
     conn.close(() => {
         console.log('Process terminated')
     })
-})
+});

@@ -8,11 +8,11 @@ const privateRoutes = {
     'POST /koperasi': 'KoperasiController.add',
     'GET /koperasi': 'KoperasiController.list',
 
-    'PUT /koperasi/approval/:kop_id': 'KoperasiController.edit_approval',
+    /*'PUT /koperasi/approval/:kop_id': 'KoperasiController.edit_approval',
     'GET /koperasi/approval/:kop_id': 'KoperasiController.view_approval',
 
     'PUT /koperasi/cutoff/:kop_id': 'KoperasiController.edit_cutoff',
-    'GET /koperasi/cutoff/:kop_id': 'KoperasiController.view_cutoff',
+    'GET /koperasi/cutoff/:kop_id': 'KoperasiController.view_cutoff',*/
 
     'POST /ao': 'UserController.add_ao',
     'GET /ao': 'UserController.list_ao',

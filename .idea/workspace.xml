@@ -2,17 +2,92 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f845e3f7-4325-4024-a9e1-ac9a805e7eaf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/120920.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/controllers/MemberConfigController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/MemberConfigController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/controllers/MemberController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/MemberController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/controllers/TblLoanController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/TblLoanController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/Member.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/Member.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/MemberConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/MemberConfig.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/v2/TblLoan.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/v2/TblLoan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/v2/TblLoanCollection.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/v2/TblLoanCollection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/KoperasiController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/KoperasiController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/LoanParameterController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/LoanParameterController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/policies/acl.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/policies/acl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/connection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes/privateRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/privateRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1588831176910.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1588855280489.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589610514017.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589767945485.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589768548474.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589769518503.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589770079497.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589770079704.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589770450410.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589770453355.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589771534679.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589771537106.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-1-1589784390823.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-16-1590162186707.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-17-1590223331766.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-17-1590223333651.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-2-1588909308263.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-2-1589504525363.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-4-1589605235594.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-6-1589282098425.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/ID-6-1589282101137.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Amitha-1589130046243.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588672588815.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588672704325.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588780018355.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588780324640.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588780412344.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588780515621.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588780590675.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588780634582.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588780834632.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588781266549.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588781338688.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588781368897.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588782349960.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588782477910.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588782667291.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588782767127.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588782864668.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588783019010.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588783183002.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588783258389.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Artha-1588827701129.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Depok-1588669275129.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Depok-1588671632098.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Depok-1588672076018.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Depok-1589170652179.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-KOPERASI-1588959913025.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-KOPERASI-1591087488317.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Koperasi-1590162043349.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Manunggal-1587820690989.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Megah-1588789984702.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Megah-1588790348586.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Megah-1588790430778.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Tes-1588826143831.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Tester-1588826972141.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Tester-1588827118556.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-Tester-1588827260143.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395626825.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395629617.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395764781.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395765525.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395766382.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395872420.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395965445.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395967082.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-alvin-1588395124230.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-alvin-1588395302159.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-alvin-1588395428433.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-alvin-1588395511729.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-alvin-1588395513861.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-alvin-1588902302958.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-alvin-1590944033669.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-mkoperasi-1589009426320.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-opkoperasi-1589010646066.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-tes-1588826303584.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-tes-1588826522668.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/koperasi/Kop-ujikoperasi-1588489805813.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,19 +149,21 @@
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.37" value="1" />
+          <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.49" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="2" />
           <entry key="gitignore" value="1" />
-          <entry key="js" value="105" />
-          <entry key="json" value="9" />
+          <entry key="jpg" value="2" />
+          <entry key="js" value="114" />
+          <entry key="json" value="10" />
           <entry key="sql" value="4" />
           <entry key="ts" value="11" />
           <entry key="yml" value="1" />
@@ -95,8 +172,9 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="2" />
-          <entry key="JSON" value="9" />
-          <entry key="JavaScript" value="105" />
+          <entry key="Image" value="2" />
+          <entry key="JSON" value="10" />
+          <entry key="JavaScript" value="114" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SQL" value="2" />
           <entry key="Scratch" value="2" />
@@ -114,8 +192,8 @@
         <counts>
           <entry key="env" value="12" />
           <entry key="gitignore" value="11" />
-          <entry key="js" value="13349" />
-          <entry key="json" value="21" />
+          <entry key="js" value="13520" />
+          <entry key="json" value="87" />
           <entry key="sql" value="36" />
           <entry key="txt" value="8" />
         </counts>
@@ -123,8 +201,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="12" />
-          <entry key="JSON" value="21" />
-          <entry key="JavaScript" value="13349" />
+          <entry key="JSON" value="87" />
+          <entry key="JavaScript" value="13520" />
           <entry key="PLAIN_TEXT" value="19" />
           <entry key="Scratch" value="36" />
         </counts>
@@ -136,26 +214,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="205" column="56" lean-forward="true" selection-start-line="205" selection-start-column="56" selection-end-line="205" selection-end-column="56" />
+            <state relative-caret-position="-3944">
+              <caret line="200" lean-forward="true" selection-start-line="200" selection-end-line="200" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoanCollection.js">
+        <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+            <state relative-caret-position="183">
+              <caret line="220" column="83" lean-forward="true" selection-start-line="220" selection-start-column="83" selection-end-line="220" selection-end-column="83" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/database.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="75" column="16" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
+            <state relative-caret-position="51">
+              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/connection.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -163,17 +250,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="77" column="60" selection-start-line="77" selection-start-column="60" selection-end-line="77" selection-end-column="60" />
+            <state relative-caret-position="170">
+              <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/controllers/LoanParameterController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoan.js">
+        <entry file="file://$PROJECT_DIR$/api/controllers/UserController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="71" column="15" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="15" />
+            <state relative-caret-position="217">
+              <caret line="315" column="23" lean-forward="true" selection-start-line="315" selection-start-column="23" selection-end-line="315" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/policies/acl.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="76" column="3" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/controllers/KoperasiController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="77" column="24" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -182,18 +305,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>var data</find>
-      <find>.create(</find>
-      <find>.create</find>
-      <find>no_hp</find>
-      <find>Loan</find>
-      <find>Loan.</find>
-      <find>TblLoan</find>
-      <find>get_picture</find>
-      <find>berjalan</find>
-      <find>desc_pencairan</find>
-      <find>LoanProduct</find>
-      <find>loan_tenor</find>
       <find>paid_loan</find>
       <find>req.param</find>
       <find>collect</find>
@@ -212,6 +323,18 @@
       <find>parameter</find>
       <find>collection.loan_due_date</find>
       <find>dateDiffInDays</find>
+      <find>undefined</find>
+      <find>view</find>
+      <find>koperasi</find>
+      <find>form_koperasi_approval_config</find>
+      <find>24</find>
+      <find>KoperasiApprovalConfig</find>
+      <find>role</find>
+      <find>403</find>
+      <find>login</find>
+      <find>loan/formula</find>
+      <find>loan/add/parameter</find>
+      <find>member_config</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -226,10 +349,8 @@
         <option value="$PROJECT_DIR$/eslint.json" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d71158b7-2e37-497a-981e-acac9bcf5362/console.sql" />
-        <option value="$PROJECT_DIR$/config/connection.js" />
         <option value="$PROJECT_DIR$/api/models/v2/LoanParameters.js" />
         <option value="$PROJECT_DIR$/api/controllers/v2/LoanParameterController.js" />
-        <option value="$PROJECT_DIR$/api/api.js" />
         <option value="$PROJECT_DIR$/api/models/v2/MasterData.js" />
         <option value="$PROJECT_DIR$/api/models/v2/MstDasarCicilanSebagian.js" />
         <option value="$PROJECT_DIR$/api/models/v2/MstDasarDenda.js" />
@@ -241,22 +362,25 @@
         <option value="$PROJECT_DIR$/api/models/v2/AccountManagment.js" />
         <option value="$PROJECT_DIR$/api/models/v2/AccountManagement.js" />
         <option value="$PROJECT_DIR$/api/models/v2/AccountRoleManagement.js" />
-        <option value="$PROJECT_DIR$/api/policies/acl.json" />
         <option value="$PROJECT_DIR$/api/models/User.js" />
         <option value="$PROJECT_DIR$/api/models/v2/LoanProduct.js" />
         <option value="$PROJECT_DIR$/api/controllers/LoanProductController.js" />
         <option value="$PROJECT_DIR$/api/models/v2/LoanParameter.js" />
         <option value="$PROJECT_DIR$/api/controllers/UserController.js" />
-        <option value="$PROJECT_DIR$/api/controllers/LoanParameterController.js" />
         <option value="$PROJECT_DIR$/api/models/MemberConfig.js" />
         <option value="$PROJECT_DIR$/api/controllers/MemberConfigController.js" />
         <option value="$PROJECT_DIR$/api/models/Member.js" />
         <option value="$PROJECT_DIR$/api/controllers/MemberController.js" />
         <option value="$PROJECT_DIR$/api/models/v2/TblLoan.js" />
-        <option value="$PROJECT_DIR$/config/routes/privateRoutes.js" />
         <option value="$PROJECT_DIR$/api/controllers/TblLoanController.js" />
         <option value="$PROJECT_DIR$/api/models/v2/TblLoanCollection.js" />
         <option value="$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js" />
+        <option value="$PROJECT_DIR$/config/routes/privateRoutes.js" />
+        <option value="$PROJECT_DIR$/api/controllers/KoperasiController.js" />
+        <option value="$PROJECT_DIR$/config/connection.js" />
+        <option value="$PROJECT_DIR$/api/api.js" />
+        <option value="$PROJECT_DIR$/api/policies/acl.json" />
+        <option value="$PROJECT_DIR$/api/controllers/LoanParameterController.js" />
       </list>
     </option>
   </component>
@@ -280,14 +404,13 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -295,15 +418,21 @@
               <item name="backend-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend-api" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="backend-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend-api" type="462c0819:PsiDirectoryNode" />
+              <item name="pictures" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="SearchEverywhereHistoryKey" value="private&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/config/routes/privateRoutes.js&#10;TbLoan&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/TblLoanController.js&#10;Loan&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/TblLoanController.js&#10;priva&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/config/routes/privateRoutes.js&#10;member&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/Member.js&#10;RoleMa&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/v2/AccountRoleManagement.js&#10;LoanPara&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanParameterController.js&#10;LoanPro&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanProductController.js&#10;LoanPr&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/v2/LoanProduct.js&#10;LoanContro&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;acl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/policies/acl.json&#10;Member&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/MemberController.js&#10;LoanCon&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.en&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/.env&#10;grunt&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/node_modules/core-js/Gruntfile.js&#10;LoanControl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.env&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="acl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/policies/acl.json&#10;database&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/config/database.js&#10;private&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/config/routes/privateRoutes.js&#10;TbLoan&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/TblLoanController.js&#10;Loan&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/TblLoanController.js&#10;priva&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/config/routes/privateRoutes.js&#10;member&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/Member.js&#10;RoleMa&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/v2/AccountRoleManagement.js&#10;LoanPara&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanParameterController.js&#10;LoanPro&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanProductController.js&#10;LoanPr&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/models/v2/LoanProduct.js&#10;LoanContro&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;Member&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/MemberController.js&#10;LoanCon&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.en&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/.env&#10;grunt&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/node_modules/core-js/Gruntfile.js&#10;LoanControl&#9;FILE&#9;file://H:/My Data/Peers/Backend/backend-api/api/controllers/LoanController.js&#10;.env&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="H:/SFA/Discount/Oracle Script" />
@@ -361,11 +490,12 @@
       <workItem from="1599149626354" duration="23439000" />
       <workItem from="1599277121871" duration="17819000" />
       <workItem from="1599486252746" duration="39596000" />
+      <workItem from="1600052405947" duration="17560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137930000" />
+    <option name="totallyTimeSpent" value="155490000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -380,7 +510,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2677761" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.27155825" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -396,7 +526,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32879046" />
       <window_info anchor="bottom" id="TypeScript" order="10" weight="0.32879046" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3492334" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.25383306" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.516184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -411,45 +541,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/sequelize/lib/dialects/mysql/connection-manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="122" column="50" lean-forward="true" selection-start-line="122" selection-start-column="50" selection-end-line="122" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mysql2/lib/connection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="181" column="34" lean-forward="true" selection-start-line="181" selection-start-column="34" selection-end-line="181" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/connection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -496,13 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes/publicRoutes.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -531,13 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/KoperasiController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -584,13 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/UserController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="55" column="25" lean-forward="true" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/models/v2/LoanProduct.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
@@ -612,24 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/LoanParameterController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/LoanController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3196">
           <caret line="188" column="16" selection-start-line="188" selection-start-column="16" selection-end-line="188" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/policies/acl.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="103" column="32" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -689,48 +749,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/Collection.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoanCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoan.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="1207">
           <caret line="71" column="15" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/Collection.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/CollectionController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+        <state relative-caret-position="-1411">
+          <caret line="48" column="37" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
+    <entry file="file://$PROJECT_DIR$/config/database.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="77" column="60" selection-start-line="77" selection-start-column="60" selection-end-line="77" selection-end-column="60" />
+        <state relative-caret-position="51">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pictures/koperasi/Kop-a-1588395626825.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pictures/ID-1-1588831176910.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/KoperasiCutOffConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/KoperasiController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="77" column="24" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/UserController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="315" column="23" lean-forward="true" selection-start-line="315" selection-start-column="23" selection-end-line="315" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="205" column="56" lean-forward="true" selection-start-line="205" selection-start-column="56" selection-end-line="205" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/v2/TblLoanCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+        <state relative-caret-position="-3944">
+          <caret line="200" lean-forward="true" selection-start-line="200" selection-end-line="200" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="75" column="16" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
+        <state relative-caret-position="183">
+          <caret line="220" column="83" lean-forward="true" selection-start-line="220" selection-start-column="83" selection-end-line="220" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="76" column="3" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/connection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/policies/acl.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/LoanParameterController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
         </state>
       </provider>
     </entry>

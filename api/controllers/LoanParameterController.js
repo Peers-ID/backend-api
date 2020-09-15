@@ -5,6 +5,12 @@ const LoanParameterController = () => {
     const add = async (req, res) => {
         const {body, decoded} = req;
 
+
+        //TODO list status pinjaman
+        /*Anggota Sudah Terdaftar : 0, 9
+        Pending Persetujuan Pinjaman : 2,3,4,6,7,8
+        Pinjaman Aktif : 1,5*/
+
         try {
             var data = {
                 id_koperasi: decoded.koperasi_id,

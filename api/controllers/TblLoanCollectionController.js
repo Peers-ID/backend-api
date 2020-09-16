@@ -1,6 +1,7 @@
 const TblLoanCollection = require('../models/v2/TblLoanCollection');
 const LoanProduct = require('../models/v2/LoanProduct');
 const LoanParameter = require('../models/v2/LoanParameter');
+const TblSimpanan = require('../models/v2/TblSimpanan');
 
 const {Op} = require("sequelize");
 
@@ -116,6 +117,38 @@ const TblLoanCollectionController = () => {
                     collection
                 ).then(async (android_collection) => {
 
+                    /*----------------- CREATE SIMPANAN ---------------*/
+                    var simpanan = {};
+
+                    await TblSimpanan.findOne({
+                        where: {
+                            id_koperasi: decoded.koperasi_id,
+                            id_ao: decoded.id,
+                            id_loan: android_collection.id_loan,
+                            id_member: android_collection.id_member
+                        }
+                    }).then(async (data_simpanan) => {
+                        console.log("### " + data_simpanan);
+
+                        if (data_simpanan) {
+                            console.log("###-1 - TRUE");
+                            simpanan.simpanan_wajib = android_collection.simpanan_wajib + data_simpanan.simpanan_wajib;
+                            simpanan.simpanan_sukarela = android_collection.simpanan_sukarela + data_simpanan.simpanan_sukarela;
+
+                            await TblSimpanan.update(simpanan, {
+                                where: {
+                                    id_koperasi: decoded.koperasi_id,
+                                    id_ao: decoded.id,
+                                    id_loan: android_collection.id_loan,
+                                    id_member: android_collection.id_member
+                                }
+                            });
+                        } else {
+                            console.log("###-1 - FALSE");
+                        }
+                    });
+
+
                     /* --------------- Generate NEXT collection from System --------------*/
 
                     var next_collection = {
@@ -202,7 +235,7 @@ const TblLoanCollectionController = () => {
 
 
     const view = async (req, res) => {
-        let condition = { where:{} };
+        let condition = {where: {}};
         const {body, decoded} = req;
 
         try {

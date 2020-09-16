@@ -208,7 +208,7 @@ const UserController = () => {
         try {
             const users = await User.findAll({
                 where: {
-                    role: "Admin AO",
+                    role: "AO/CMO/Sales",
                 },
             });
 

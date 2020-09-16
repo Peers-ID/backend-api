@@ -61,7 +61,7 @@ const LoanParameterController = () => {
     };
 
     const view = async (req, res) => {
-        const {decoded} = req;
+        const {id, decoded} = req;
 
         try {
             const loan_parameter = await LoanParameter.findAll({

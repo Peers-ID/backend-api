@@ -148,8 +148,15 @@ const MemberController = () => {
     };
 
     const list = async (req, res) => {
+        const {id, decoded} = req;
+
         try {
-            const member = await Member.findAll();
+            const member = await Member.findAll({
+                where: {
+                    koperasi_id : decoded.koperasi_id,
+                    ao_id : decoded.id
+                }
+            });
 
             return res.status(200).json({
                 status: 200,
@@ -224,9 +231,6 @@ const MemberController = () => {
                     pendidikan_terakhir: body.pendidikan_terakhir,
 
                     alamat_ktp_jalan: body.alamat_ktp_jalan,
-                    alamat_ktp_nomer: body.alamat_ktp_nomer,
-                    alamat_ktp_rt: body.alamat_ktp_rt,
-                    alamat_ktp_rw: body.alamat_ktp_rw,
                     alamat_ktp_kelurahan: body.alamat_ktp_kelurahan,
                     alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
                     alamat_ktp_kota: body.alamat_ktp_kota,
@@ -236,9 +240,6 @@ const MemberController = () => {
 
                     domisili_sesuai_ktp: body.domisili_sesuai_ktp,
                     alamat_domisili_jalan: body.alamat_domisili_jalan,
-                    alamat_domisili_nomer: body.alamat_domisili_nomer,
-                    alamat_domisili_rt: body.alamat_domisili_rt,
-                    alamat_domisili_rw: body.alamat_domisili_rw,
                     alamat_domisili_kelurahan: body.alamat_domisili_kelurahan,
                     alamat_domisili_kecamatan: body.alamat_domisili_kecamatan,
                     alamat_domisili_kota: body.alamat_domisili_kota,
@@ -250,22 +251,29 @@ const MemberController = () => {
                     nomer_npwp: body.nomer_npwp,
                     pekerja_usaha: body.pekerja_usaha,
                     bidang_pekerja: body.bidang_pekerja,
-                    posisi_jabatan: body.posisi_jabatan,
                     nama_perusahaan: body.nama_perusahaan,
                     lama_bekerja: body.lama_bekerja,
                     penghasilan_omset: body.penghasilan_omset,
                     alamat_kantor_jalan: body.alamat_kantor_jalan,
-                    alamat_kantor_nomer: body.alamat_kantor_nomer,
-                    alamat_kantor_rt: body.alamat_kantor_rt,
-                    alamat_kantor_rw: body.alamat_kantor_rw,
                     alamat_kantor_kelurahan: body.alamat_kantor_kelurahan,
                     alamat_kantor_kecamatan: body.alamat_kantor_kecamatan,
                     alamat_kantor_kota: body.alamat_kantor_kota,
                     alamat_kantor_provinsi: body.alamat_kantor_provinsi,
 
-                    nama: body.nama,
-                    no_hp: body.no_hp,
-                    hubungan: body.hubungan
+                    nama_pasangan: body.nama_pasangan,
+                    no_identitas_pasangan: body.no_identitas_pasangan,
+                    no_hp_pasangan: body.no_hp_pasangan,
+                    nama_penjamin: body.nama_penjamin,
+                    no_hp_penjamin: body.no_hp_penjamin,
+                    hubungan_penjamin: body.hubungan_penjamin,
+                    dokumen_ktp: body.dokumen_ktp,
+                    dokumen_sim: body.dokumen_sim,
+                    dokumen_kk: body.dokumen_kk,
+                    dokumen_keterangan_kerja: body.dokumen_keterangan_kerja,
+                    dokumen_slip_gaji: body.dokumen_slip_gaji,
+                    dokumen_akta_nikah: body.dokumen_akta_nikah,
+                    dokumen_bpkb: body.dokumen_bpkb,
+                    dokumen_lainnya: body.dokumen_lainnya
                 }
                 , {
                     where: {

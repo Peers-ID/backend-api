@@ -24,7 +24,12 @@
       },
       {
         "resource": "loan/add/parameter",
-        "methods": "*",
+        "methods": ["POST"],
+        "action": "allow"
+      },
+      {
+        "resource": "parameter",
+        "methods": ["GET"],
         "action": "allow"
       },
       {
@@ -34,6 +39,26 @@
       },
       {
         "resource": "master/*",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "ao",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "member",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "loan/member/:id_member",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/pending/:id_koperasi",
         "methods": ["GET"],
         "action": "allow"
       }
@@ -54,12 +79,17 @@
     "permissions": [
       {
         "resource": "member",
-        "methods": ["POST"],
+        "methods": "*",
         "action": "allow"
       },
       {
         "resource": "loan/add",
         "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "loan/status",
+        "methods": ["PUT"],
         "action": "allow"
       },
       {
@@ -69,6 +99,26 @@
       },
       {
         "resource": "member_config/*",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "master/loan/status",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "loan",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/member/:id_member",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/status/:id_koperasi/:id_ao",
         "methods": ["GET"],
         "action": "allow"
       }

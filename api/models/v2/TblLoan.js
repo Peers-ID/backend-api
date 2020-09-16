@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const Member = require('../Member');
 const sequelize = require('../../../config/database');
 const hooks = {};
 const tableName = 'tbl_loan';
@@ -35,7 +34,8 @@ const TblLoan = sequelize.define('TblLoan', {
     },
     id_status: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true,
+        default: 0
     },
     nama_status: {
         type: Sequelize.STRING,

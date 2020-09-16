@@ -34,16 +34,16 @@ const privateRoutes = {
     'GET /member_config': 'MemberConfigController.list',
     'GET /member_config/:kop_id': 'MemberConfigController.view',
 
-    'POST /loan/formula': 'LoanFormulaConfigController.add',
-    'GET /loan/formula': 'LoanFormulaConfigController.list',
-    'GET /loan/formula/:kop_id': 'LoanFormulaConfigController.view',
-    'GET /loan/other_fee/:frm_id': 'LoanFormulaConfigController.list_other_fee',
+    // 'POST /loan/formula': 'LoanFormulaConfigController.add',
+    // 'GET /loan/formula': 'LoanFormulaConfigController.list',
+    // 'GET /loan/formula/:kop_id': 'LoanFormulaConfigController.view',
+    // 'GET /loan/other_fee/:frm_id': 'LoanFormulaConfigController.list_other_fee',
 
-    'POST /loan': 'LoanController.add',
-    'GET /loan': 'LoanController.list',
-    'GET /loan/:id': 'LoanController.view',
+    // 'POST /loan': 'LoanController.add',
+    // 'GET /loan': 'LoanController.list',
+    // 'GET /loan/:id': 'LoanController.view',
 
-    'GET /loan_approval/:loan_id/:is_approved': 'LoanController.loan_approval',
+    // 'GET /loan_approval/:loan_id/:is_approved': 'LoanController.loan_approval',
 
     // 'POST /collection': 'CollectionController.add',
     // 'GET /collection': 'CollectionController.list',
@@ -58,11 +58,12 @@ const privateRoutes = {
     /*------------------------------------- Phase 2 -----------------------------------*/
 
     'POST /loan/add/parameter': 'LoanParameterController.add',
-    'GET /loan/add/parameter': 'LoanParameterController.view', //TODO rename the endpoint later
+    'GET /parameter': 'LoanParameterController.view', //TODO rename the endpoint later
     'GET /master/cicilan_sebagian': 'MasterDataController.cicilan_sebagian',
     'GET /master/dasar_denda': 'MasterDataController.dasar_denda',
     'GET /master/dasar_pelunasan': 'MasterDataController.dasar_pelunasan',
     'GET /master/dasar_simpanan': 'MasterDataController.dasar_simpanan',
+    'GET /master/loan/status': 'MasterDataController.status_list',
     'POST /loan/add/product': 'LoanProductController.add',
     'PUT /loan/add/product': 'LoanProductController.edit',
     'POST /account/add': 'UserController.add_account',
@@ -70,10 +71,11 @@ const privateRoutes = {
     'PUT /account': 'UserController.edit_account',
     'POST /loan/add': 'TblLoanController.add',
     'POST /loan/view': 'TblLoanController.view',
-    'PUT /loan/status/update': 'TblLoanController.update_status',
-    'POST /loan/list': 'TblLoanController.list',
-    'GET /loan/list/member/:id_member': 'TblLoanController.view_per_member',
-    'POST /loan/add/due_date': 'TblLoanController.loan_collection',
+    'PUT /loan/status': 'TblLoanController.update_loan_status',
+    'GET /loan': 'TblLoanController.list_per_ao',
+    'GET /loan/member/:id_member': 'TblLoanController.view_per_member',
+    'GET /loan/pending/:id_koperasi': 'TblLoanController.view_pending_loan',
+    'GET /loan/status/:id_koperasi/:id_ao': 'TblLoanController.view_member_status',
     'POST /collection/list': 'TblLoanCollectionController.view',
     'POST /collection/add': 'TblLoanCollectionController.add',
 };

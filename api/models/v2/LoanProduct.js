@@ -71,6 +71,10 @@ const LoanProduct = sequelize.define('LoanProduct', {
     type_pelunasan_dipercepat: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    status: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 }, {
     hooks,

@@ -413,11 +413,58 @@ const MemberController = () => {
         }
     };
 
+    const view_by_nik = async (req, res) => {
+        const {nik} = req.params;
+        try {
+            await Member.findOne({
+                where: {
+                    no_identitas: nik
+                },
+            }).then(async (member) => {
+                if (member) {
+
+                    await TblLoan.findOne({
+                        where: {
+                            id_member: member.member_id
+                        }
+                    }).then(async (loan) => {
+                        if (loan) {
+                            return res.status(200).json({
+                                status: 202,
+                                data: loan,
+                                message: "Pinjaman sedang berjalan"
+                            });
+                        } else {
+                            return res.status(200).json({
+                                status: 200,
+                                data: member,
+                                message: "Anggota sudah terdaftar"
+                            });
+                        }
+                    });
+                } else {
+                    return res.status(200).json({
+                        status: 200,
+                        data: {},
+                        message: "Member not found"
+                    });
+                }
+            });
+
+
+
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
+
     return {
         add,
         list,
         view,
         view_by_phone,
+        view_by_nik,
         edit,
         change_picture,
         get_picture,

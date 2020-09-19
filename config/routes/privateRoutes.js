@@ -57,18 +57,15 @@ const privateRoutes = {
 
     /*------------------------------------- Phase 2 -----------------------------------*/
 
-    'POST /loan/add/parameter': 'LoanParameterController.add',
-    'GET /parameter': 'LoanParameterController.view', //TODO rename the endpoint later
+    //MASTER
     'GET /master/cicilan_sebagian': 'MasterDataController.cicilan_sebagian',
     'GET /master/dasar_denda': 'MasterDataController.dasar_denda',
     'GET /master/dasar_pelunasan': 'MasterDataController.dasar_pelunasan',
     'GET /master/dasar_simpanan': 'MasterDataController.dasar_simpanan',
     'GET /master/loan/status': 'MasterDataController.status_list',
-    'POST /loan/add/product': 'LoanProductController.add',
-    'PUT /loan/add/product': 'LoanProductController.edit',
-    'POST /account/add': 'UserController.add_account',
-    'GET /account': 'UserController.list_account',
-    'PUT /account': 'UserController.edit_account',
+
+
+    //LOAN
     'POST /loan/add': 'TblLoanController.add',
     'POST /loan/view': 'TblLoanController.view',
     'PUT /loan/status': 'TblLoanController.update_loan_status',
@@ -76,6 +73,30 @@ const privateRoutes = {
     'GET /loan/member/:id_member': 'TblLoanController.view_per_member',
     'GET /loan/pending/:id_koperasi': 'TblLoanController.view_pending_loan',
     'GET /loan/status/:id_koperasi/:id_ao': 'TblLoanController.view_member_status',
+
+
+    //PARAMETER
+    'GET /parameter': 'LoanParameterController.view', //TODO rename the endpoint later
+    'POST /parameter': 'LoanParameterController.add', //TODO rename the endpoint later
+
+
+    //PRODUCT
+    'POST /product': 'LoanProductController.add', //TODO rename the endpoint later into /loan/product/add
+    'PUT /product': 'LoanProductController.edit', //TODO rename the endpoint later into /loan/product/add
+    'GET /product': 'LoanProductController.list',
+
+
+    //MEMBER
+    'GET /member/nik/:nik': 'MemberController.view_by_nik',
+
+
+    //ACCOUNT MANAGEMENT
+    'POST /account/add': 'UserController.add_account',
+    'GET /account': 'UserController.list_account',
+    'PUT /account': 'UserController.edit_account',
+
+
+    //COLLECTION
     'POST /collection/list': 'TblLoanCollectionController.view',
     'POST /collection/add': 'TblLoanCollectionController.add',
 };

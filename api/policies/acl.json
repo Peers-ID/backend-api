@@ -23,17 +23,12 @@
         "action": "allow"
       },
       {
-        "resource": "loan/add/parameter",
-        "methods": ["POST"],
-        "action": "allow"
-      },
-      {
         "resource": "parameter",
-        "methods": ["GET"],
+        "methods": "*",
         "action": "allow"
       },
       {
-        "resource": "loan/add/product",
+        "resource": "product",
         "methods": "*",
         "action": "allow"
       },
@@ -119,6 +114,16 @@
       },
       {
         "resource": "loan/status/:id_koperasi/:id_ao",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "member/nik/:nik",
+        "methods": ["GET"],
+        "action": "allow"
+      },
+      {
+        "resource": "product",
         "methods": ["GET"],
         "action": "allow"
       }

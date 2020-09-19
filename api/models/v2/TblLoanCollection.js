@@ -13,9 +13,17 @@ const TblLoanCollection = sequelize.define('TblLoanCollection', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    nama_produk: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     id_member: {
         type: Sequelize.INTEGER,
         allowNull: false
+    },
+    nama_lengkap: {
+        type: Sequelize.STRING,
+        allowNull: true
     },
     id_loan: {
         type: Sequelize.INTEGER,

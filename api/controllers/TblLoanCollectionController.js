@@ -2,6 +2,7 @@ const TblLoanCollection = require('../models/v2/TblLoanCollection');
 const LoanProduct = require('../models/v2/LoanProduct');
 const LoanParameter = require('../models/v2/LoanParameter');
 const TblSimpanan = require('../models/v2/TblSimpanan');
+const Member = require('../models/Member');
 
 const {Op} = require("sequelize");
 
@@ -27,6 +28,9 @@ const TblLoanCollectionController = () => {
         var denda_keterlambatan;
         var id_dasar_denda;
         var id_masa_tenggang;
+        var nama_produk;
+        var nama_lengkap;
+
 
         var date_now_string = new Date(Date.now()).toISOString();
 
@@ -41,6 +45,17 @@ const TblLoanCollectionController = () => {
                 setoran: body.setoran,
                 created_by: "android"
             };
+
+            await Member.findOne({
+                attributes:['nama_lengkap'],
+                where: {
+                    member_id: body.id_member
+                }
+            }).then((member) => {
+                if (member) {
+                    nama_lengkap = member.nama_lengkap;
+                }
+            });
 
             await TblLoanCollection.findOne({
                 where: {
@@ -60,6 +75,7 @@ const TblLoanCollectionController = () => {
                 }).then(async (produk) => {
                     loan_satuan_tenor = produk.satuan_tenor;
                     denda_keterlambatan = produk.denda_keterlambatan;
+                    nama_produk = produk.nama_produk;
 
                     await LoanParameter.findOne({
                         attributes: ['hari_per_bulan', 'id_angsuran_sebagian', 'type_denda_keterlambatan', 'id_dasar_denda', 'id_masa_tenggang'],
@@ -78,6 +94,8 @@ const TblLoanCollectionController = () => {
                 /* --------------- Create NEW collection from Android --------------*/
 
                 collection.id_produk = record_collection.id_produk;
+                collection.nama_produk = nama_produk;
+                collection.nama_lengkap = nama_lengkap;
                 collection.id_loan = record_collection.id_loan;
                 collection.total_tagihan = record_collection.total_tagihan;
                 collection.loan_due_date = record_collection.loan_due_date;
@@ -128,10 +146,7 @@ const TblLoanCollectionController = () => {
                             id_member: android_collection.id_member
                         }
                     }).then(async (data_simpanan) => {
-                        console.log("### " + data_simpanan);
-
                         if (data_simpanan) {
-                            console.log("###-1 - TRUE");
                             simpanan.simpanan_wajib = android_collection.simpanan_wajib + data_simpanan.simpanan_wajib;
                             simpanan.simpanan_sukarela = android_collection.simpanan_sukarela + data_simpanan.simpanan_sukarela;
 
@@ -143,8 +158,6 @@ const TblLoanCollectionController = () => {
                                     id_member: android_collection.id_member
                                 }
                             });
-                        } else {
-                            console.log("###-1 - FALSE");
                         }
                     });
 
@@ -154,7 +167,9 @@ const TblLoanCollectionController = () => {
                     var next_collection = {
                         id_koperasi: decoded.koperasi_id,
                         id_produk: android_collection.id_produk,
+                        nama_produk: android_collection.nama_produk,
                         id_member: body.id_member,
+                        nama_lengkap: android_collection.nama_lengkap,
                         id_loan: android_collection.id_loan,
                         simpanan_wajib: android_collection.simpanan_wajib,
                         created_by: "system"
@@ -171,6 +186,7 @@ const TblLoanCollectionController = () => {
                         next_collection.angsuran = android_collection.angsuran + 1;
                         next_collection.pembayaran_ke = 1;
                     }
+
 
                     var pengali;
                     switch (loan_satuan_tenor) {
@@ -233,8 +249,7 @@ const TblLoanCollectionController = () => {
         }
     };
 
-
-    const view = async (req, res) => {
+    const view_member_collection = async (req, res) => {
         let condition = {where: {}};
         const {body, decoded} = req;
 
@@ -244,30 +259,79 @@ const TblLoanCollectionController = () => {
 
             if (req.body.angsuran !== undefined) {
                 condition.where.id_member = body.id_member;
+                condition.where.id_koperasi = id_koperasi;
                 condition.where.angsuran = body.angsuran;
                 condition.where.created_by = "system";
+                await TblLoanCollection.findOne(condition)
+                    .then(async (collection) => {
+                        if (collection) {
+                            return res.status(200).json({
+                                status: 200,
+                                data: collection,
+                                message: ""
+                            });
+                        } else {
+                            return res.status(200).json({
+                                status: 404,
+                                data: {},
+                                message: "Data tidak ditemukan"
+                            });
+                        }
+                    });
             } else {
                 condition.where.id_member = body.id_member;
+                condition.where.id_koperasi = id_koperasi;
                 condition.where.created_by = "system";
+                await TblLoanCollection.findAll(condition)
+                    .then(async (collection) => {
+                        if (collection) {
+                            return res.status(200).json({
+                                status: 200,
+                                data: collection,
+                                message: ""
+                            });
+                        } else {
+                            return res.status(200).json({
+                                status: 404,
+                                data: {},
+                                message: "Data tidak ditemukan"
+                            });
+                        }
+                    });
             }
-
-            await TblLoanCollection.findAll(condition).then(async (collection) => {
-                if (collection) {
-                    return res.status(200).json({
-                        status: 200,
-                        data: {
-                            collection
-                        },
-                        message: ""
-                    });
-                } else {
-                    return res.status(200).json({
-                        status: 404,
-                        data: {},
-                        message: "Data tidak ditemukan"
-                    });
-                }
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: {},
+                message: "Error: " + err
             });
+        }
+    };
+
+    const list = async (req, res) => {
+        let condition = {where: {}};
+        const {decoded} = req;
+
+        try {
+            condition.where.id_koperasi = decoded.koperasi_id;
+            condition.where.created_by = "system";
+
+            await TblLoanCollection.findAll(condition)
+                .then(async (collection) => {
+                    if (collection) {
+                        return res.status(200).json({
+                            status: 200,
+                            data: collection,
+                            message: ""
+                        });
+                    } else {
+                        return res.status(200).json({
+                            status: 404,
+                            data: {},
+                            message: "Data tidak ditemukan"
+                        });
+                    }
+                });
         } catch (err) {
             return res.status(200).json({
                 status: 500,
@@ -323,8 +387,9 @@ const TblLoanCollectionController = () => {
 
     return {
         add,
-        view,
-        update_status
+        view_member_collection,
+        update_status,
+        list
     };
 };
 

@@ -67,7 +67,6 @@ const privateRoutes = {
 
     //LOAN
     'POST /loan/add': 'TblLoanController.add',
-    'POST /loan/view': 'TblLoanController.view',
     'PUT /loan/status': 'TblLoanController.update_loan_status',
     'GET /loan': 'TblLoanController.list_per_ao',
     'GET /loan/member/:id_member': 'TblLoanController.view_per_member',
@@ -76,14 +75,15 @@ const privateRoutes = {
 
 
     //PARAMETER
-    'GET /parameter': 'LoanParameterController.view', //TODO rename the endpoint later
-    'POST /parameter': 'LoanParameterController.add', //TODO rename the endpoint later
+    'GET /parameter': 'LoanParameterController.view',
+    'POST /parameter': 'LoanParameterController.add',
 
 
     //PRODUCT
-    'POST /product': 'LoanProductController.add', //TODO rename the endpoint later into /loan/product/add
-    'PUT /product': 'LoanProductController.edit', //TODO rename the endpoint later into /loan/product/add
+    'POST /product': 'LoanProductController.add',
+    'PUT /product': 'LoanProductController.edit',
     'GET /product': 'LoanProductController.list',
+    'GET /product/:id_product': 'LoanProductController.per_product',
 
 
     //MEMBER
@@ -91,14 +91,15 @@ const privateRoutes = {
 
 
     //ACCOUNT MANAGEMENT
-    'POST /account/add': 'UserController.add_account',
+    'POST /account': 'UserController.add_account',
     'GET /account': 'UserController.list_account',
     'PUT /account': 'UserController.edit_account',
 
 
     //COLLECTION
-    'POST /collection/list': 'TblLoanCollectionController.view',
+    'POST /collection/member': 'TblLoanCollectionController.view_member_collection',
     'POST /collection/add': 'TblLoanCollectionController.add',
+    'GET /collection': 'TblLoanCollectionController.list', //https://balsamiq.cloud/s1ni7o4/pl3yqi7/rFA01 LIST PEMBAYARAN CICILAN
 };
 
 module.exports = privateRoutes;

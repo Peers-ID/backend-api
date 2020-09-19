@@ -13,8 +13,8 @@
     "group": "Admin Koperasi",
     "permissions": [
       {
-        "resource": "account/add",
-        "methods": ["POST"],
+        "resource": "account",
+        "methods": "*",
         "action": "allow"
       },
       {
@@ -34,12 +34,16 @@
       },
       {
         "resource": "master/*",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "ao",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
@@ -48,13 +52,31 @@
         "action": "allow"
       },
       {
+        "resource": "member/:member_id",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "loan/member/:id_member",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "loan/pending/:id_koperasi",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "product/:id_product",
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       }
     ]
@@ -84,7 +106,9 @@
       },
       {
         "resource": "loan/status",
-        "methods": ["PUT"],
+        "methods": [
+          "PUT"
+        ],
         "action": "allow"
       },
       {
@@ -94,37 +118,51 @@
       },
       {
         "resource": "member_config/*",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "master/loan/status",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "loan",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "loan/member/:id_member",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "loan/status/:id_koperasi/:id_ao",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "member/nik/:nik",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       },
       {
         "resource": "product",
-        "methods": ["GET"],
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       }
     ]

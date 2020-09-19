@@ -87,7 +87,7 @@ const UserController = () => {
             return res.status(200).json({
                 status: 200,
                 data: users,
-                message: "Success retrieve data." + id
+                message: "Success retrieve data"
             });
 
         } catch (err) {

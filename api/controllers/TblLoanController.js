@@ -281,7 +281,9 @@ const TblLoanController = () => {
                                 var collection = {
                                     id_koperasi: decoded.koperasi_id,
                                     id_produk: body.id_produk,
+                                    nama_produk: data.nama_produk,
                                     id_member: body.id_member,
+                                    nama_lengkap: data.nama_member,
                                     id_loan: loan.id,
                                     loan_due_date: due_date_iso,
                                     angsuran: 1,
@@ -320,63 +322,6 @@ const TblLoanController = () => {
                                 message: "Failed create loan"
                             });
                         }
-                    });
-                }
-            });
-        } catch (err) {
-            return res.status(200).json({
-                status: 500,
-                data: {},
-                message: "Error: " + err
-            });
-        }
-    };
-
-
-    const view = async (req, res) => {
-        const {body, decoded} = req;
-
-        try {
-            var id_koperasi = decoded.koperasi_id;
-            var id_ao = decoded.id;
-            var id_member = body.id_member;
-            var id_status = body.id_status;
-
-            await TblLoan.findOne({
-                where: {
-                    id_koperasi: id_koperasi,
-                    id_ao: id_ao,
-                    id_member: id_member,
-                    id_status: id_status
-                }
-            }).then(async (detailPinjaman) => {
-                if (detailPinjaman) {
-                    await LoanProduct.findOne({
-                        attributes: ['nama_produk'],
-                        where: {id: detailPinjaman.id_produk}
-                    }).then((produkPinjaman) => {
-                        if (produkPinjaman) {
-                            return res.status(200).json({
-                                status: 200,
-                                data: {
-                                    produkPinjaman,
-                                    detailPinjaman
-                                },
-                                message: ""
-                            });
-                        } else {
-                            return res.status(200).json({
-                                status: 404,
-                                data: {},
-                                message: "Data tidak ditemukan"
-                            });
-                        }
-                    });
-                } else {
-                    return res.status(200).json({
-                        status: 404,
-                        data: {},
-                        message: "Data tidak ditemukan"
                     });
                 }
             });
@@ -580,7 +525,6 @@ const TblLoanController = () => {
 
     return {
         add,
-        view,
         update_loan_status,
         list_per_ao,
         view_per_member,

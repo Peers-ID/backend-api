@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const TblLoan = require('../models/v2/TblLoan');
 const sequelize = require('../../config/database');
 
 const hooks = {};
@@ -39,8 +38,12 @@ const Member = sequelize.define('Member', {
         allowNull: false
     },
     tanggal_lahir: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
+    },
+    usia: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
     },
     tempat_lahir: {
         type: Sequelize.STRING,
@@ -178,6 +181,10 @@ const Member = sequelize.define('Member', {
         type: Sequelize.STRING,
         allowNull: true
     },
+    pekerjaan_pasangan: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     no_hp_pasangan: {
         type: Sequelize.INTEGER,
         allowNull: true
@@ -223,6 +230,66 @@ const Member = sequelize.define('Member', {
         allowNull: true
     },
     dokumen_lainnya: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_luas_rumah: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_jenis_atap: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_jenis_dinding: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_kondisi_rumah: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_letak_rumah: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_tanggungan_keluarga: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_data_fisik_perabot: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_akses_lembaga_keuangan: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_info_ttg_usaha: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_index_rumah: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_index_asset: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_kepemilikan_asset: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_pendapatan_luar_usaha: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_perkembangan_asset: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    survey_perkembangan_usaha: {
         type: Sequelize.STRING,
         allowNull: true
     }

@@ -82,6 +82,7 @@ const privateRoutes = {
     //PRODUCT
     'POST /product': 'LoanProductController.add',
     'PUT /product': 'LoanProductController.edit',
+    'PUT /product/status': 'LoanProductController.update_status',
     'GET /product': 'LoanProductController.list',
     'GET /product/:id_product': 'LoanProductController.per_product',
 

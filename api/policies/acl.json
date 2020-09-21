@@ -33,6 +33,11 @@
         "action": "allow"
       },
       {
+        "resource": "product/status",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
         "resource": "master/*",
         "methods": [
           "GET"
@@ -155,6 +160,13 @@
         "resource": "member/nik/:nik",
         "methods": [
           "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "member/:member_id",
+        "methods": [
+          "PUT"
         ],
         "action": "allow"
       },

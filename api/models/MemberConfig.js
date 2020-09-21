@@ -39,6 +39,10 @@ const MemberConfig = sequelize.define('MemberConfig', {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
+    usia: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
     tempat_lahir: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
@@ -175,6 +179,10 @@ const MemberConfig = sequelize.define('MemberConfig', {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
+    pekerjaan_pasangan: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
     no_hp_pasangan: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
@@ -220,6 +228,66 @@ const MemberConfig = sequelize.define('MemberConfig', {
         allowNull: false, defaultValue: 0
     },
     dokumen_lainnya: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_luas_rumah: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_jenis_atap: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_jenis_dinding: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_kondisi_rumah: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_letak_rumah: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_tanggungan_keluarga: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_data_fisik_perabot: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_akses_lembaga_keuangan: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_info_ttg_usaha: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_index_rumah: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_index_asset: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_kepemilikan_asset: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_pendapatan_luar_usaha: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_perkembangan_asset: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    survey_perkembangan_usaha: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     }

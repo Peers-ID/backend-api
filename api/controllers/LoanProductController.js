@@ -156,11 +156,49 @@ const LoanProductController = () => {
         }
     };
 
+    const update_status = async (req, res) => {
+        const {body, decoded} = req;
+
+        try {
+            var data = {
+                status: body.status
+            };
+
+            await LoanProduct.update(data, {
+                where: {
+                    id: body.id,
+                    id_koperasi: decoded.koperasi_id,
+                }
+            }).then((updated) => {
+                if (updated) {
+                    return res.status(200).json({
+                        status: 200,
+                        data: [],
+                        message: "Status updated  successfully"
+                    });
+                } else {
+                    return res.status(200).json({
+                        status: 200,
+                        data: [],
+                        message: "Failed updated data"
+                    });
+                }
+            });
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: "",
+                message: "Error: " + err
+            });
+        }
+    };
+
     return {
         add,
         edit,
         list,
-        per_product
+        per_product,
+        update_status
     };
 };
 

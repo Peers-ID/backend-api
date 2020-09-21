@@ -25,11 +25,11 @@ const MemberController = () => {
                 nama_lengkap: body.nama_lengkap,
                 tempat_lahir: body.tempat_lahir,
                 tanggal_lahir: body.tanggal_lahir,
+                usia: body.usia,
                 jenis_kelamin: body.jenis_kelamin,
                 status_perkawinan: body.status_perkawinan,
                 pendidikan_terakhir: body.pendidikan_terakhir,
                 nama_gadis_ibu: body.nama_gadis_ibu,
-
                 alamat_ktp_jalan: body.alamat_ktp_jalan,
                 alamat_ktp_kelurahan: body.alamat_ktp_kelurahan,
                 alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
@@ -60,22 +60,38 @@ const MemberController = () => {
                 alamat_kantor_kota: body.alamat_kantor_kota,
                 alamat_kantor_provinsi: body.alamat_kantor_provinsi,
 
-                is_verified: body.is_verified,
-
                 nama_pasangan: body.nama_pasangan,
                 no_identitas_pasangan: body.no_identitas_pasangan,
+                pekerjaan_pasangan: body.pekerjaan_pasangan,
                 no_hp_pasangan: body.no_hp_pasangan,
+
                 nama_penjamin: body.nama_penjamin,
                 no_hp_penjamin: body.no_hp_penjamin,
                 hubungan_penjamin: body.hubungan_penjamin,
+
                 dokumen_ktp: body.dokumen_ktp,
                 dokumen_sim: body.dokumen_sim,
                 dokumen_kk: body.dokumen_kk,
                 dokumen_keterangan_kerja: body.dokumen_keterangan_kerja,
-                dokumen_slip_gaji: body.dokumen_slip_gaji,
-                dokumen_akta_nikah: body.dokumen_akta_nikah,
+                dokumen_slip_gaji: body.dokumen_akta_nikah,
                 dokumen_bpkb: body.dokumen_bpkb,
-                dokumen_lainnya: body.dokumen_lainnya
+                dokumen_lainnya: body.dokumen_lainnya,
+
+                survey_luas_rumah: body.survey_luas_rumah,
+                survey_jenis_atap: body.survey_jenis_atap,
+                survey_jenis_dinding: body.survey_jenis_dinding,
+                survey_kondisi_rumah: body.survey_kondisi_rumah,
+                survey_letak_rumah: body.survey_letak_rumah,
+                survey_tanggungan_keluarga: body.survey_tanggungan_keluarga,
+                survey_data_fisik_perabot: body.survey_data_fisik_perabot,
+                survey_akses_lembaga_keuangan: body.survey_akses_lembaga_keuangan,
+                survey_info_ttg_usaha: body.survey_info_ttg_usaha,
+                survey_index_rumah: body.survey_index_rumah,
+                survey_index_asset: body.survey_index_asset,
+                survey_kepemilikan_asset: body.survey_kepemilikan_asset,
+                survey_pendapatan_luar_usaha: body.survey_pendapatan_luar_usaha,
+                survey_perkembangan_asset: body.survey_perkembangan_asset,
+                survey_perkembangan_usaha: body.survey_perkembangan_usaha
             };
 
             await Koperasi.findOne({
@@ -225,11 +241,11 @@ const MemberController = () => {
                     nama_lengkap: body.nama_lengkap,
                     tanggal_lahir: body.tanggal_lahir,
                     tempat_lahir: body.tempat_lahir,
+                    usia: body.usia,
                     jenis_kelamin: body.jenis_kelamin,
-                    nama_gadis_ibu: body.nama_gadis_ibu,
                     status_perkawinan: body.status_perkawinan,
                     pendidikan_terakhir: body.pendidikan_terakhir,
-
+                    nama_gadis_ibu: body.nama_gadis_ibu,
                     alamat_ktp_jalan: body.alamat_ktp_jalan,
                     alamat_ktp_kelurahan: body.alamat_ktp_kelurahan,
                     alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
@@ -262,18 +278,36 @@ const MemberController = () => {
 
                     nama_pasangan: body.nama_pasangan,
                     no_identitas_pasangan: body.no_identitas_pasangan,
+                    pekerjaan_pasangan: body.pekerjaan_pasangan,
                     no_hp_pasangan: body.no_hp_pasangan,
+
                     nama_penjamin: body.nama_penjamin,
                     no_hp_penjamin: body.no_hp_penjamin,
                     hubungan_penjamin: body.hubungan_penjamin,
+
                     dokumen_ktp: body.dokumen_ktp,
                     dokumen_sim: body.dokumen_sim,
                     dokumen_kk: body.dokumen_kk,
                     dokumen_keterangan_kerja: body.dokumen_keterangan_kerja,
-                    dokumen_slip_gaji: body.dokumen_slip_gaji,
-                    dokumen_akta_nikah: body.dokumen_akta_nikah,
+                    dokumen_slip_gaji: body.dokumen_akta_nikah,
                     dokumen_bpkb: body.dokumen_bpkb,
-                    dokumen_lainnya: body.dokumen_lainnya
+                    dokumen_lainnya: body.dokumen_lainnya,
+
+                    survey_luas_rumah: body.survey_luas_rumah,
+                    survey_jenis_atap: body.survey_jenis_atap,
+                    survey_jenis_dinding: body.survey_jenis_dinding,
+                    survey_kondisi_rumah: body.survey_kondisi_rumah,
+                    survey_letak_rumah: body.survey_letak_rumah,
+                    survey_tanggungan_keluarga: body.survey_tanggungan_keluarga,
+                    survey_data_fisik_perabot: body.survey_data_fisik_perabot,
+                    survey_akses_lembaga_keuangan: body.survey_akses_lembaga_keuangan,
+                    survey_info_ttg_usaha: body.survey_info_ttg_usaha,
+                    survey_index_rumah: body.survey_index_rumah,
+                    survey_index_asset: body.survey_index_asset,
+                    survey_kepemilikan_asset: body.survey_kepemilikan_asset,
+                    survey_pendapatan_luar_usaha: body.survey_pendapatan_luar_usaha,
+                    survey_perkembangan_asset: body.survey_perkembangan_asset,
+                    survey_perkembangan_usaha: body.survey_perkembangan_usaha
                 }
                 , {
                     where: {

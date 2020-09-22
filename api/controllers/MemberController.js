@@ -21,7 +21,6 @@ const MemberController = () => {
                 no_identitas: body.no_identitas,
                 member_handphone: body.member_handphone,
                 email: body.email,
-                jenis_identitas: body.jenis_identitas,
                 nama_lengkap: body.nama_lengkap,
                 tempat_lahir: body.tempat_lahir,
                 tanggal_lahir: body.tanggal_lahir,
@@ -50,7 +49,7 @@ const MemberController = () => {
                 memiliki_npwp: body.memiliki_npwp,
                 nomer_npwp: body.nomer_npwp,
                 pekerja_usaha: body.pekerja_usaha,
-                bidang_pekerja: body.bidang_pekerja,
+                jenis_umkm:body.jenis_umkm,
                 nama_perusahaan: body.nama_perusahaan,
                 lama_bekerja: body.lama_bekerja,
                 penghasilan_omset: body.penghasilan_omset,
@@ -127,9 +126,9 @@ const MemberController = () => {
                                         });
                                     } else {
                                         return res.status(200).json({
-                                            status: 200,
-                                            data: member,
-                                            message: "Anggota sudah terdaftar"
+                                            status: 202,
+                                            message: "Anggota sudah terdaftar",
+                                            data: member
                                         });
                                     }
                                 });
@@ -236,7 +235,6 @@ const MemberController = () => {
             const member = await Member.update(
                 {
                     member_handphone: body.member_handphone,
-                    jenis_identitas: body.jenis_identitas,
                     no_identitas: body.no_identitas,
                     nama_lengkap: body.nama_lengkap,
                     tanggal_lahir: body.tanggal_lahir,
@@ -266,7 +264,7 @@ const MemberController = () => {
                     memiliki_npwp: body.memiliki_npwp,
                     nomer_npwp: body.nomer_npwp,
                     pekerja_usaha: body.pekerja_usaha,
-                    bidang_pekerja: body.bidang_pekerja,
+                    jenis_umkm:body.jenis_umkm,
                     nama_perusahaan: body.nama_perusahaan,
                     lama_bekerja: body.lama_bekerja,
                     penghasilan_omset: body.penghasilan_omset,
@@ -470,7 +468,7 @@ const MemberController = () => {
                             });
                         } else {
                             return res.status(200).json({
-                                status: 200,
+                                status: 202,
                                 data: member,
                                 message: "Anggota sudah terdaftar"
                             });

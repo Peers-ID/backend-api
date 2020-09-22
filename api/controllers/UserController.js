@@ -96,6 +96,29 @@ const UserController = () => {
         }
     };
 
+
+    const account_per_id = async (req, res) => {
+        const {id} = req.params;
+        try {
+            const users = await User.findOne({
+                where: {
+                    id: id,
+                },
+            });
+
+            return res.status(200).json({
+                status: 200,
+                data: users,
+                message: "Success retrieve data"
+            });
+
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'Internal server error'});
+        }
+    };
+
+
     const edit_account = async (req, res) => {
         const {body, decoded} = req;
         try {
@@ -365,6 +388,7 @@ const UserController = () => {
                     },
                 });
 
+
                 if (!user) {
                     return res.status(200).json({
                         status: 400,
@@ -380,9 +404,15 @@ const UserController = () => {
                         koperasi_id: user.koperasi_id
                     });
 
+                    const myRole = await AccountRoleManagement.findOne({
+                        where: {
+                            id_user : user.id
+                        },
+                    });
+
                     return res.status(201).json({
                         status: 201,
-                        data: {token, user},
+                        data: {token, user, myRole},
                         message: "Successfully Logged In"
                     });
                 }
@@ -538,6 +568,7 @@ const UserController = () => {
         add_account,
         list_account,
         edit_account,
+        account_per_id,
 
 
 

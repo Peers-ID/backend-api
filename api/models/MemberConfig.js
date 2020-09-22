@@ -27,10 +27,6 @@ const MemberConfig = sequelize.define('MemberConfig', {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
-    jenis_identitas: {
-        type: Sequelize.INTEGER,
-        allowNull: false, defaultValue: 0
-    },
     nama_lengkap: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
@@ -135,7 +131,7 @@ const MemberConfig = sequelize.define('MemberConfig', {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
-    bidang_pekerja: {
+    jenis_umkm: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },

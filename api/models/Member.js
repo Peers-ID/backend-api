@@ -29,10 +29,6 @@ const Member = sequelize.define('Member', {
         type: Sequelize.STRING,
         allowNull: true
     },
-    jenis_identitas: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
     nama_lengkap: {
         type: Sequelize.STRING,
         allowNull: false
@@ -137,7 +133,7 @@ const Member = sequelize.define('Member', {
         type: Sequelize.STRING,
         allowNull: true
     },
-    bidang_pekerja: {
+    jenis_umkm: {
         type: Sequelize.STRING,
         allowNull: true
     },

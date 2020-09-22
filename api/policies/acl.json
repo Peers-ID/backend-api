@@ -18,6 +18,11 @@
         "action": "allow"
       },
       {
+        "resource": "account/:id",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
         "resource": "member_config/*",
         "methods": "*",
         "action": "allow"
@@ -171,7 +176,7 @@
         "action": "allow"
       },
       {
-        "resource": "product",
+        "resource": "product/active",
         "methods": [
           "GET"
         ],

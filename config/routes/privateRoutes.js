@@ -84,6 +84,7 @@ const privateRoutes = {
     'PUT /product': 'LoanProductController.edit',
     'PUT /product/status': 'LoanProductController.update_status',
     'GET /product': 'LoanProductController.list',
+    'GET /product/active': 'LoanProductController.list_active',
     'GET /product/:id_product': 'LoanProductController.per_product',
 
 
@@ -94,6 +95,7 @@ const privateRoutes = {
     //ACCOUNT MANAGEMENT
     'POST /account': 'UserController.add_account',
     'GET /account': 'UserController.list_account',
+    'GET /account/:id': 'UserController.account_per_id',
     'PUT /account': 'UserController.edit_account',
 
 

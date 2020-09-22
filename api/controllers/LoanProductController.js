@@ -110,6 +110,30 @@ const LoanProductController = () => {
         try {
             await LoanProduct.findAll({
                 where: {
+                    id_koperasi: decoded.koperasi_id
+                },
+            }).then((product) => {
+                return res.status(200).json({
+                    status: 200,
+                    data: product,
+                    message: "List All Products"
+                });
+            });
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: {},
+                message: "Error: " + err
+            });
+        }
+    };
+
+    const list_active = async (req, res) => {
+        const {decoded} = req;
+
+        try {
+            await LoanProduct.findAll({
+                where: {
                     id_koperasi: decoded.koperasi_id,
                     status: "active"
                 },
@@ -117,7 +141,7 @@ const LoanProductController = () => {
                 return res.status(200).json({
                     status: 200,
                     data: product,
-                    message: "List Products"
+                    message: "List All Active Products"
                 });
             });
         } catch (err) {
@@ -197,6 +221,7 @@ const LoanProductController = () => {
         add,
         edit,
         list,
+        list_active,
         per_product,
         update_status
     };

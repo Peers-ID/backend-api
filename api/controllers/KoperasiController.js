@@ -1,6 +1,4 @@
 const Koperasi = require('../models/Koperasi');
-/*const KoperasiApprovalConfig = require('../models/KoperasiApprovalConfig');
-const KoperasiCutOffConfig = require('../models/KoperasiCutOffConfig');*/
 const User = require('../models/User');
 
 const sequelize = require('../../config/database');
@@ -30,12 +28,11 @@ const KoperasiController = () => {
             provinsi: body.provinsi,
             bentuk_koperasi: body.bentuk_koperasi,
             jenis_koperasi: body.jenis_koperasi,
-            kelompok_koperasi: body.kelompok_koperasi,
-            sektor_usaha: body.sektor_usaha,
             nama_ketua: body.nama_ketua,
-            foto_ktp_ketua: '',
             nama_sekretaris: body.nama_sekretaris,
             nama_bendahara: body.nama_bendahara,
+            foto_ktp_ketua: '',
+            nama_pengelola_harian: body.nama_pengelola_harian,
             jml_anggota_pria: body.jml_anggota_pria | 0,
             jml_anggota_wanita: body.jml_anggota_wanita | 0,
             total_anggota: body.total_anggota | 0,
@@ -44,6 +41,7 @@ const KoperasiController = () => {
             no_induk_koperasi: body.no_induk_koperasi,
             status_nik: body.status_nik,
             status_grade: body.status_grade,
+            jabatan: body.jabatan,
             hp_pengurus: body.hp_pengurus,
             email_pengurus: body.email_pengurus
         };
@@ -75,21 +73,10 @@ const KoperasiController = () => {
                     birthdate: Date.now(),
                     email: body.email_pengurus,
                     password: "Peers" + body.nama_koperasi.substr(0, 1) + body.hp_pengurus.substr(-4),
-                    role: "Admin Koperasi",
+                    role: "Super Admin",
                     ak_id: 0,
                     status: "active"
                 }, {transaction: t});
-
-                /*const approvalConfig = await KoperasiApprovalConfig.create({
-                        koperasi_id: koperasi.id,
-                        ao_can_approved: 0
-                }, { transaction: t });
-
-                const cutOffConfig = await KoperasiCutOffConfig.create({
-                        koperasi_id: koperasi.id,
-                        hours: 0,
-                        minutes:0
-                }, { transaction: t });*/
 
                 const token = authService().issue({id: user.id});
 

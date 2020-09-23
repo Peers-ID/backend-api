@@ -4,6 +4,8 @@ const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
 const emailService = require('../services/email.service');
 
+const {Op} = require("sequelize");
+
 const UserController = () => {
 
     const add_account = async (req, res) => {
@@ -22,7 +24,7 @@ const UserController = () => {
             }).then((user) => {
                 if (user) {
 
-                    const role = AccountRoleManagement.create({
+                    AccountRoleManagement.create({
                         id_koperasi: decoded.koperasi_id,
                         id_user: user.id,
                         approve_max_1jt: body.approve_max_1jt,
@@ -81,6 +83,7 @@ const UserController = () => {
             const users = await User.findAll({
                 where: {
                     koperasi_id: decoded.koperasi_id,
+                    id: {[Op.not]: decoded.id}
                 },
             });
 
@@ -116,7 +119,7 @@ const UserController = () => {
 
             const roles = await AccountRoleManagement.findOne({
                 where: {
-                    id_user : users.id
+                    id_user: users.id
                 },
             });
 
@@ -427,7 +430,7 @@ const UserController = () => {
 
                     const myRole = await AccountRoleManagement.findOne({
                         where: {
-                            id_user : user.id
+                            id_user: user.id
                         },
                     });
 
@@ -590,7 +593,6 @@ const UserController = () => {
         list_account,
         edit_account,
         account_per_id,
-
 
 
         add_ao,

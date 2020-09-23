@@ -161,8 +161,7 @@ const LoanProductController = () => {
             await LoanProduct.findAll({
                 where: {
                     id_koperasi: decoded.koperasi_id,
-                    id: id_product,
-                    status: "active"
+                    id: id_product
                 },
             }).then((product) => {
                 return res.status(200).json({

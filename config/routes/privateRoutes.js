@@ -19,7 +19,7 @@ const privateRoutes = {
     'GET /ao/:id': 'UserController.view_ao',
     'GET /ao/admin_koperasi/:akId': 'UserController.view_ao_by_akId',
     'PUT /ao/:id': 'UserController.edit_ao',
-    'PUT /ao/:id/status': 'UserController.edit_ao_status',
+
 
     'POST /member': 'MemberController.add',
     'GET /member': 'MemberController.list',
@@ -97,6 +97,7 @@ const privateRoutes = {
     'GET /account': 'UserController.list_account',
     'GET /account/:id': 'UserController.account_per_id',
     'PUT /account': 'UserController.edit_account',
+    'PUT /account/:id/status': 'UserController.edit_ao_status',
 
 
     //COLLECTION

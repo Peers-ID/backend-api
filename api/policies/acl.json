@@ -23,6 +23,11 @@
         "action": "allow"
       },
       {
+        "resource": "account/:id/status",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
         "resource": "member_config/*",
         "methods": "*",
         "action": "allow"

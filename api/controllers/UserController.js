@@ -346,7 +346,7 @@ const UserController = () => {
         const {body} = req;
         const id = req.params.id;
         try {
-            if (body.status == "active" || body.status == "inactive") {
+            if (body.status === "active" || body.status === "inactive") {
                 const users = await User.update(
                     {
                         status: body.status,
@@ -388,6 +388,13 @@ const UserController = () => {
                     },
                 });
 
+                if (user.status === "inactive") {
+                    return res.status(200).json({
+                        status: 202,
+                        data: "",
+                        message: "Akun Anda telah di Non-Aktifkan, silahkan hubungi Pihak Koperasi"
+                    });
+                }
 
                 if (!user) {
                     return res.status(200).json({

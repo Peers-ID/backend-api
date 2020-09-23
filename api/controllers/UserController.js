@@ -106,9 +106,23 @@ const UserController = () => {
                 },
             });
 
+            if (!users) {
+                return res.status(200).json({
+                    status: 404,
+                    data: "",
+                    message: "Data not found"
+                });
+            }
+
+            const roles = await AccountRoleManagement.findOne({
+                where: {
+                    id_user : users.id
+                },
+            });
+
             return res.status(200).json({
                 status: 200,
-                data: users,
+                data: {users, roles},
                 message: "Success retrieve data"
             });
 

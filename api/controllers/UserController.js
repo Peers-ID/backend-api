@@ -3,6 +3,7 @@ const AccountRoleManagement = require('../models/v2/AccountRoleManagement');
 const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
 const emailService = require('../services/email.service');
+const sequelize = require('../../config/database');
 
 const {Op} = require("sequelize");
 
@@ -10,8 +11,28 @@ const UserController = () => {
 
     const add_account = async (req, res) => {
         const {body, decoded} = req;
+        const t = await sequelize.transaction();
+
         try {
-            await User.create({
+
+            //check email
+            await User.findAndCountAll({
+                attributes:['email'],
+                where: {
+                    email:body.email
+                }
+            }).then((data) => {
+                if (data.count > 0) {
+                    return res.status(200).json({
+                        status: 500,
+                        data: "",
+                        message: "Alamat Email sudah pernah terdaftar"
+                    });
+                }
+            });
+
+            //create user
+            const user = await User.create({
                 koperasi_id: decoded.koperasi_id,
                 fullname: body.fullname,
                 phone_mobile: body.phone_mobile,
@@ -21,54 +42,41 @@ const UserController = () => {
                 role: body.role,
                 status: "active",
                 ak_id: decoded.id
-            }).then((user) => {
-                if (user) {
+            }, {transaction: t});
 
-                    AccountRoleManagement.create({
-                        id_koperasi: decoded.koperasi_id,
-                        id_user: user.id,
-                        approve_max_1jt: body.approve_max_1jt,
-                        approve_max_3jt: body.approve_max_3jt,
-                        approve_max_5jt: body.approve_max_5jt,
-                        approve_max_10jt: body.approve_max_10jt,
-                        approve_more_10jt: body.approve_more_10jt,
-                        disburse_max_5jt: body.disburse_max_5jt,
-                        disburse_max_10jt: body.disburse_max_10jt,
-                        disburse_more_10jt: body.disburse_more_10jt,
-                        repayment: body.repayment,
-                        collection: body.collection,
-                        mn_kinerja_koperasi: body.mn_kinerja_koperasi,
-                        mn_pengaturan_pinjaman: body.mn_pengaturan_pinjaman,
-                        mn_tambah_ao: body.mn_tambah_ao,
-                        mn_tambah_admin: body.mn_tambah_admin,
-                        mn_tambah_super_admin: body.mn_tambah_super_admin,
-                        mn_management_pinjaman: body.mn_management_pinjaman,
-                        mn_management_anggota: body.mn_management_anggota
-                    }).then((role) => {
-                        if (role) {
-                            return res.status(200).json({
-                                status: 200,
-                                data: {},
-                                message: "Inserted Successfully"
-                            });
-                        } else {
-                            return res.status(200).json({
-                                status: 500,
-                                data: "",
-                                message: "Failed Insert Role"
-                            });
-                        }
-                    });
-                } else {
-                    return res.status(200).json({
-                        status: 500,
-                        data: "",
-                        message: "Failed Insert"
-                    });
-                }
+            //create role
+            await AccountRoleManagement.create({
+                id_koperasi: decoded.koperasi_id,
+                id_user: user.id,
+                approve_max_1jt: body.approve_max_1jt,
+                approve_max_3jt: body.approve_max_3jt,
+                approve_max_5jt: body.approve_max_5jt,
+                approve_max_10jt: body.approve_max_10jt,
+                approve_more_10jt: body.approve_more_10jt,
+                disburse_max_5jt: body.disburse_max_5jt,
+                disburse_max_10jt: body.disburse_max_10jt,
+                disburse_more_10jt: body.disburse_more_10jt,
+                repayment: body.repayment,
+                collection: body.collection,
+                mn_kinerja_koperasi: body.mn_kinerja_koperasi,
+                mn_pengaturan_pinjaman: body.mn_pengaturan_pinjaman,
+                mn_tambah_ao: body.mn_tambah_ao,
+                mn_tambah_admin: body.mn_tambah_admin,
+                mn_tambah_super_admin: body.mn_tambah_super_admin,
+                mn_management_pinjaman: body.mn_management_pinjaman,
+                mn_management_anggota: body.mn_management_anggota
+            }, {transaction: t});
+
+            await t.commit();
+
+            return res.status(200).json({
+                status: 200,
+                data: {},
+                message: "Inserted Successfully"
             });
-
         } catch (err) {
+            await t.rollback();
+
             return res.status(200).json({
                 status: 500,
                 data: [],

@@ -97,7 +97,7 @@
     ]
   },
   {
-    "group": "Super Admin Koperasi",
+    "group": "Super Admin",
     "permissions": [
       {
         "resource": "account",

@@ -1,6 +1,6 @@
 const Koperasi = require('../models/Koperasi');
 const User = require('../models/User');
-
+const AccountRoleManagement = require('../models/v2/AccountRoleManagement');
 const sequelize = require('../../config/database');
 const authService = require('../services/auth.service');
 const emailService = require('../services/email.service');
@@ -13,6 +13,38 @@ const KoperasiController = () => {
         var now = Date.now();
         var nama_kop = body.nama_koperasi.split(" ");
         var errorUpload = false;
+
+        //check email
+        await Koperasi.findAndCountAll({
+            attributes:['email_pengurus'],
+            where: {
+                email_pengurus:body.email_pengurus
+            }
+        }).then((data) => {
+           if (data.count > 0) {
+               return res.status(200).json({
+                   status: 500,
+                   data: "",
+                   message: "Alamat Email Koperasi sudah pernah terdaftar"
+               });
+           }
+        });
+
+        //check no HP
+        await Koperasi.findAndCountAll({
+            attributes:['hp_pengurus'],
+            where: {
+                hp_pengurus:body.hp_pengurus
+            }
+        }).then((data) => {
+            if (data.count > 0) {
+                return res.status(200).json({
+                    status: 500,
+                    data: "",
+                    message: "No HP Koperasi sudah pernah terdaftar"
+                });
+            }
+        });
 
         const data = {
             nama_koperasi: body.nama_koperasi,
@@ -78,19 +110,31 @@ const KoperasiController = () => {
                     status: "active"
                 }, {transaction: t});
 
+                const role = await AccountRoleManagement.create({
+                    id_koperasi: koperasi.id,
+                    id_user: user.id,
+                    mn_kinerja_koperasi: 1,
+                    mn_pengaturan_pinjaman: 1,
+                    mn_tambah_ao: 1,
+                    mn_tambah_admin: 1,
+                    mn_tambah_super_admin: 1,
+                    mn_management_anggota: 1,
+                    mn_management_pinjaman: 1
+
+                }, {transaction: t});
+
                 const token = authService().issue({id: user.id});
 
                 await t.commit();
 
                 if (user) {
                     const password = "Peers" + body.nama_koperasi.substr(0, 1) + body.hp_pengurus.substr(-4);
-
                     emailService().welcomeMessage(body.nama_koperasi, body.email_pengurus, password);
                 }
 
                 return res.status(201).json({
                     status: 201,
-                    data: {token, user},
+                    data: {token, user, role},
                     message: "Registered successfully"
                 });
 

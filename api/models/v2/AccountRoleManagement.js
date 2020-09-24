@@ -16,71 +16,71 @@ const AccountRoleManagement = sequelize.define('AccountRoleManagement', {
     },
     approve_max_1jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     approve_max_3jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     approve_max_5jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     approve_max_10jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     approve_more_10jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     disburse_max_5jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     disburse_max_10jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     disburse_more_10jt: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     repayment: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     collection: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     mn_kinerja_koperasi: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     mn_pengaturan_pinjaman: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     mn_tambah_ao: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     mn_tambah_admin: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     mn_tambah_super_admin: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     mn_management_pinjaman: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     mn_management_anggota: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     }
 }, {
     hooks,

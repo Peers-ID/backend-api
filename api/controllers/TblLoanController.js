@@ -504,31 +504,42 @@ const TblLoanController = () => {
     };
 
     const view_pending_loan = async (req, res) => {
-        const {id_koperasi} = req.params;
+        const {decoded} = req;
 
         try {
-            await TblLoan.findAll({
+            //TODO Fix this later !!
+            // LoanProduct.hasMany(TblLoan, {as: 'id_produk'});
+            // TblLoan.belongsTo(LoanProduct, {as: 'id'});
+
+            const loan = await TblLoan.findAll({
                 where: {
-                    id_koperasi: id_koperasi,
+                    id_koperasi: decoded.koperasi_id,
                     id_status: {
                         [Op.or]: [2, 7]
                     }
-                },
-            }).then((loan) => {
-                if (loan.length > 0) {
-                    return res.status(200).json({
-                        status: 200,
-                        data: loan,
-                        message: ""
-                    });
-                } else {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Data Not Found"
-                    });
                 }
+
+                // ,
+                // include: [
+                //     {model: LoanProduct}
+                // ]
             });
+
+            if (loan.length > 0) {
+
+                return res.status(200).json({
+                    status: 200,
+                    data: loan,
+                    message: ""
+                });
+            } else {
+                return res.status(200).json({
+                    status: 404,
+                    data: "",
+                    message: "Data Not Found"
+                });
+            }
+
         } catch (err) {
             return res.status(200).json({
                 status: 500,

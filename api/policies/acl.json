@@ -81,7 +81,7 @@
         "action": "allow"
       },
       {
-        "resource": "loan/pending/:id_koperasi",
+        "resource": "loan/pending",
         "methods": [
           "GET"
         ],
@@ -175,7 +175,7 @@
         "action": "allow"
       },
       {
-        "resource": "loan/pending/:id_koperasi",
+        "resource": "loan/pending",
         "methods": [
           "GET"
         ],

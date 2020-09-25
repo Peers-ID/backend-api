@@ -93,6 +93,13 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "users/change_password",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
       }
     ]
   },
@@ -102,6 +109,90 @@
       {
         "resource": "account",
         "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "account/:id",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "account/:id/status",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "member_config/*",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "parameter",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "product",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "product/status",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "master/*",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "ao",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "member",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "member/:member_id",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/member/:id_member",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/pending/:id_koperasi",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "product/:id_product",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "users/change_password",
+        "methods": [
+          "POST"
+        ],
         "action": "allow"
       }
     ]
@@ -184,6 +275,13 @@
         "resource": "product/active",
         "methods": [
           "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "users/change_password",
+        "methods": [
+          "POST"
         ],
         "action": "allow"
       }

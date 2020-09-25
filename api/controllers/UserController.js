@@ -154,7 +154,7 @@ const UserController = () => {
                 fullname: body.fullname,
                 phone_mobile: body.phone_mobile,
                 birthdate: body.birthdate,
-                password: body.fullname.substr(0, 1) + body.birthdate + body.phone_mobile.substr(-4),
+                email: body.email,
                 role: body.role,
                 status: "active",
                 ak_id: decoded.id
@@ -181,6 +181,22 @@ const UserController = () => {
                 mn_management_pinjaman: body.mn_management_pinjaman,
                 mn_management_anggota: body.mn_management_anggota
             };
+
+            //check email
+            await User.findAndCountAll({
+                attributes:['email'],
+                where: {
+                    email:body.email
+                }
+            }).then((data) => {
+                if (data.count > 0) {
+                    return res.status(200).json({
+                        status: 500,
+                        data: "",
+                        message: "Alamat Email sudah pernah terdaftar"
+                    });
+                }
+            });
 
             await User.update(data, {
                 where: {

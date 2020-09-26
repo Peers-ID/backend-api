@@ -69,6 +69,7 @@ const privateRoutes = {
     'POST /loan/add': 'TblLoanController.add',
     'PUT /loan/status': 'TblLoanController.update_loan_status',
     'GET /loan': 'TblLoanController.list_per_ao',
+    'GET /loan/detail/:id': 'TblLoanController.view_per_loan_id',
     'GET /loan/member/:id_member': 'TblLoanController.view_per_member',
     'GET /loan/pending': 'TblLoanController.view_pending_loan',
     'GET /loan/status/:id_koperasi/:id_ao': 'TblLoanController.view_member_status',

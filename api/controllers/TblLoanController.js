@@ -507,22 +507,14 @@ const TblLoanController = () => {
         const {decoded} = req;
 
         try {
-            //TODO Fix this later !!
-            // LoanProduct.hasMany(TblLoan, {as: 'id_produk'});
-            // TblLoan.belongsTo(LoanProduct, {as: 'id'});
-
             const loan = await TblLoan.findAll({
+                attributes: ['id', 'nama_member', 'nama_status', 'nama_ao'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_status: {
                         [Op.or]: [2, 7]
                     }
                 }
-
-                // ,
-                // include: [
-                //     {model: LoanProduct}
-                // ]
             });
 
             if (loan.length > 0) {
@@ -539,6 +531,57 @@ const TblLoanController = () => {
                     message: "Data Not Found"
                 });
             }
+
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: {},
+                message: "Error: " + err
+            });
+        }
+    };
+
+    const view_per_loan_id = async (req, res) => {
+        const {id} = req.params;
+
+        try {
+
+            //loan
+            const loan = await TblLoan.findOne({
+                where: {
+                    id
+                }
+            });
+
+            if (!loan) {
+                return res.status(200).json({
+                    status: 404,
+                    data: "",
+                    message: "Data Not Found"
+                });
+            }
+
+            //produk
+            const produk = await LoanProduct.findOne({
+               where: {
+                   id: loan.id_produk
+               }
+            });
+
+
+            //member
+            const member = await Member.findOne({
+                where: {
+                    member_id: loan.id_member
+                }
+            });
+
+            return res.status(200).json({
+                status: 200,
+                data: {loan, produk, member},
+                message: ""
+            });
+
 
         } catch (err) {
             return res.status(200).json({
@@ -591,6 +634,7 @@ const TblLoanController = () => {
         list_per_ao,
         view_per_member,
         view_pending_loan, //muncul di halaman pending persetujuan dan pending pencairan Dashboard
+        view_per_loan_id,
         view_member_status //muncul di menu Anggota pada Android
     };
 };

@@ -88,6 +88,13 @@
         "action": "allow"
       },
       {
+        "resource": "loan/detail/:id",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "product/:id_product",
         "methods": [
           "GET"
@@ -176,6 +183,13 @@
       },
       {
         "resource": "loan/pending",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/detail/:id",
         "methods": [
           "GET"
         ],

@@ -475,25 +475,33 @@ const TblLoanController = () => {
         const {id_member} = req.params;
 
         try {
-            await TblLoan.findAll({
+            const member = await Member.findOne({
+                where: {
+                    member_id: id_member
+                }
+            });
+
+            if (!member) {
+                return res.status(200).json({
+                    status: 404,
+                    data: "",
+                    message: "Data Not Found"
+                });
+            }
+
+            const loan = await TblLoan.findAll({
+                attributes: ['id', 'nama_produk', 'nama_ao', 'desc_status'],
                 where: {
                     id_member: id_member
                 },
-            }).then((loan) => {
-                if (loan.length > 0) {
-                    return res.status(200).json({
-                        status: 200,
-                        data: loan,
-                        message: ""
-                    });
-                } else {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Data Not Found"
-                    });
-                }
             });
+
+            return res.status(200).json({
+                status: 200,
+                data: {member, loan},
+                message: ""
+            });
+
         } catch (err) {
             return res.status(200).json({
                 status: 500,
@@ -628,6 +636,47 @@ const TblLoanController = () => {
         }
     };
 
+    const view_collection = async (req, res) => {
+        const {id_loan} = req.params;
+
+        try {
+            const loan = await TblLoan.findOne({
+                where: {
+                    id: id_loan
+                }
+            });
+
+            if (!loan) {
+                return res.status(200).json({
+                    status: 404,
+                    data: "",
+                    message: "Loan Not Found"
+                });
+            }
+
+            const collection = await TblLoanCollection.findAll({
+                attributes: ['angsuran', 'loan_due_date', 'loan_payment_date', 'setoran', 'status_pembayaran'],
+                where: {
+                    id_loan: id_loan,
+                    created_by: "android"
+                },
+            });
+
+            return res.status(200).json({
+                status: 200,
+                data: {loan, collection},
+                message: "Data collection"
+            });
+
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: {},
+                message: "Error: " + err
+            });
+        }
+    };
+
     return {
         add,
         update_loan_status,
@@ -635,7 +684,8 @@ const TblLoanController = () => {
         view_per_member,
         view_pending_loan, //muncul di halaman pending persetujuan dan pending pencairan Dashboard
         view_per_loan_id,
-        view_member_status //muncul di menu Anggota pada Android
+        view_member_status, //muncul di menu Anggota pada Android
+        view_collection
     };
 };
 

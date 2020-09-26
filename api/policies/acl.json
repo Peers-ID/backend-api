@@ -95,6 +95,13 @@
         "action": "allow"
       },
       {
+        "resource": "loan/collection/:id_loan",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "product/:id_product",
         "methods": [
           "GET"
@@ -190,6 +197,13 @@
       },
       {
         "resource": "loan/detail/:id",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/collection/:id_loan",
         "methods": [
           "GET"
         ],

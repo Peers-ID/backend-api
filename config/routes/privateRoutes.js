@@ -7,6 +7,8 @@ const privateRoutes = {
 
     'POST /koperasi': 'KoperasiController.add',
     'GET /koperasi': 'KoperasiController.list',
+    'GET /koperasi/:id': 'KoperasiController.view_by_id',
+    'PUT /koperasi/:id': 'KoperasiController.edit_by_id',
 
     /*'PUT /koperasi/approval/:kop_id': 'KoperasiController.edit_approval',
     'GET /koperasi/approval/:kop_id': 'KoperasiController.view_approval',

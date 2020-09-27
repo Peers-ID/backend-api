@@ -6,6 +6,14 @@
         "resource": "koperasi",
         "methods": "*",
         "action": "allow"
+      },
+      {
+        "resource": "koperasi/:id",
+        "methods": [
+          "GET",
+          "PUT"
+        ],
+        "action": "allow"
       }
     ]
   },
@@ -98,6 +106,13 @@
         "resource": "loan/collection/:id_loan",
         "methods": [
           "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/status",
+        "methods": [
+          "PUT"
         ],
         "action": "allow"
       },
@@ -206,6 +221,13 @@
         "resource": "loan/collection/:id_loan",
         "methods": [
           "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/status",
+        "methods": [
+          "PUT"
         ],
         "action": "allow"
       },

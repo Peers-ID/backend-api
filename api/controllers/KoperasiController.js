@@ -5,6 +5,8 @@ const sequelize = require('../../config/database');
 const authService = require('../services/auth.service');
 const emailService = require('../services/email.service');
 
+const { Op } = require("sequelize");
+
 const KoperasiController = () => {
     const add = async (req, res) => {
 
@@ -169,118 +171,162 @@ const KoperasiController = () => {
         }
     };
 
-    /*const edit_approval = async (req, res) => {
-        const {body} = req;
-        const kop_id = req.params.kop_id;
-        try {
-            const editConfig = await KoperasiApprovalConfig.update(
-                {
-                    ao_can_approved: body.ao_can_approved
-                }
-                , {
-                    where: {
-                        koperasi_id: kop_id
-                    }
-                });
+    const view_by_id = async (req, res) => {
+        const {id} = req.params;
 
-            if (editConfig.toString() == "1") {
+        try {
+            const koperasi = await Koperasi.findOne({
+               where: {
+                   id
+               }
+            });
+
+            if (koperasi) {
                 return res.status(200).json({
-                    status: 201,
-                    data: [],
-                    message: "Success update config."
+                    status: 200,
+                    data: koperasi,
+                    message: "Success retrieve"
+
+                });
+            } else {
+                return res.status(200).json({
+                    status: 404,
+                    data: {},
+                    message: "Not found"
+
+                });
+            }
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: "",
+                message: "Error: " + err
+            });
+        }
+    };
+
+
+    const edit_by_id = async (req, res) => {
+        const {body} = req;
+        const {id} = req.params;
+
+        try {
+
+            var now = Date.now();
+            var nama_kop = body.nama_koperasi.split(" ");
+
+            //check email
+            await Koperasi.findAndCountAll({
+                attributes:['email_pengurus'],
+                where: {
+                    email_pengurus:body.email_pengurus,
+                    id: {[Op.not]: id}
+                }
+            }).then((data) => {
+                if (data.count > 0) {
+                    return res.status(200).json({
+                        status: 500,
+                        data: "",
+                        message: "Alamat Email Koperasi sudah pernah terdaftar"
+                    });
+                }
+            });
+
+            //check no HP
+            await Koperasi.findAndCountAll({
+                attributes:['hp_pengurus'],
+                where: {
+                    hp_pengurus:body.hp_pengurus,
+                    id: {[Op.not]: id}
+                }
+            }).then((data) => {
+                if (data.count > 0) {
+                    return res.status(200).json({
+                        status: 500,
+                        data: "",
+                        message: "No HP Koperasi sudah pernah terdaftar"
+                    });
+                }
+            });
+
+            const data = {
+                nama_koperasi: body.nama_koperasi,
+                no_badan_hukum: body.no_badan_hukum,
+                tgl_badan_hukum: body.tgl_badan_hukum,
+                no_perubahan_anggaran_dasar: body.no_perubahan_anggaran_dasar,
+                tgl_perubahan_anggaran_dasar: body.tgl_perubahan_anggaran_dasar,
+                tgl_rat_terakhir: body.tgl_rat_terakhir,
+                alamat: body.alamat,
+                kelurahan_desa: body.kelurahan_desa,
+                kecamatan: body.kecamatan,
+                kabupaten: body.kabupaten,
+                provinsi: body.provinsi,
+                bentuk_koperasi: body.bentuk_koperasi,
+                jenis_koperasi: body.jenis_koperasi,
+                nama_ketua: body.nama_ketua,
+                nama_sekretaris: body.nama_sekretaris,
+                nama_bendahara: body.nama_bendahara,
+                foto_ktp_ketua: '',
+                nama_pengelola_harian: body.nama_pengelola_harian,
+                jml_anggota_pria: body.jml_anggota_pria | 0,
+                jml_anggota_wanita: body.jml_anggota_wanita | 0,
+                total_anggota: body.total_anggota | 0,
+                total_manajer: body.total_manajer | 0,
+                total_karyawan: body.total_karyawan,
+                no_induk_koperasi: body.no_induk_koperasi,
+                status_nik: body.status_nik,
+                status_grade: body.status_grade,
+                jabatan: body.jabatan,
+                hp_pengurus: body.hp_pengurus,
+                email_pengurus: body.email_pengurus
+            };
+
+            if (req.files) {
+                data.foto_ktp_ketua = 'Kop-' + nama_kop[0] + '-' + now + '.jpg';
+
+                let fotoKtpKetua = req.files.foto_ktp_ketua;
+
+                fotoKtpKetua.mv('/home/dev_peers_id/backend-api/pictures/koperasi/Kop-' + nama_kop[0] + '-' + now + '.jpg', function (err) {
+                    if (err) {
+                        return res.send({status: 500, data: "", message: "Failed to upload image!"});
+                    }
                 });
             }
 
-            return res.status(200).json({
-                status: 400,
-                data: [],
-                message: "Failed to update config!"
-            });
-
-        } catch (err) {
-            console.log(err);
-            return res.status(500).json({msg: 'Internal server error'});
-        }
-    };
-
-    const view_approval = async (req, res) => {
-        const kop_id = req.params.kop_id;
-        try {
-            const config = await KoperasiApprovalConfig.findAll({
+            const update_koperasi = await Koperasi.update(data, {
                 where: {
-                    koperasi_id: kop_id
-                },
-            });
-
-            return res.status(200).json({
-                status: 200,
-                data: config,
-                message: "Success retrieve config."
-            });
-
-        } catch (err) {
-            return res.status(500).json({msg: 'Internal server error'});
-        }
-    };
-
-    const edit_cutoff = async (req, res) => {
-        const {body} = req;
-        const kop_id = req.params.kop_id;
-        try {
-            const cutOff = await KoperasiCutOffConfig.update(
-                {
-                    hours: body.hours,
-                    minutes: body.minutes
+                    id
                 }
-                , {
-                    where: {
-                        koperasi_id: kop_id
-                    }
-                });
+            });
 
-            if (cutOff.toString() == "1") {
+            if (update_koperasi) {
                 return res.status(200).json({
-                    status: 201,
-                    data: [],
-                    message: "Success update cutoff."
+                    status: 500,
+                    data: data,
+                    message: "Update Koperasi Successfully"
+                });
+            } else {
+                return res.status(200).json({
+                    status: 500,
+                    data: "",
+                    message: "Update failed"
                 });
             }
 
-            return res.status(200).json({
-                status: 400,
-                data: [],
-                message: "Failed to update cutoff!"
-            });
-
         } catch (err) {
-            console.log(err);
-            return res.status(500).json({msg: 'Internal server error'});
+            return res.status(200).json({
+                status: 500,
+                data: "",
+                message: "Error: " + err
+            });
         }
     };
-
-    const view_cutoff = async (req, res) => {
-        const kop_id = req.params.kop_id;
-        try {
-            const cutOff = await KoperasiCutOffConfig.findAll({
-                where: {
-                    koperasi_id: kop_id
-                },
-            });
-
-            return res.status(200).json({
-                status: 200,
-                data: cutOff,
-                message: "Success retrieve cutoff time."
-            });
-
-        } catch (err) {
-            return res.status(500).json({msg: 'Internal server error'});
-        }
-    };*/
 
     return {
         add,
-        list
+        list,
+        view_by_id,
+        edit_by_id
     };
 };
 

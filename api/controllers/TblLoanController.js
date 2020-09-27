@@ -636,7 +636,8 @@ const TblLoanController = () => {
         }
     };
 
-    const view_collection = async (req, res) => {
+    const view_collection_per_loan = async (req, res) => {
+        const {decoded} = req;
         const {id_loan} = req.params;
 
         try {
@@ -644,6 +645,12 @@ const TblLoanController = () => {
                 where: {
                     id: id_loan
                 }
+            });
+
+            const parameter = await LoanParameter.findOne({
+               where: {
+                   id_koperasi: decoded.koperasi_id
+               }
             });
 
             if (!loan) {
@@ -664,7 +671,7 @@ const TblLoanController = () => {
 
             return res.status(200).json({
                 status: 200,
-                data: {loan, collection},
+                data: {parameter, loan, collection},
                 message: "Data collection"
             });
 
@@ -685,7 +692,7 @@ const TblLoanController = () => {
         view_pending_loan, //muncul di halaman pending persetujuan dan pending pencairan Dashboard
         view_per_loan_id,
         view_member_status, //muncul di menu Anggota pada Android
-        view_collection
+        view_collection_per_loan
     };
 };
 

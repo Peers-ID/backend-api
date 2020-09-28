@@ -524,7 +524,7 @@ const TblLoanController = () => {
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_status: {
-                        [Op.or]: [2, 7]
+                        [Op.or]: [2, 3, 7]
                     }
                 }
             });

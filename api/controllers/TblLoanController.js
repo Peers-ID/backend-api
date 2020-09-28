@@ -353,6 +353,7 @@ const TblLoanController = () => {
 
     const update_loan_status = async (req, res) => {
         const {body, decoded} = req;
+        let condition = { where:{} };
 
         try {
             var id_koperasi = decoded.koperasi_id;
@@ -363,6 +364,9 @@ const TblLoanController = () => {
             var data = {};
 
             /* ------------------------- STATUS LOAN --------------------------*/
+
+            data.id_status = id_status;
+
             await Status.findOne({
                 attributes: ['desc_status'],
                 where: {
@@ -371,8 +375,6 @@ const TblLoanController = () => {
             }).then((status) => {
                 data.nama_status = status.desc_status;
             });
-
-            data.id_status = id_status;
 
             switch (id_status) {
                 case 1: //-> Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
@@ -411,28 +413,30 @@ const TblLoanController = () => {
                     break;
             }
 
-            await TblLoan.update(data, {
-                where: {
-                    id_koperasi: id_koperasi,
-                    id_ao: id_ao,
-                    id_member: id_member,
-                    id: id_loan
-                }
-            }).then((updated) => {
-                if (updated) {
-                    return res.status(200).json({
-                        status: 200,
-                        data: {},
-                        message: "Data updated successfully"
-                    });
-                } else {
-                    return res.status(200).json({
-                        status: 400,
-                        data: {},
-                        message: "Failed update data"
-                    });
-                }
-            });
+            condition.where.id_koperasi = id_koperasi;
+            condition.where.id_member = id_member;
+            condition.where.id = id_loan;
+
+            if (decoded.role === "AO/CMO/Sales") {
+                condition.where.id_ao = id_ao;
+            }
+
+
+            const updated = await TblLoan.update(data, condition);
+
+            if (updated) {
+                return res.status(200).json({
+                    status: 200,
+                    data: {data},
+                    message: "Data updated successfully"
+                });
+            } else {
+                return res.status(200).json({
+                    status: 400,
+                    data: {},
+                    message: "Failed update data"
+                });
+            }
         } catch (err) {
             return res.status(200).json({
                 status: 500,

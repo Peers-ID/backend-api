@@ -301,8 +301,8 @@ const KoperasiController = () => {
 
             if (update_koperasi) {
                 return res.status(200).json({
-                    status: 500,
-                    data: data,
+                    status: 200,
+                    data: {},
                     message: "Update Koperasi Successfully"
                 });
             } else {

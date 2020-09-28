@@ -163,15 +163,16 @@ const MemberController = () => {
     };
 
     const list = async (req, res) => {
-        const {id, decoded} = req;
+        let condition = { where:{} };
+        const {decoded} = req;
 
         try {
-            const member = await Member.findAll({
-                where: {
-                    koperasi_id : decoded.koperasi_id,
-                    ao_id : decoded.id
-                }
-            });
+            condition.where.koperasi_id = decoded.koperasi_id;
+            if (decoded.role === "AO/CMO/Sales") {
+                condition.where.ao_id = decoded.id;
+            }
+
+            const member = await Member.findAll(condition);
 
             return res.status(200).json({
                 status: 200,

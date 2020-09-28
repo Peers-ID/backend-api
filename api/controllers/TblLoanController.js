@@ -524,7 +524,7 @@ const TblLoanController = () => {
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_status: {
-                        [Op.or]: [2, 3, 7]
+                        [Op.or]: [2, 3, 4, 7]
                     }
                 }
             });
@@ -665,6 +665,13 @@ const TblLoanController = () => {
                 });
             }
 
+            const product = await LoanProduct.findOne({
+                attributes: ['tenor', 'satuan_tenor', 'bunga', 'tenor_bunga'],
+                where: {
+                   id:loan.id_produk
+               }
+            });
+
             const collection = await TblLoanCollection.findAll({
                 attributes: ['angsuran', 'loan_due_date', 'loan_payment_date', 'setoran', 'status_pembayaran'],
                 where: {
@@ -675,7 +682,7 @@ const TblLoanController = () => {
 
             return res.status(200).json({
                 status: 200,
-                data: {parameter, loan, collection},
+                data: {parameter, product, loan, collection},
                 message: "Data collection"
             });
 

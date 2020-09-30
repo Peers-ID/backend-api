@@ -429,19 +429,20 @@ const UserController = () => {
                     },
                 });
 
+
+                if (!user) {
+                    return res.status(200).json({
+                        status: 404,
+                        data: "",
+                        message: "User not found"
+                    });
+                }
+
                 if (user.status === "inactive") {
                     return res.status(200).json({
                         status: 202,
                         data: "",
                         message: "Akun Anda telah di Non-Aktifkan, silahkan hubungi Pihak Koperasi"
-                    });
-                }
-
-                if (!user) {
-                    return res.status(200).json({
-                        status: 400,
-                        data: "",
-                        message: "User not found"
                     });
                 }
 

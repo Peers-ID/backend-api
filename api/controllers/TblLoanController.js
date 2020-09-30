@@ -53,7 +53,6 @@ const TblLoanController = () => {
                     desc_status: 'active'
                 }
             }).then(async (data) => {
-                console.log("####--1 " + data.count);
                 if (data.count > 0) {
                     await t.rollback();
 

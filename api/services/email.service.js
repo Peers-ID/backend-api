@@ -37,12 +37,16 @@ const emailService = () => {
 
             /*------------------------------- USE NODEMAILER -----------------------------*/
 
+            const gmUser = process.env.GM_USER;
+            const gmPass = process.env.GM_PASS;
+
+
             var transporter = nodemailer.createTransport(smtpTransport({
                 service: 'gmail',
                 host: 'smtp.gmail.com',
                 auth: {
-                    user: 'dev.peers.id@gmail.com',
-                    pass: 'P##12s123'
+                    user: gmUser,
+                    pass: gmPass
                 }
             }));
 
@@ -124,12 +128,15 @@ const emailService = () => {
 
                     /*------------------------------- USE NODEMAILER -----------------------------*/
 
+                    const gmUser = process.env.GM_USER;
+                    const gmPass = process.env.GM_PASS;
+
                     var transporter = nodemailer.createTransport(smtpTransport({
                         service: 'gmail',
                         host: 'smtp.gmail.com',
                         auth: {
-                            user: 'dev.peers.id@gmail.com',
-                            pass: 'P##12s123'
+                            user: gmUser,
+                            pass: gmPass
                         }
                     }));
 

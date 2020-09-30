@@ -13,7 +13,7 @@
         },
         "scripts": {
                 "start": "npm run nodemon",
-                "dev": "cross-env NODE_ENV=development DEBUG=email-templates node ./api/api.js",
+                "dev": "cross-env NODE_ENV=development DEBUG=email-templates GM_USER=dev.peers.id@gmail.com GM_PASS=P##12s12345 node ./api/api.js",
                 "nodemon": "nodemon --exec npm run dev",
                 "lint": "eslint ./api/. ./config/. ./test/.",
                 "prepush": "npm test",
@@ -37,6 +37,7 @@
                 "body-parser": "^1.18.2",
                 "core-js": "^2.6.9",
                 "cors": "^2.8.4",
+                "dotenv": "^8.2.0",
                 "express": "^4.16.3",
                 "express-acl": "^2.0.8",
                 "express-fileupload": "^1.1.7-alpha.1",

@@ -181,6 +181,18 @@ const Member = sequelize.define('Member', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    nama_kontak_darurat: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    nomor_ponsel_darurat: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    hubungan_kontak_darurat: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     nama_pasangan: {
         type: Sequelize.STRING,
         allowNull: true

@@ -179,6 +179,18 @@ const MemberConfig = sequelize.define('MemberConfig', {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
+    nama_kontak_darurat: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    nomor_ponsel_darurat: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    hubungan_kontak_darurat: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
     nama_pasangan: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0

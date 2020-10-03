@@ -62,6 +62,10 @@ const MemberController = () => {
                 alamat_kantor_provinsi: body.alamat_kantor_provinsi,
                 alamat_kantor_kode_pos: body.alamat_kantor_kode_pos,
 
+                nama_kontak_darurat: body.nama_kontak_darurat,
+                nomor_ponsel_darurat: body.nomor_ponsel_darurat,
+                hubungan_kontak_darurat: body.hubungan_kontak_darurat,
+
                 nama_pasangan: body.nama_pasangan,
                 no_identitas_pasangan: body.no_identitas_pasangan,
                 pekerjaan_pasangan: body.pekerjaan_pasangan,
@@ -281,6 +285,10 @@ const MemberController = () => {
                     alamat_kantor_kota: body.alamat_kantor_kota,
                     alamat_kantor_provinsi: body.alamat_kantor_provinsi,
                     alamat_kantor_kode_pos: body.alamat_kantor_kode_pos,
+
+                    nama_kontak_darurat: body.nama_kontak_darurat,
+                    nomor_ponsel_darurat: body.nomor_ponsel_darurat,
+                    hubungan_kontak_darurat: body.hubungan_kontak_darurat,
 
                     nama_pasangan: body.nama_pasangan,
                     no_identitas_pasangan: body.no_identitas_pasangan,

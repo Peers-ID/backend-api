@@ -81,6 +81,10 @@ const Member = sequelize.define('Member', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    alamat_ktp_kode_pos: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     alamat_ktp_status_tempat_tinggal: {
         type: Sequelize.STRING,
         allowNull: false
@@ -112,6 +116,10 @@ const Member = sequelize.define('Member', {
     alamat_domisili_provinsi: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    alamat_domisili_kode_pos: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
     alamat_domisili_status_tempat_tinggal: {
         type: Sequelize.STRING,
@@ -168,6 +176,10 @@ const Member = sequelize.define('Member', {
     alamat_kantor_provinsi: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    alamat_kantor_kode_pos: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
     nama_pasangan: {
         type: Sequelize.STRING,

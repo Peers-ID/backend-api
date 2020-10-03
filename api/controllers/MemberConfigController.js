@@ -22,6 +22,7 @@ const MemberConfigController = () => {
             alamat_ktp_kecamatan: body.alamat_ktp_kecamatan,
             alamat_ktp_kota: body.alamat_ktp_kota,
             alamat_ktp_provinsi: body.alamat_ktp_provinsi,
+            alamat_ktp_kode_pos: body.alamat_ktp_kode_pos,
             alamat_ktp_status_tempat_tinggal: body.alamat_ktp_status_tempat_tinggal,
             alamat_ktp_lama_tinggal: body.alamat_ktp_lama_tinggal,
 
@@ -31,6 +32,7 @@ const MemberConfigController = () => {
             alamat_domisili_kecamatan: body.alamat_domisili_kecamatan,
             alamat_domisili_kota: body.alamat_domisili_kota,
             alamat_domisili_provinsi: body.alamat_domisili_provinsi,
+            alamat_domisili_kode_pos: body.alamat_domisili_kode_pos,
             alamat_domisili_status_tempat_tinggal: body.alamat_domisili_status_tempat_tinggal,
             alamat_domisili_lama_tempat_tinggal: body.alamat_domisili_lama_tempat_tinggal,
 
@@ -46,6 +48,7 @@ const MemberConfigController = () => {
             alamat_kantor_kecamatan: body.alamat_kantor_kecamatan,
             alamat_kantor_kota: body.alamat_kantor_kota,
             alamat_kantor_provinsi: body.alamat_kantor_provinsi,
+            alamat_kantor_kode_pos: body.alamat_kantor_kode_pos,
 
             nama_pasangan: body.nama_pasangan,
             no_identitas_pasangan: body.no_identitas_pasangan,
@@ -60,7 +63,8 @@ const MemberConfigController = () => {
             dokumen_sim: body.dokumen_sim,
             dokumen_kk: body.dokumen_kk,
             dokumen_keterangan_kerja: body.dokumen_keterangan_kerja,
-            dokumen_slip_gaji: body.dokumen_akta_nikah,
+            dokumen_slip_gaji: body.dokumen_slip_gaji,
+            dokumen_akta_nikah: body.dokumen_akta_nikah,
             dokumen_bpkb: body.dokumen_bpkb,
             dokumen_lainnya: body.dokumen_lainnya,
 
@@ -100,7 +104,7 @@ const MemberConfigController = () => {
                 if (config) {
                     return res.status(200).json({
                         status: 201,
-                        data: [],
+                        data: "",
                         message: "MemberConfig updated successfully"
                     });
                 }

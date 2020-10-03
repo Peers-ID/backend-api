@@ -79,6 +79,10 @@ const MemberConfig = sequelize.define('MemberConfig', {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
+    alamat_ktp_kode_pos: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
     alamat_ktp_status_tempat_tinggal: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
@@ -108,6 +112,10 @@ const MemberConfig = sequelize.define('MemberConfig', {
         allowNull: false, defaultValue: 0
     },
     alamat_domisili_provinsi: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    alamat_domisili_kode_pos: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
@@ -164,6 +172,10 @@ const MemberConfig = sequelize.define('MemberConfig', {
         allowNull: false, defaultValue: 0
     },
     alamat_kantor_provinsi: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    alamat_kantor_kode_pos: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },

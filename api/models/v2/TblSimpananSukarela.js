@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../../config/database');
 const hooks = {};
-const tableName = 'tbl_simpanan';
+const tableName = 'tbl_simpanan_sukarela';
 
-const TblSimpanan = sequelize.define('TblSimpanan', {
+const TblSimpanan = sequelize.define('TblSimpananSukarela', {
     id_koperasi: {
         type: Sequelize.INTEGER,
         allowNull: false
@@ -20,20 +20,18 @@ const TblSimpanan = sequelize.define('TblSimpanan', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    simpanan_wajib: {
+    id_collection: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-        default: 0
-    },
-    simpanan_pokok: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        default: 0
+        allowNull: false
     },
     simpanan_sukarela: {
         type: Sequelize.INTEGER,
         allowNull: true,
         default: 0
+    },
+    desc: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 }, {
     hooks,

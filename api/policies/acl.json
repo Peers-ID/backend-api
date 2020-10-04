@@ -129,6 +129,27 @@
           "POST"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_wajib/total",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_pokok/total",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_sukarela/total",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
       }
     ]
   },
@@ -240,6 +261,27 @@
       },
       {
         "resource": "users/change_password",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_wajib/total",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_pokok/total",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_sukarela/total",
         "methods": [
           "POST"
         ],

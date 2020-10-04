@@ -108,6 +108,11 @@ const privateRoutes = {
     'POST /collection/member': 'TblLoanCollectionController.view_member_collection',
     'POST /collection/add': 'TblLoanCollectionController.add',
     'GET /collection': 'TblLoanCollectionController.list', //https://balsamiq.cloud/s1ni7o4/pl3yqi7/rFA01 LIST PEMBAYARAN CICILAN
+
+    //SIMPANAN
+    'POST /loan/simpanan_wajib/total': 'TblSimpananController.view_sum_simpanan_wajib',
+    'POST /loan/simpanan_pokok/total': 'TblSimpananController.view_sum_simpanan_pokok',
+    'POST /loan/simpanan_sukarela/total': 'TblSimpananController.view_sum_simpanan_sukarela'
 };
 
 module.exports = privateRoutes;

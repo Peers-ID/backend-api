@@ -1,5 +1,5 @@
 const TblLoan = require('../models/v2/TblLoan');
-const TblSimpanan = require('../models/v2/TblSimpanan');
+const TblSimpananPokok = require('../models/v2/TblSimpananPokok');
 const AccountRoleManagement = require('../models/v2/AccountRoleManagement');
 const LoanProduct = require('../models/v2/LoanProduct');
 const Member = require('../models/Member');
@@ -40,8 +40,8 @@ const TblLoanController = () => {
             var loan_tenor;
             var loan_satuan_tenor = "Bulan";
             var hari_per_bulan = 30;
-            var simpanan_wajib;
-            var simpanan_pokok;
+            var simpanan_wajib = 0;
+            var simpanan_pokok = 0;
             var id_status = 0;
 
             /* ------------------------- CHECK ACTIVE LOAN --------------------------*/
@@ -260,16 +260,18 @@ const TblLoanController = () => {
                 transaction: t
             });
 
-            /*----------------- CREATE SIMPANAN ---------------*/
+            /*----------------- CREATE SIMPANAN POKOK ---------------*/
             var simpanan = {
                 id_koperasi: decoded.koperasi_id,
                 id_ao: decoded.id,
                 id_loan: loan.id,
                 id_member: loan.id_member,
-                simpanan_pokok: simpanan_pokok
+                id_collection: 1,
+                simpanan_pokok: simpanan_pokok,
+                desc: "Setoran"
             };
 
-            await TblSimpanan.create(simpanan, {
+            await TblSimpananPokok.create(simpanan, {
                 transaction: t
             });
 

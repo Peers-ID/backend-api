@@ -29,6 +29,11 @@ const TblSimpanan = sequelize.define('TblSimpananWajib', {
         allowNull: true,
         default: 0
     },
+    total_simpanan: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
     desc: {
         type: Sequelize.STRING,
         allowNull: true

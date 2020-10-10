@@ -42,7 +42,7 @@ const TblLoanCollectionController = () => {
                 id_koperasi: decoded.koperasi_id,
                 id_member: body.id_member,
                 angsuran: body.angsuran,
-                pembayaran_ke: 1, //TODO harusnya hasil dari query
+                pembayaran_ke: body.pembayaran_ke,
                 loan_payment_date: date_now_string,
                 denda: body.denda,
                 setoran: body.setoran,
@@ -148,15 +148,56 @@ const TblLoanCollectionController = () => {
                 simpanan_wajib.id_collection = android_collection.id;
 
                 simpanan_wajib.simpanan_wajib = android_collection.simpanan_wajib;
-                simpanan_wajib.desc = "Setoran";
+                simpanan_wajib.desc = body.bayar_dengan_simpanan === 0 ? "Setoran" : "Cicilan";
 
-                await TblSimpananWajib.create(simpanan_wajib, {
+                //1. check last total and last updatedDate
+                const lastTotal = await TblSimpananWajib.sum('simpanan_wajib', {
+                    attributes: ['id_member'],
+                    group : ['id_member'],
+                    where: {
+                        id_koperasi : decoded.koperasi_id,
+                        id_member : android_collection.id_member,
+                        id_loan : android_collection.id_loan
+                    }
+                });
+
+                console.log("### last total " + lastTotal);
+
+                const lastUpdateDate = await TblSimpananWajib.findOne({
+                    attributes: ['updatedAt'],
                     where: {
                         id_koperasi: decoded.koperasi_id,
                         id_ao: decoded.id,
                         id_loan: android_collection.id_loan,
                         id_member: android_collection.id_member
-                    },
+                    }
+                });
+
+                console.log("### last lastUpdateDate " + lastUpdateDate);
+
+                //2. update total_saldo where last updatedDate is similar with before
+                if (!lastTotal) {
+                    simpanan_wajib.total_simpanan = simpanan_wajib.simpanan_wajib;
+                } else {
+                    if (simpanan_wajib.desc === "Setoran") {
+                        simpanan_wajib.total_simpanan = lastTotal + simpanan_wajib.simpanan_wajib
+                    } else {
+                        //TODO : lakukan pengecekan priirity pengurangan simpanan dari parameter disini
+                        simpanan_wajib.total_simpanan = lastTotal - simpanan_wajib.simpanan_wajib
+                    }
+                }
+
+                let condition = {where: {}};
+                condition.where.id_koperasi = decoded.koperasi_id;
+                condition.where.id_ao = decoded.id;
+                condition.where.id_loan = android_collection.id_loan;
+                condition.where.id_member = android_collection.id_member;
+                if (lastUpdateDate !== null) {
+                    condition.where.updatedAt = lastUpdateDate; //optimistic lock
+                }
+
+                await TblSimpananWajib.create(simpanan_wajib, {
+                    condition,
                     transaction: t
                 });
 
@@ -207,15 +248,57 @@ const TblLoanCollectionController = () => {
                 simpanan_sukarela.id_collection = android_collection.id;
 
                 simpanan_sukarela.simpanan_sukarela = android_collection.simpanan_sukarela;
-                simpanan_sukarela.desc = "Setoran";
+                simpanan_sukarela.desc = body.bayar_dengan_simpanan === 0 ? "Setoran" : "Cicilan";
 
-                await TblSimpananSukarela.create(simpanan_sukarela, {
+                //1. check last total and last updatedDate
+                const lastTotalSimpananSukarela = await TblSimpananSukarela.sum('simpanan_sukarela', {
+                    attributes: ['id_member'],
+                    group : ['id_member'],
+                    where: {
+                        id_koperasi : decoded.koperasi_id,
+                        id_member : android_collection.id_member,
+                        id_loan : android_collection.id_loan
+                    }
+                });
+
+                console.log("### lastTotalSimpananSukarela " + lastTotalSimpananSukarela);
+
+                const lastUpdateDateSimpananSukarela = await TblSimpananSukarela.findOne({
+                    attributes: ['updatedAt'],
                     where: {
                         id_koperasi: decoded.koperasi_id,
                         id_ao: decoded.id,
                         id_loan: android_collection.id_loan,
                         id_member: android_collection.id_member
-                    },
+                    }
+                });
+
+                console.log("### lastUpdateDateSimpananSukarela " + lastUpdateDateSimpananSukarela);
+
+
+                //2. update total_saldo where last updatedDate is similar with before
+                if (!lastTotalSimpananSukarela) {
+                    simpanan_sukarela.total_simpanan = simpanan_sukarela.simpanan_sukarela;
+                } else {
+                    if (simpanan_sukarela.desc === "Setoran") {
+                        simpanan_sukarela.total_simpanan = lastTotalSimpananSukarela + simpanan_sukarela.simpanan_sukarela
+                    } else {
+                        //TODO : lakukan pengecekan priirity pengurangan simpanan dari parameter disini
+                        simpanan_sukarela.total_simpanan = lastTotalSimpananSukarela - simpanan_sukarela.simpanan_sukarela
+                    }
+                }
+
+                let conditionSimpananSukarela = {where: {}};
+                conditionSimpananSukarela.where.id_koperasi = decoded.koperasi_id;
+                conditionSimpananSukarela.where.id_ao = decoded.id;
+                conditionSimpananSukarela.where.id_loan = android_collection.id_loan;
+                conditionSimpananSukarela.where.id_member = android_collection.id_member;
+                if (lastUpdateDateSimpananSukarela !== null) {
+                    conditionSimpananSukarela.where.updatedAt = lastUpdateDateSimpananSukarela;  //optimistic lock
+                }
+
+                await TblSimpananSukarela.create(simpanan_sukarela, {
+                    conditionSimpananSukarela,
                     transaction: t
                 });
 

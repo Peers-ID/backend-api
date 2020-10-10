@@ -131,23 +131,44 @@
         "action": "allow"
       },
       {
-        "resource": "loan/simpanan_wajib/total",
+        "resource": "loan/simpanan_wajib/:id_member/total",
         "methods": [
-          "POST"
+          "GET"
         ],
         "action": "allow"
       },
       {
-        "resource": "loan/simpanan_pokok/total",
+        "resource": "loan/simpanan_wajib/:id_member/detail",
         "methods": [
-          "POST"
+          "GET"
         ],
         "action": "allow"
       },
       {
-        "resource": "loan/simpanan_sukarela/total",
+        "resource": "loan/simpanan_pokok/:id_member/total",
         "methods": [
-          "POST"
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_pokok/:id_member/detail",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_sukarela/:id_member/total",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_sukarela/:id_member/detail",
+        "methods": [
+          "GET"
         ],
         "action": "allow"
       }
@@ -267,23 +288,23 @@
         "action": "allow"
       },
       {
-        "resource": "loan/simpanan_wajib/total",
+        "resource": "loan/simpanan_wajib/:id_member/total",
         "methods": [
-          "POST"
+          "GET"
         ],
         "action": "allow"
       },
       {
-        "resource": "loan/simpanan_pokok/total",
+        "resource": "loan/simpanan_pokok/:id_member/total",
         "methods": [
-          "POST"
+          "GET"
         ],
         "action": "allow"
       },
       {
-        "resource": "loan/simpanan_sukarela/total",
+        "resource": "loan/simpanan_sukarela/:id_member/total",
         "methods": [
-          "POST"
+          "GET"
         ],
         "action": "allow"
       }

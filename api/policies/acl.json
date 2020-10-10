@@ -145,6 +145,13 @@
         "action": "allow"
       },
       {
+        "resource": "loan/simpanan_wajib/penarikan",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "loan/simpanan_pokok/:id_member/total",
         "methods": [
           "GET"
@@ -159,6 +166,13 @@
         "action": "allow"
       },
       {
+        "resource": "loan/simpanan_pokok/penarikan",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "loan/simpanan_sukarela/:id_member/total",
         "methods": [
           "GET"
@@ -169,6 +183,13 @@
         "resource": "loan/simpanan_sukarela/:id_member/detail",
         "methods": [
           "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_sukarela/penarikan",
+        "methods": [
+          "POST"
         ],
         "action": "allow"
       }
@@ -295,6 +316,20 @@
         "action": "allow"
       },
       {
+        "resource": "loan/simpanan_wajib/:id_member/detail",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_wajib/penarikan",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "loan/simpanan_pokok/:id_member/total",
         "methods": [
           "GET"
@@ -302,9 +337,37 @@
         "action": "allow"
       },
       {
+        "resource": "loan/simpanan_pokok/:id_member/detail",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_pokok/penarikan",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "loan/simpanan_sukarela/:id_member/total",
         "methods": [
           "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_sukarela/:id_member/detail",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan_sukarela/penarikan",
+        "methods": [
+          "POST"
         ],
         "action": "allow"
       }

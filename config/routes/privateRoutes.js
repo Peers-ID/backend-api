@@ -112,10 +112,13 @@ const privateRoutes = {
     //SIMPANAN
     'GET /loan/simpanan_wajib/:id_member/total': 'TblSimpananController.view_sum_simpanan_wajib',
     'GET /loan/simpanan_wajib/:id_member/detail': 'TblSimpananController.view_detail_simpanan_wajib',
+    'POST /loan/simpanan_wajib/penarikan': 'TblSimpananController.withdraw_simpanan_wajib',
     'GET /loan/simpanan_pokok/:id_member/total': 'TblSimpananController.view_sum_simpanan_pokok',
     'GET /loan/simpanan_pokok/:id_member/detail': 'TblSimpananController.view_detail_simpanan_pokok',
+    'POST /loan/simpanan_pokok/penarikan': 'TblSimpananController.withdraw_simpanan_pokok',
     'GET /loan/simpanan_sukarela/:id_member/total': 'TblSimpananController.view_sum_simpanan_sukarela',
-    'GET /loan/simpanan_sukarela/:id_member/detail': 'TblSimpananController.view_detail_simpanan_sukarela'
+    'GET /loan/simpanan_sukarela/:id_member/detail': 'TblSimpananController.view_detail_simpanan_sukarela',
+    'POST /loan/simpanan_sukarela/penarikan': 'TblSimpananController.withdraw_simpanan_sukarela',
 };
 
 module.exports = privateRoutes;

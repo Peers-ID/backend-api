@@ -494,6 +494,27 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "member/miscall",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "member/picture/:member_id",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "member/picture/:member_id",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
       }
     ]
   },

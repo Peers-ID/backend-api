@@ -119,12 +119,15 @@ const privateRoutes = {
     'GET /loan/simpanan_sukarela/:id_member/total': 'TblSimpananController.view_sum_simpanan_sukarela',
     'GET /loan/simpanan_sukarela/:id_member/detail': 'TblSimpananController.view_detail_simpanan_sukarela',
     'POST /loan/simpanan_sukarela/penarikan': 'TblSimpananController.withdraw_simpanan_sukarela',
+    'GET /loan/simpanan/:id_member/total': 'TblSimpananController.view_sum_all_simpanan',
+
 
     //KINERJA KOPERASI
     'GET /graph/member': 'KinerjaKoperasiController.view_count_anggota',
     'GET /graph/disburse': 'KinerjaKoperasiController.view_sum_penyaluran_pinjaman',
     'GET /graph/repayment': 'KinerjaKoperasiController.view_sum_pembayaran_angsuran',
     'GET /graph/loan': 'KinerjaKoperasiController.view_count_pinjaman_berjalan',
+    'GET /graph': 'KinerjaKoperasiController.view_all_graph',
 };
 
 module.exports = privateRoutes;

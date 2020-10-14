@@ -129,11 +129,73 @@ const KinerjaKoperasiController = () => {
 
     };
 
+    const view_all_graph = async (req, res) => {
+        const {decoded} = req;
+        const currentYear = new Date().getFullYear();
+
+        try {
+            const member = await Member.findAll({
+                attributes: [[sequelize.fn('count', 'member_id'), 'data'], ['month(createdAt)', 'bulan']],
+                where: {
+                    'koperasi_id': decoded.koperasi_id,
+                    [Op.and]: sequelize.where(sequelize.fn('YEAR', sequelize.col('createdAt')), currentYear)
+                },
+                group: [sequelize.fn('MONTH', sequelize.col('createdAt'))]
+            });
+
+
+            const pencairan = await TblLoan.findAll({
+                attributes: [[sequelize.fn('sum', sequelize.col('jumlah_pencairan')), 'data'], ['month(createdAt)', 'bulan']],
+                where: {
+                    'id_koperasi': decoded.koperasi_id,
+                    [Op.and]: sequelize.where(sequelize.fn('YEAR', sequelize.col('createdAt')), currentYear)
+                },
+                group: [sequelize.fn('MONTH', sequelize.col('createdAt'))]
+            });
+
+            const setoran = await TblLoanCollection.findAll({
+                attributes: [[sequelize.fn('sum', sequelize.col('setoran')), 'data'], ['month(createdAt)', 'bulan']],
+                where: {
+                    'id_koperasi': decoded.koperasi_id,
+                    'created_by': 'android',
+                    [Op.and]: sequelize.where(sequelize.fn('YEAR', sequelize.col('createdAt')), currentYear)
+                },
+                group: [sequelize.fn('MONTH', sequelize.col('createdAt'))]
+            });
+
+            const pinjaman = await TblLoan.findAll({
+                attributes: [[sequelize.fn('count', sequelize.col('id')), 'data'], ['month(createdAt)', 'bulan']],
+                where: {
+                    'id_koperasi': decoded.koperasi_id,
+                    'desc_status': 'active',
+                    [Op.and]: sequelize.where(sequelize.fn('YEAR', sequelize.col('createdAt')), currentYear)
+                },
+                group: [sequelize.fn('MONTH', sequelize.col('createdAt'))]
+            });
+
+            return res.status(200).json({
+                status: 200,
+                data: {member, pencairan, setoran, pinjaman},
+                message: "Success get data"
+            });
+
+        } catch (err) {
+
+            return res.status(200).json({
+                status: 500,
+                data: {},
+                message: "Error: " + err
+            });
+        }
+
+    };
+
     return {
         view_count_anggota,
         view_sum_penyaluran_pinjaman,
         view_sum_pembayaran_angsuran,
-        view_count_pinjaman_berjalan
+        view_count_pinjaman_berjalan,
+        view_all_graph
     };
 };
 

@@ -199,6 +199,20 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "graph",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan/:id_member/total",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
       }
     ]
   },
@@ -384,6 +398,20 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "graph",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan/:id_member/total",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
       }
     ]
   },
@@ -504,16 +532,7 @@
       },
       {
         "resource": "member/picture/:member_id",
-        "methods": [
-          "POST"
-        ],
-        "action": "allow"
-      },
-      {
-        "resource": "member/picture/:member_id",
-        "methods": [
-          "GET"
-        ],
+        "methods": "*",
         "action": "allow"
       }
     ]

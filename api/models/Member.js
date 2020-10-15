@@ -7,7 +7,8 @@ const tableName = 'member';
 const Member = sequelize.define('Member', {
     member_id: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     koperasi_id: {
         type: Sequelize.INTEGER,

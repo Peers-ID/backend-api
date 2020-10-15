@@ -142,12 +142,21 @@ const MemberController = () => {
                                 });
                             } else {
                                 //insert to db
-                                await Member.create(data);
+                                Member.create(data).then((reg_member) => {
+                                    if (reg_member) {
+                                        return res.status(201).json({
+                                            status: 201,
+                                            message: "Member registered successfully",
+                                            data: reg_member
+                                        });
+                                    } else {
+                                        return res.status(200).json({
+                                            status: 400,
+                                            message: "Member registered failed",
+                                            data: {}
+                                        });
+                                    }
 
-                                return res.status(201).json({
-                                    status: 201,
-                                    message: "Member registered successfully",
-                                    data: data
                                 });
                             }
                         });

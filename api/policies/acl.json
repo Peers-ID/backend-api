@@ -14,12 +14,6 @@
           "PUT"
         ],
         "action": "allow"
-      },{
-        "resource": "member/miscall",
-        "methods": [
-          "POST"
-        ],
-        "action": "allow"
       }
     ]
   },
@@ -430,6 +424,13 @@
         "action": "allow"
       },
       {
+        "resource": "member/miscall",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "loan/add",
         "methods": "*",
         "action": "allow"
@@ -508,7 +509,8 @@
           "POST"
         ],
         "action": "allow"
-      },{
+      },
+      {
         "resource": "loan/simpanan_wajib/:id_member/total",
         "methods": [
           "GET"

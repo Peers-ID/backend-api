@@ -22,7 +22,6 @@ const app = express();
 const server = http.Server(app);
 // const mappedOpenRoutes = mapRoutes(config.publicRoutes, 'api/controllers/');
 const mappedAuthRoutes = mapRoutes(config.privateRoutes, 'api/controllers/');
-// const mappedV2Routes = mapRoutes(config.privateRoutes, 'api/controllers/v2/');
 const DB = dbService(environment, config.migrate).start();
 
 // Cors config
@@ -57,7 +56,6 @@ app.use(acl.authorize);
 // Routes
 //app.use('/public', mappedOpenRoutes);
 app.use('/api/v1', mappedAuthRoutes);
-// app.use('/api/v2', mappedV2Routes);
 
 const conn = server.listen(config.port, () => {
     if (environment !== 'production' &&

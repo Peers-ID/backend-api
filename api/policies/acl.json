@@ -14,6 +14,12 @@
           "PUT"
         ],
         "action": "allow"
+      },{
+        "resource": "member/miscall",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
       }
     ]
   },
@@ -520,13 +526,6 @@
         "resource": "loan/simpanan_pokok/:id_member/detail",
         "methods": [
           "GET"
-        ],
-        "action": "allow"
-      },
-      {
-        "resource": "member/miscall",
-        "methods": [
-          "POST"
         ],
         "action": "allow"
       },

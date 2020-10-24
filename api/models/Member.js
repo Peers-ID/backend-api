@@ -187,7 +187,7 @@ const Member = sequelize.define('Member', {
         allowNull: true
     },
     nomor_ponsel_darurat: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true
     },
     hubungan_kontak_darurat: {
@@ -207,7 +207,7 @@ const Member = sequelize.define('Member', {
         allowNull: true
     },
     no_hp_pasangan: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true
     },
     nama_penjamin: {
@@ -215,7 +215,7 @@ const Member = sequelize.define('Member', {
         allowNull: true
     },
     no_hp_penjamin: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: true
     },
     hubungan_penjamin: {

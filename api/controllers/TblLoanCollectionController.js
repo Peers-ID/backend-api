@@ -50,7 +50,7 @@ const TblLoanCollectionController = () => {
             };
 
             await Member.findOne({
-                attributes:['nama_lengkap'],
+                attributes: ['nama_lengkap'],
                 where: {
                     member_id: body.id_member
                 }
@@ -103,35 +103,87 @@ const TblLoanCollectionController = () => {
                 collection.total_tagihan = record_collection.total_tagihan;
                 collection.loan_due_date = record_collection.loan_due_date;
 
-                if (body.setoran >= record_collection.total_tagihan) {
+                if (body.setoran >= record_collection.total_tagihan - body.simpanan_wajib) {
                     collection.status_pembayaran = "lunas";
                     collection.pokok = body.utang_pokok;
                     collection.bunga = body.bunga_pinjaman;
                     collection.simpanan_wajib = body.simpanan_wajib;
-                    collection.simpanan_sukarela = body.simpanan_sukarela + (body.setoran - record_collection.total_tagihan)
 
+                    if (body.setoran >= record_collection.total_tagihan) {
+                        collection.simpanan_sukarela = body.simpanan_sukarela + (body.setoran - record_collection.total_tagihan)
+                    } else {
+                        collection.simpanan_sukarela = body.simpanan_sukarela
+                    }
                 } else {
                     collection.status_pembayaran = "sebagian";
+
                     //1: Mengurangi Pokok; 2: Mengurangi Bunga
                     if (id_angsuran_sebagian === 1) {
+
                         if (collection.setoran >= collection.pokok) {
-                            collection.bunga = collection.setoran - record_collection.pokok;
-                            collection.pokok = record_collection.pokok;
+                            if (record_collection.pokok === 0) {
+                                if (collection.setoran >= record_collection.bunga) {
+                                    let sisa_angsuran = collection.setoran - record_collection.bunga;
+
+                                    collection.bunga = record_collection.bunga;
+
+                                    if (sisa_angsuran >= record_collection.denda) {
+                                        collection.denda = 0;
+                                        collection.simpanan_sukarela = sisa_angsuran - record_collection.denda
+                                    } else {
+                                        collection.denda = record_collection.denda
+                                        collection.simpanan_sukarela = sisa_angsuran
+                                    }
+                                    collection.status_pembayaran = "lunas";
+                                }
+                            } else {
+                                collection.bunga = collection.setoran - record_collection.pokok;
+                                collection.pokok = record_collection.pokok;
+                            }
                         } else {
                             collection.pokok = record_collection.pokok - collection.setoran;
                             collection.bunga = record_collection.bunga
                         }
                     } else if (id_angsuran_sebagian === 2) {
+
                         if (collection.setoran >= record_collection.bunga) {
-                            collection.bunga = record_collection.bunga;
-                            collection.pokok = collection.setoran - record_collection.bunga;
+                            if (record_collection.bunga === 0) {
+                                if (collection.setoran >= record_collection.pokok) {
+                                    let sisa_angsuran = collection.setoran - record_collection.pokok;
+
+                                    collection.pokok = record_collection.pokok;
+
+                                    if (sisa_angsuran >= record_collection.denda) {
+                                        collection.denda = 0;
+                                        collection.simpanan_sukarela = sisa_angsuran - record_collection.denda
+                                    } else {
+                                        collection.denda = record_collection.denda
+                                        collection.simpanan_sukarela = sisa_angsuran
+                                    }
+                                    collection.status_pembayaran = "lunas";
+                                }
+                            } else {
+                                collection.bunga = record_collection.bunga;
+                                collection.pokok = collection.setoran - record_collection.bunga;
+                                collection.simpanan_sukarela = body.simpanan_sukarela;
+                            }
                         } else {
                             collection.bunga = record_collection.bunga - collection.setoran;
                             collection.pokok = record_collection.pokok;
+                            collection.simpanan_sukarela = body.simpanan_sukarela;
                         }
                     }
                     collection.simpanan_wajib = 0;
-                    collection.simpanan_sukarela = body.simpanan_sukarela;
+                }
+
+                //FIXME !!!!
+
+                //RESET DENDA
+                if (collection.setoran >= record_collection.denda) {
+                    collection.denda = 0
+                    collection.simpanan_sukarela = collection.setoran - record_collection.denda - record_collection.pokok - record_collection.bunga - record_collection.simpanan_wajib
+                } else {
+                    collection.denda = record_collection.denda
                 }
 
                 const android_collection = await TblLoanCollection.create(collection, {
@@ -151,19 +203,22 @@ const TblLoanCollectionController = () => {
                 simpanan_wajib.desc = body.bayar_dengan_simpanan === 0 ? "Setoran" : "Cicilan";
 
                 //1. check last total and last updatedDate
-                const lastTotal = await TblSimpananWajib.findOne({
+                const lastTotalSimpananWajib = await TblSimpananWajib.findOne({
                     attributes: ['total_simpanan'],
                     where: {
-                        id_koperasi : decoded.koperasi_id,
-                        id_member : android_collection.id_member,
-                        id_loan : android_collection.id_loan
+                        id_koperasi: decoded.koperasi_id,
+                        id_member: android_collection.id_member,
+                        id_loan: android_collection.id_loan
                     },
                     order: [
                         ['updatedAt', 'DESC']
                     ]
                 });
 
-                console.log("### last total " + lastTotal.total_simpanan);
+
+                if (lastTotalSimpananWajib) {
+                    console.log("### last total " + lastTotalSimpananWajib.total_simpanan);
+                }
 
                 const lastUpdateDate = await TblSimpananWajib.findOne({
                     attributes: ['updatedAt'],
@@ -181,14 +236,14 @@ const TblLoanCollectionController = () => {
                 console.log("### last lastUpdateDate " + lastUpdateDate);
 
                 //2. update total_saldo where last updatedDate is similar with before
-                if (!lastTotal) {
+                if (!lastTotalSimpananWajib) { //first create
                     simpanan_wajib.total_simpanan = simpanan_wajib.simpanan_wajib;
                 } else {
                     if (simpanan_wajib.desc === "Setoran") {
-                        simpanan_wajib.total_simpanan = lastTotal.total_simpanan + simpanan_wajib.simpanan_wajib
+                        simpanan_wajib.total_simpanan = lastTotalSimpananWajib.total_simpanan + simpanan_wajib.simpanan_wajib
                     } else {
-                        //TODO : lakukan pengecekan priirity pengurangan simpanan dari parameter disini
-                        simpanan_wajib.total_simpanan = lastTotal.total_simpanan - simpanan_wajib.simpanan_wajib
+                        //TODO : lakukan pengecekan priority pengurangan simpanan dari parameter disini
+                        simpanan_wajib.total_simpanan = lastTotalSimpananWajib.total_simpanan - simpanan_wajib.simpanan_wajib
                     }
                 }
 
@@ -259,16 +314,18 @@ const TblLoanCollectionController = () => {
                 const lastTotalSimpananSukarela = await TblSimpananSukarela.findOne({
                     attributes: ['total_simpanan'],
                     where: {
-                        id_koperasi : decoded.koperasi_id,
-                        id_member : android_collection.id_member,
-                        id_loan : android_collection.id_loan
+                        id_koperasi: decoded.koperasi_id,
+                        id_member: android_collection.id_member,
+                        id_loan: android_collection.id_loan
                     },
                     order: [
                         ['updatedAt', 'DESC']
                     ]
                 });
 
-                console.log("### lastTotalSimpananSukarela " + lastTotalSimpananSukarela.total_simpanan);
+                if (lastTotalSimpananSukarela) {
+                    console.log("### lastTotalSimpananSukarela " + lastTotalSimpananSukarela.total_simpanan);
+                }
 
                 const lastUpdateDateSimpananSukarela = await TblSimpananSukarela.findOne({
                     attributes: ['updatedAt'],
@@ -287,13 +344,13 @@ const TblLoanCollectionController = () => {
 
 
                 //2. update total_saldo where last updatedDate is similar with before
-                if (!lastTotalSimpananSukarela) {
+                if (!lastTotalSimpananSukarela) {  //first create
                     simpanan_sukarela.total_simpanan = simpanan_sukarela.simpanan_sukarela;
                 } else {
                     if (simpanan_sukarela.desc === "Setoran") {
                         simpanan_sukarela.total_simpanan = lastTotalSimpananSukarela.total_simpanan + simpanan_sukarela.simpanan_sukarela
                     } else {
-                        //TODO : lakukan pengecekan priirity pengurangan simpanan dari parameter disini
+                        //TODO : lakukan pengecekan priority pengurangan simpanan dari parameter disini
                         simpanan_sukarela.total_simpanan = lastTotalSimpananSukarela.total_simpanan - simpanan_sukarela.simpanan_sukarela
                     }
                 }
@@ -363,19 +420,6 @@ const TblLoanCollectionController = () => {
                     created_by: "system"
                 };
 
-                if (android_collection.status_pembayaran === "sebagian") {
-                    next_collection.pokok = record_collection.pokok - android_collection.pokok;
-                    next_collection.bunga = record_collection.bunga - android_collection.bunga;
-                    next_collection.angsuran = android_collection.angsuran;
-                    next_collection.pembayaran_ke = android_collection.pembayaran_ke + 1;
-                } else {
-                    next_collection.pokok = android_collection.pokok;
-                    next_collection.bunga = android_collection.bunga;
-                    next_collection.angsuran = android_collection.angsuran + 1;
-                    next_collection.pembayaran_ke = 1;
-                }
-
-
                 var pengali;
                 switch (loan_satuan_tenor) {
                     case "Bulan":
@@ -389,34 +433,57 @@ const TblLoanCollectionController = () => {
                         break
                 }
 
-                var start_date_iso = new Date(record_collection.loan_due_date).getTime();
-                var next_due_date_iso = new Date(start_date_iso + pengali * 24 * 60 * 60 * 1000).toISOString();
-                var new_denda = 0;
+                let new_denda = 0;
+                let start_date_iso = new Date(record_collection.loan_due_date).getTime();
+                let next_due_date_iso = new Date(start_date_iso + pengali * 24 * 60 * 60 * 1000).toISOString();
+                let jlh_telat = 1;
+
+                next_collection.simpanan_wajib = record_collection.simpanan_wajib;
+
+                if (android_collection.status_pembayaran === "sebagian") {
+                    next_collection.pokok = record_collection.pokok - android_collection.pokok;
+                    next_collection.bunga = record_collection.bunga - android_collection.bunga;
+                    next_collection.angsuran = android_collection.angsuran;
+                    next_collection.pembayaran_ke = android_collection.pembayaran_ke + 1;
+                    next_collection.loan_due_date = android_collection.loan_due_date;
+
+                } else {
+                    next_collection.pokok = body.utang_pokok;
+                    next_collection.bunga = body.bunga_pinjaman;
+                    next_collection.angsuran = android_collection.angsuran + 1;
+                    next_collection.pembayaran_ke = 1;
+                    next_collection.loan_due_date = next_due_date_iso;
+
+                }
 
                 //TODO uncomment feature ini nanti !!
                 //hitung berapa hari telat dari tgl collection ke due date
                 /*var jlh_telat = dateDiffInDays(android_collection.loan_due_date, android_collection.loan_payment_date);*/
-
-                var jlh_telat = 1;
+                jlh_telat = 1;
 
                 //Sudah melewati Grace Period
-                if (jlh_telat >= id_masa_tenggang) {
+                if (jlh_telat >= id_masa_tenggang && android_collection.denda !== 0 ) {
                     if (type_denda_keterlambatan === "Fix") {
                         new_denda = denda_keterlambatan * jlh_telat;
                     } else {
                         // 1: Angsuran (Pokok Pinjaman + Bunga);
                         // 2: Pokok Pinjaman
                         if (id_dasar_denda === 1) {
-                            new_denda = (denda_keterlambatan / 100) * (next_collection.pokok + next_collection.bunga) * jlh_telat
+                            //case denda keterlambatan menggunakan persen
+                            // new_denda = (denda_keterlambatan / 100) * (next_collection.pokok + next_collection.bunga) * jlh_telat
+
+                            new_denda = (denda_keterlambatan) * (next_collection.pokok + next_collection.bunga) * jlh_telat
                         } else if (id_dasar_denda === 2) {
-                            new_denda = (denda_keterlambatan / 100) * (next_collection.pokok) * jlh_telat
+                            //case denda keterlambatan menggunakan persen
+                            // new_denda = (denda_keterlambatan / 100) * (next_collection.pokok) * jlh_telat
+
+                            new_denda = (denda_keterlambatan) * (next_collection.pokok) * jlh_telat
                         }
                     }
                 }
 
                 next_collection.denda = new_denda; //calculate fines here
-                next_collection.loan_due_date = next_due_date_iso;
-                next_collection.total_tagihan = next_collection.pokok + next_collection.bunga + next_collection.simpanan_wajib + next_collection.denda;
+                next_collection.total_tagihan = next_collection.pokok + next_collection.bunga + next_collection.denda + next_collection.simpanan_wajib;
 
                 await TblLoanCollection.create(next_collection, {
                     transaction: t

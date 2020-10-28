@@ -268,6 +268,7 @@ const TblLoanController = () => {
                 id_member: loan.id_member,
                 id_collection: 1,
                 simpanan_pokok: simpanan_pokok,
+                total_simpanan: simpanan_pokok,
                 desc: "Setoran"
             };
 
@@ -304,7 +305,9 @@ const TblLoanController = () => {
                 }
 
                 var due_date_iso = new Date(start_date_iso + pengali * 24 * 60 * 60 * 1000).toISOString();
-                var total_tagihan = loan.utang_pokok + loan.bunga_pinjaman + simpanan_wajib;
+
+                // var total_tagihan = loan.utang_pokok + loan.bunga_pinjaman + simpanan_wajib; //TODO apakah simpanan wajib masuk ke
+                var total_tagihan = data.jumlah_cicilan;
                 var collection = {
                     id_koperasi: decoded.koperasi_id,
                     id_produk: body.id_produk,

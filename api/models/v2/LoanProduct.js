@@ -25,7 +25,7 @@ const LoanProduct = sequelize.define('LoanProduct', {
         allowNull: false
     },
     bunga: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     tenor_bunga: {
@@ -37,7 +37,7 @@ const LoanProduct = sequelize.define('LoanProduct', {
         allowNull: false
     },
     provisi: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     type_provisi: {
@@ -45,7 +45,7 @@ const LoanProduct = sequelize.define('LoanProduct', {
         allowNull: false
     },
     simpanan_pokok: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     type_simpanan_pokok: {

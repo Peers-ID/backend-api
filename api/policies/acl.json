@@ -535,6 +535,20 @@
         "resource": "member/picture/:member_id",
         "methods": "*",
         "action": "allow"
+      },
+      {
+        "resource": "loan/detail/:id",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/status",
+        "methods": [
+          "PUT"
+        ],
+        "action": "allow"
       }
     ]
   },

@@ -549,6 +549,13 @@
           "PUT"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan/:id_member/total",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
       }
     ]
   },

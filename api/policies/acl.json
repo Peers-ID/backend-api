@@ -556,6 +556,11 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "parameter",
+        "methods": "*",
+        "action": "allow"
       }
     ]
   },

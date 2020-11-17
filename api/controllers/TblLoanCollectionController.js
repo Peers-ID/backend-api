@@ -931,6 +931,38 @@ const TblLoanCollectionController = () => {
                         transaction: t
                     });
                 } else {
+
+                    //update pinjaman ke status 9: Pinjaman Tidak Aktif, karena sudah lunas
+
+                    // var data = {
+                    //     id_status: 9
+                    // };
+                    //
+                    // data.desc_status = "inactive";
+                    //
+                    // await TblLoan.update(data, {
+                    //     where: {
+                    //         id_koperasi: id_koperasi,
+                    //         id_ao: id_ao,
+                    //         id_member: id_member
+                    //     }
+                    // }).then((updated) => {
+                    //     if (updated) {
+                    //         return res.status(200).json({
+                    //             status: 200,
+                    //             data: {},
+                    //             message: "Data updated successfully"
+                    //         });
+                    //     } else {
+                    //         return res.status(200).json({
+                    //             status: 400,
+                    //             data: {},
+                    //             message: "Failed update data"
+                    //         });
+                    //     }
+                    // });
+
+
                     return res.status(200).json({
                         status: 400,
                         data: {},
@@ -1064,6 +1096,7 @@ const TblLoanCollectionController = () => {
                 id_status: body.id_status
             };
 
+            //TODO
             data.desc_status = "Identified Later";
 
             await TblLoan.update(data, {

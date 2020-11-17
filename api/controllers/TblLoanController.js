@@ -339,7 +339,8 @@ const TblLoanController = () => {
                     code_pengajuan: code_pengajuan,
                     desc_pengajuan: desc_pengajuan,
                     code_pencairan: code_pencairan,
-                    desc_pencairan
+                    desc_pencairan: desc_pencairan,
+                    loan,
                 },
                 message: "Succeed create loans "
             });

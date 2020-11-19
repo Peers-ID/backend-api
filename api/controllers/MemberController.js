@@ -51,7 +51,7 @@ const MemberController = () => {
                 memiliki_npwp: body.memiliki_npwp,
                 nomer_npwp: body.nomer_npwp,
                 pekerja_usaha: body.pekerja_usaha,
-                jenis_umkm:body.jenis_umkm,
+                jenis_umkm: body.jenis_umkm,
                 nama_perusahaan: body.nama_perusahaan,
                 lama_bekerja: body.lama_bekerja,
                 penghasilan_omset: body.penghasilan_omset,
@@ -180,7 +180,7 @@ const MemberController = () => {
     };
 
     const list = async (req, res) => {
-        let condition = { where:{} };
+        let condition = {where: {}};
         const {decoded} = req;
 
         try {
@@ -284,7 +284,7 @@ const MemberController = () => {
                     memiliki_npwp: body.memiliki_npwp,
                     nomer_npwp: body.nomer_npwp,
                     pekerja_usaha: body.pekerja_usaha,
-                    jenis_umkm:body.jenis_umkm,
+                    jenis_umkm: body.jenis_umkm,
                     nama_perusahaan: body.nama_perusahaan,
                     lama_bekerja: body.lama_bekerja,
                     penghasilan_omset: body.penghasilan_omset,
@@ -366,20 +366,19 @@ const MemberController = () => {
             if (!req.files || Object.keys(req.files).length === 0) {
                 return res.status(400).send('No files were uploaded.');
             }
-            var now = Date.now();
 
             let memberPicture = req.files.image;
 
             console.log(memberPicture.name);
 
-            memberPicture.mv('/home/dev_peers_id/backend-api/files/ID-' + member_id + '-' + now + '.jpg', async function (err) {
+            memberPicture.mv('/home/dev_peers_id/backend-api/files/ID-' + memberPicture.name + '.jpg', async function (err) {
                 if (err)
                     return res.status(500).send(err);
 
                 return res.status(201).json({
                     status: 201,
                     data: [],
-                    message: "Files Uploaded"
+                    message: "Files " + memberPicture.name + " Uploaded"
                 });
             });
 
@@ -543,7 +542,6 @@ const MemberController = () => {
                     });
                 }
             });
-
 
 
         } catch (err) {

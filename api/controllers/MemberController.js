@@ -377,8 +377,10 @@ const MemberController = () => {
 
                 return res.status(201).json({
                     status: 201,
-                    data: [],
-                    message: "Files " + memberPicture.name + " Uploaded"
+                    data: {
+                        file_name:memberPicture.name
+                    },
+                    message: "Files Uploaded"
                 });
             });
 

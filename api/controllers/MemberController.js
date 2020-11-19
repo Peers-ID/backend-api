@@ -359,6 +359,41 @@ const MemberController = () => {
         }
     };
 
+    const upload_files = async (req, res) => {
+        const {member_id} = req.params;
+
+        try {
+            if (!req.files || Object.keys(req.files).length === 0) {
+                return res.status(400).send('No files were uploaded.');
+            }
+            var now = Date.now();
+
+            let memberPicture = req.files.image;
+
+            console.log(memberPicture.name);
+
+            memberPicture.mv('/home/dev_peers_id/backend-api/files/ID-' + member_id + '-' + now + '.jpg', async function (err) {
+                if (err)
+                    return res.status(500).send(err);
+
+                return res.status(201).json({
+                    status: 201,
+                    data: [],
+                    message: "Files Uploaded"
+                });
+            });
+
+
+        } catch (err) {
+            return res.status(200).json({
+                status: 500,
+                data: "",
+                message: "Error: " + err
+            });
+        }
+
+    };
+
     const change_picture = async (req, res) => {
         const {member_id} = req.params;
 
@@ -524,6 +559,7 @@ const MemberController = () => {
         view_by_phone,
         view_by_nik,
         edit,
+        upload_files,
         change_picture,
         get_picture,
         miscall

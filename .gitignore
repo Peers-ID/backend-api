@@ -1,4 +1,5 @@
 .idea/
 node_modules/
 pictures/
+files/
 .env

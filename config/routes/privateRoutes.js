@@ -28,7 +28,7 @@ const privateRoutes = {
     'GET /member/:member_id': 'MemberController.view',
     'PUT /member/:member_id': 'MemberController.edit',
     'GET /member/phone/:mobile_phone': 'MemberController.view_by_phone',
-    'POST /member/picture/:member_id': 'MemberController.change_picture',
+    'POST /member/picture/:member_id': 'MemberController.upload_files',
     'GET /member/picture/:member_id': 'MemberController.get_picture',
     'POST /member/miscall': 'MemberController.miscall',
 

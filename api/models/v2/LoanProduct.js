@@ -65,7 +65,7 @@ const LoanProduct = sequelize.define('LoanProduct', {
         allowNull: false
     },
     pelunasan_dipercepat: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     type_pelunasan_dipercepat: {

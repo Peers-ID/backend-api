@@ -38,6 +38,10 @@ app.use(helmet({
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(fileUpload());
+app.use(express.static('/home/dev_peers_id/backend-api/files'));
+app.use(express.static('/home/dev_peers_id/backend-api/pictures'));
+
+
 // Jwt auth middleware
 
 //app.all('/private/*', (req, res, next) => auth(req, res, next), (req, res, next) => role(req, res, next) );

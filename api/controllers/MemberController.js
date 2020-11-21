@@ -371,7 +371,7 @@ const MemberController = () => {
 
             console.log(memberPicture.name);
 
-            memberPicture.mv('/home/dev_peers_id/backend-api/files/ID-' + memberPicture.name + '.jpg', async function (err) {
+            memberPicture.mv('/home/dev_peers_id/backend-api/files/ID-' + memberPicture.name, async function (err) {
                 if (err)
                     return res.status(500).send(err);
 
@@ -406,7 +406,7 @@ const MemberController = () => {
 
             let memberPicture = req.files.image;
 
-            memberPicture.mv('/home/dev_peers_id/backend-api/pictures/ID-' + member_id + '-' + now + '.jpg', async function (err) {
+            memberPicture.mv('/home/dev_peers_id/backend-api/pictures/ID-' + member_id + '-' + now, async function (err) {
                 if (err)
                     return res.status(500).send(err);
 

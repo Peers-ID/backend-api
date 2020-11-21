@@ -395,7 +395,7 @@ const MemberController = () => {
 
     };
 
-    const change_picture = async (req, res) => {
+    const disburse_picture = async (req, res) => {
         const {member_id} = req.params;
 
         try {
@@ -425,7 +425,6 @@ const MemberController = () => {
                     message: "Profile picture updated!"
                 });
             });
-
 
         } catch (err) {
             return res.status(200).json({
@@ -560,7 +559,7 @@ const MemberController = () => {
         view_by_nik,
         edit,
         upload_files,
-        change_picture,
+        disburse_picture,
         get_picture,
         miscall
     };

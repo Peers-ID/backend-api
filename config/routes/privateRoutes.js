@@ -76,6 +76,7 @@ const privateRoutes = {
     'GET /loan/pending': 'TblLoanController.view_pending_loan',
     'GET /loan/status/:id_koperasi/:id_ao': 'TblLoanController.view_member_status',
     'GET /loan/collection/:id_loan': 'TblLoanController.view_collection_per_loan',
+    'POST /loan/member/picture/:member_id': 'MemberController.disburse_picture',
 
 
     //PARAMETER

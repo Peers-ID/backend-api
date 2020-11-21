@@ -537,6 +537,13 @@
         "action": "allow"
       },
       {
+        "resource": "loan/member/picture/:member_id",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
         "resource": "loan/detail/:id",
         "methods": [
           "GET"

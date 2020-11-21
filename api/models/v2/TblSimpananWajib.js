@@ -3,7 +3,7 @@ const sequelize = require('../../../config/database');
 const hooks = {};
 const tableName = 'tbl_simpanan_wajib';
 
-const TblSimpanan = sequelize.define('TblSimpananWajib', {
+const TblSimpananWajib = sequelize.define('TblSimpananWajib', {
     id_koperasi: {
         type: Sequelize.INTEGER,
         allowNull: false
@@ -44,8 +44,8 @@ const TblSimpanan = sequelize.define('TblSimpananWajib', {
 });
 
 // eslint-disable-next-line
-TblSimpanan.prototype.toJSON = function () {
+TblSimpananWajib.prototype.toJSON = function () {
     return Object.assign({}, this.get());
 };
 
-module.exports = TblSimpanan;
+module.exports = TblSimpananWajib;

@@ -43,23 +43,6 @@ const TblLoanCollectionController = () => {
                             message: "Success retrieve Total Simpanan Wajib"
                         });
                     });
-
-
-                    // TblSimpananWajib.sum('simpanan_wajib', {
-                    //     attributes: ['id_member'],
-                    //     group : ['id_member'],
-                    //     where: {
-                    //         id_koperasi : decoded.koperasi_id,
-                    //         id_member : id_member,
-                    //         id_loan : id_loan.id
-                    //     }
-                    // }).then((total) => {
-                    //     return res.status(201).json({
-                    //         status: 200,
-                    //         data: {total},
-                    //         message: "Success retrieve Total Simpanan Wajib"
-                    //     });
-                    // });
                 }
             });
 
@@ -198,7 +181,7 @@ const TblLoanCollectionController = () => {
                     });
                 } else {
                     TblSimpananPokok.findOne({
-                        attributes: ['simpanan_pokok'],
+                        attributes: ['total_simpanan'],
                         where: {
                             id_koperasi : decoded.koperasi_id,
                             id_member : id_member,
@@ -214,23 +197,6 @@ const TblLoanCollectionController = () => {
                             message: "Success retrieve Total Simpanan Pokok"
                         });
                     });
-
-
-                    // TblSimpananPokok.sum('simpanan_pokok', {
-                    //     attributes: ['id_member'],
-                    //     group : ['id_member'],
-                    //     where: {
-                    //         id_koperasi : decoded.koperasi_id,
-                    //         id_member : id_member,
-                    //         id_loan : id_loan.id
-                    //     }
-                    // }).then((total) => {
-                    //     return res.status(201).json({
-                    //         status: 200,
-                    //         data: {total},
-                    //         message: "Success retrieve Total Simpanan Pokok"
-                    //     });
-                    // });
                 }
             });
 
@@ -306,7 +272,7 @@ const TblLoanCollectionController = () => {
 
                 //1. check last total and last updatedDate
                 const lastTotal = await TblSimpananPokok.findOne({
-                    attributes: ['simpanan_pokok'],
+                    attributes: ['total_simpanan'],
                     where: {
                         id_koperasi : decoded.koperasi_id,
                         id_member : body.id_member,
@@ -324,7 +290,7 @@ const TblLoanCollectionController = () => {
                     id_member: body.id_member,
                     id_collection: 0,
                     simpanan_pokok: body.jumlah_penarikan,
-                    total_simpanan: lastTotal.simpanan_pokok - body.jumlah_penarikan,
+                    total_simpanan: lastTotal.total_simpanan - body.jumlah_penarikan,
                     desc: "Penarikan"
                 };
 
@@ -386,23 +352,6 @@ const TblLoanCollectionController = () => {
                             message: "Success retrieve Total Simpanan Sukarela"
                         });
                     });
-
-
-                    // TblSimpananSukarela.sum('simpanan_sukarela', {
-                    //     attributes: ['id_member'],
-                    //     group : ['id_member'],
-                    //     where: {
-                    //         id_koperasi : decoded.koperasi_id,
-                    //         id_member : id_member,
-                    //         id_loan : id_loan.id
-                    //     }
-                    // }).then((total) => {
-                    //     return res.status(201).json({
-                    //         status: 200,
-                    //         data: {total},
-                    //         message: "Success retrieve Total Simpanan Sukarela"
-                    //     });
-                    // });
                 }
             });
 

@@ -383,19 +383,12 @@ const TblLoanCollectionController = () => {
                     let start_date_iso = new Date(previous_system_collection.loan_due_date).getTime();
                     let next_due_date_iso = new Date(start_date_iso + pengali * 24 * 60 * 60 * 1000).toISOString();
 
+                    //TODO uncomment feature ini nanti !!
+                    //hitung berapa hari telat dari tgl collection ke due date
+                    /*var jlh_telat = dateDiffInDays(android_collection.loan_due_date, android_collection.loan_payment_date);*/
+                    let jlh_telat = 31;
 
-                    if (android_collection.status_pembayaran === "sebagian") {
-                        next_collection.pokok = previous_system_collection.pokok - android_collection.pokok;
-                        next_collection.bunga = previous_system_collection.bunga - android_collection.bunga;
-                        next_collection.angsuran = android_collection.angsuran;
-                        next_collection.pembayaran_ke = android_collection.pembayaran_ke + 1;
-                        next_collection.loan_due_date = android_collection.loan_due_date;
-
-                        //TODO uncomment feature ini nanti !!
-                        //hitung berapa hari telat dari tgl collection ke due date
-                        /*var jlh_telat = dateDiffInDays(android_collection.loan_due_date, android_collection.loan_payment_date);*/
-                        let jlh_telat = 31;
-
+                    if (android_collection.status_pembayaran === "sebagian") { //TODO DELETE THIS LATER !!!!
                         //Sudah melewati Grace Period
                         if (jlh_telat >= param_id_masa_tenggang) {
                             // 1: Angsuran (Pokok Pinjaman + Bunga);
@@ -413,8 +406,14 @@ const TblLoanCollectionController = () => {
                                 }
                             }
                         }
+                    } //TODO DELETE THIS LATER !!!!
 
-                        next_collection.denda = new_denda; //calculate fines here
+                    if (android_collection.status_pembayaran === "sebagian") {
+                        next_collection.pokok = previous_system_collection.pokok - android_collection.pokok;
+                        next_collection.bunga = previous_system_collection.bunga - android_collection.bunga;
+                        next_collection.angsuran = android_collection.angsuran;
+                        next_collection.pembayaran_ke = android_collection.pembayaran_ke + 1;
+                        next_collection.loan_due_date = android_collection.loan_due_date;
 
                     } else {
                         next_collection.pokok = loan_utang_pokok;
@@ -422,7 +421,13 @@ const TblLoanCollectionController = () => {
                         next_collection.angsuran = android_collection.angsuran + 1;
                         next_collection.pembayaran_ke = 1;
                         next_collection.loan_due_date = next_due_date_iso;
-                        next_collection.denda = previous_system_collection.denda - android_collection.denda; //calculate fines here
+                    }
+
+                    //bayar denda tidak bisa sebagian, harus bayar full.
+                    if (android_collection.denda >= previous_system_collection.denda && previous_system_collection.denda > 0) {
+                        next_collection.denda = 0;
+                    } else {
+                        next_collection.denda = previous_system_collection.denda + new_denda; //calculate fines here
                     }
 
                     next_collection.simpanan_wajib = prd_simpanan_wajib;

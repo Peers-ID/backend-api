@@ -69,6 +69,11 @@ const UserController = () => {
 
             await t.commit();
 
+            if (user) {
+                const password = body.fullname.substr(0, 1) + body.birthdate + body.phone_mobile.substr(-4);
+                emailService().welcomeMessage(body.fullname, body.email, password);
+            }
+
             return res.status(200).json({
                 status: 200,
                 data: {},
@@ -240,7 +245,7 @@ const UserController = () => {
                 birthdate: body.birthdate,
                 email: body.email,
                 password: body.fullname.substr(0, 1) + body.birthdate + body.phone_mobile.substr(-4),
-                role: "Admin AO",
+                role: "AO/CMO/Sales",
                 status: "active",
                 ak_id: decoded.id
             });
@@ -293,7 +298,7 @@ const UserController = () => {
         try {
             const users = await User.findAll({
                 where: {
-                    role: "Admin AO",
+                    role: "AO/CMO/Sales",
                     id: id
                 },
             });
@@ -314,7 +319,7 @@ const UserController = () => {
         const ak_id = req.params.akId;
         try {
             let condition = {
-                where: {role: "Admin AO", ak_id: ak_id}
+                where: {role: "AO/CMO/Sales", ak_id: ak_id}
             };
 
             if (req.query.page !== undefined && req.query.row !== undefined) {

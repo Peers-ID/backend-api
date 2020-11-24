@@ -69,7 +69,7 @@ const emailService = () => {
 
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
-                    console.log(error);
+                    console.log('Email error:' + error);
                 } else {
                     console.log('Email sent: ' + info.response);
                 }
@@ -158,7 +158,7 @@ const emailService = () => {
 
                     transporter.sendMail(mailOptions, function(error, info){
                         if (error) {
-                            console.log(error);
+                            console.log('Email error:' + error);
                         } else {
                             console.log('Email sent: ' + info.response);
                         }

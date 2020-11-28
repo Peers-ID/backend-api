@@ -133,7 +133,7 @@ const TblLoanController = () => {
                         attributes: ['approve_max_5jt'],
                         where: {id_user: decoded.id}
                     }).then((approveStatus) => {
-                        if (approveStatus.approve_max_5jt !== 1) {
+                        if (approveStatus.approve_max_5jt !== 1 && approveStatus.approve_max_3jt !== 1) {
                             code_pengajuan = 1002;
                             desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
                             id_status = 7; //Menunggu Persetujuan Admin
@@ -148,7 +148,7 @@ const TblLoanController = () => {
                         attributes: ['approve_max_10jt'],
                         where: {id_user: decoded.id}
                     }).then((approveStatus) => {
-                        if (approveStatus.approve_max_10jt !== 1) {
+                        if (approveStatus.approve_max_10jt !== 1 && approveStatus.approve_max_5jt !== 1 && approveStatus.approve_max_3jt !== 1) {
                             code_pengajuan = 1002;
                             desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
                             id_status = 7; //Menunggu Persetujuan Admin
@@ -361,6 +361,7 @@ const TblLoanController = () => {
     const update_loan_status = async (req, res) => {
         const {body, decoded} = req;
         let condition = { where:{} };
+        const t = await sequelize.transaction();
 
         try {
             var id_koperasi = decoded.koperasi_id;
@@ -429,22 +430,31 @@ const TblLoanController = () => {
             }
 
 
-            const updated = await TblLoan.update(data, condition);
+            await TblLoan.update(data, condition, {
+                transaction: t
+            });
 
-            if (updated) {
-                return res.status(200).json({
-                    status: 200,
-                    data: {data},
-                    message: "Data updated successfully"
-                });
-            } else {
-                return res.status(200).json({
-                    status: 400,
-                    data: {},
-                    message: "Failed update data"
-                });
-            }
+
+            var collection = {};
+            collection.id_status = id_status;
+
+            await TblLoanCollection.update(collection, {
+                where: {
+                    id_loan: id_loan
+                },
+                transaction: t
+            });
+
+            await t.commit();
+
+            return res.status(200).json({
+                status: 200,
+                data: {data},
+                message: "Data updated successfully"
+            });
+
         } catch (err) {
+            await t.rollback();
             return res.status(200).json({
                 status: 500,
                 data: {},

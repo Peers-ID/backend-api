@@ -264,6 +264,9 @@ const TblLoanCollectionController = () => {
                 collection.simpanan_wajib = body.simpanan_wajib;
                 collection.simpanan_sukarela = body.simpanan_sukarela;
 
+                collection.id_status = previous_system_collection.id_status;
+                collection.id_ao = previous_system_collection.id_ao;
+
                 if (body.setoran >= previous_system_collection.pokok + previous_system_collection.bunga) {
                     collection.status_pembayaran = "lunas";
                 } else {
@@ -385,10 +388,12 @@ const TblLoanCollectionController = () => {
 
                     //TODO uncomment feature ini nanti !!
                     //hitung berapa hari telat dari tgl collection ke due date
-                    /*var jlh_telat = dateDiffInDays(android_collection.loan_due_date, android_collection.loan_payment_date);*/
-                    let jlh_telat = 31;
+                    var jlh_telat = dateDiffInDays(android_collection.loan_due_date, android_collection.loan_payment_date);
+                    // let jlh_telat = 31;
 
-                    if (android_collection.status_pembayaran === "sebagian") { //TODO DELETE THIS LATER !!!!
+                    console.log("### + " + jlh_telat);
+
+                    // if (android_collection.status_pembayaran === "sebagian") { //TODO DELETE THIS LATER !!!!
                         //Sudah melewati Grace Period
                         if (jlh_telat >= param_id_masa_tenggang) {
                             // 1: Angsuran (Pokok Pinjaman + Bunga);
@@ -406,7 +411,7 @@ const TblLoanCollectionController = () => {
                                 }
                             }
                         }
-                    } //TODO DELETE THIS LATER !!!!
+                    // } //TODO DELETE THIS LATER !!!!
 
                     if (android_collection.status_pembayaran === "sebagian") {
                         next_collection.pokok = previous_system_collection.pokok - android_collection.pokok;
@@ -432,6 +437,9 @@ const TblLoanCollectionController = () => {
 
                     next_collection.simpanan_wajib = prd_simpanan_wajib;
                     next_collection.total_tagihan = next_collection.pokok + next_collection.bunga + next_collection.denda + next_collection.simpanan_wajib;
+
+                    next_collection.id_status = previous_system_collection.id_status;
+                    next_collection.id_ao = previous_system_collection.id_ao;
 
                     await TblLoanCollection.create(next_collection, {
                         transaction: t
@@ -563,29 +571,38 @@ const TblLoanCollectionController = () => {
     };
 
     const list = async (req, res) => {
-        let condition = {where: {}};
         const {decoded} = req;
 
         try {
-            condition.where.id_koperasi = decoded.koperasi_id;
-            condition.where.created_by = "system";
 
-            await TblLoanCollection.findAll(condition)
-                .then(async (collection) => {
-                    if (collection) {
-                        return res.status(200).json({
-                            status: 200,
-                            data: collection,
-                            message: ""
-                        });
-                    } else {
-                        return res.status(200).json({
-                            status: 404,
-                            data: {},
-                            message: "Data tidak ditemukan"
-                        });
+            var id_koperasi = decoded.koperasi_id;
+            var id_ao = decoded.id;
+
+            await TblLoanCollection.findAll({
+                where: {
+                    id_koperasi: id_koperasi,
+                    id_ao: id_ao,
+                    created_by : "system",
+                    id_status: {
+                        [Op.or]: [1, 5]
                     }
-                });
+                },
+            }).then((collection) => {
+                if (collection) {
+                    return res.status(200).json({
+                        status: 200,
+                        data: collection,
+                        message: ""
+                    });
+                } else {
+                    return res.status(200).json({
+                        status: 404,
+                        data: {},
+                        message: "Data tidak ditemukan"
+                    });
+                }
+            });
+
         } catch (err) {
             return res.status(200).json({
                 status: 500,

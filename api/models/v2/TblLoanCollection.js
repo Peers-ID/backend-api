@@ -29,6 +29,14 @@ const TblLoanCollection = sequelize.define('TblLoanCollection', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    id_status: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    id_ao: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     loan_due_date: {
         type: Sequelize.DATE,
         allowNull: false

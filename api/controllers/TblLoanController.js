@@ -315,6 +315,8 @@ const TblLoanController = () => {
                     id_member: body.id_member,
                     nama_lengkap: data.nama_member,
                     id_loan: loan.id,
+                    id_status : loan.id_status,
+                    id_ao : loan.id_ao,
                     loan_due_date: due_date_iso,
                     angsuran: 1,
                     pembayaran_ke: 1,

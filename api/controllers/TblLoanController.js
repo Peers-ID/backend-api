@@ -113,49 +113,78 @@ const TblLoanController = () => {
 
             /* ------------------------- CEK SYARAT PERSETUJUAN PINJAMAN --------------------------*/
             if (jumlah_pengajuan <= 10000000) {
+
                 if (jumlah_pengajuan <= 1000000) { //approve_max_1jt
+
                     await AccountRoleManagement.findOne({
-                        attributes: ['approve_max_1jt'],
+                        attributes: ['approve_max_1jt', 'approve_max_3jt', 'approve_max_5jt', 'approve_max_10jt', 'approve_more_10jt'],
                         where: {id_user: decoded.id}
                     }).then((approveStatus) => {
-                        if (approveStatus.approve_max_1jt !== 1) {
-                            code_pengajuan = 1002;
-                            desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
-                            id_status = 7; //Menunggu Persetujuan Admin
-                        } else {
+                        if (approveStatus.approve_max_1jt === 1
+                            || approveStatus.approve_max_3jt === 1
+                            || approveStatus.approve_max_5jt === 1
+                            || approveStatus.approve_max_10jt === 1
+                            || approveStatus.approve_more_10jt === 1) {
+
                             code_pengajuan = 1001;
                             desc_pengajuan = "Apakah Anda akan menyetujui pinjaman sebesar Rp." + jumlah_pengajuan;
                             id_status = 0; //Default, Anggota Hanya Terdaftar
+                        } else {
+                            code_pengajuan = 1002;
+                            desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
+                            id_status = 7; //Menunggu Persetujuan Admin
+                        }
+                    });
+                } else if (jumlah_pengajuan <= 3000000)  {
+                    await AccountRoleManagement.findOne({
+                        attributes: ['approve_max_3jt', 'approve_max_5jt', 'approve_max_10jt', 'approve_more_10jt'],
+                        where: {id_user: decoded.id}
+                    }).then((approveStatus) => {
+                        if (approveStatus.approve_max_3jt === 1
+                            || approveStatus.approve_max_5jt === 1
+                            || approveStatus.approve_max_10jt === 1
+                            || approveStatus.approve_more_10jt === 1) {
+
+                            code_pengajuan = 1001;
+                            desc_pengajuan = "Apakah Anda akan menyetujui pinjaman sebesar Rp." + jumlah_pengajuan;
+                            id_status = 0; //Default, Anggota Hanya Terdaftar
+                        } else {
+                            code_pengajuan = 1002;
+                            desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
+                            id_status = 7; //Menunggu Persetujuan Admin
                         }
                     });
                 } else if (jumlah_pengajuan <= 5000000) { //approve_max_5jt
                     await AccountRoleManagement.findOne({
-                        attributes: ['approve_max_5jt', 'approve_max_3jt'],
+                        attributes: ['approve_max_5jt', 'approve_max_10jt', 'approve_more_10jt'],
                         where: {id_user: decoded.id}
                     }).then((approveStatus) => {
-                        if (approveStatus.approve_max_5jt !== 1 && approveStatus.approve_max_3jt !== 1) {
-                            code_pengajuan = 1002;
-                            desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
-                            id_status = 7; //Menunggu Persetujuan Admin
-                        } else {
+                        if (approveStatus.approve_max_5jt === 1
+                            || approveStatus.approve_max_10jt === 1
+                            || approveStatus.approve_more_10jt === 1) {
+
                             code_pengajuan = 1001;
                             desc_pengajuan = "Apakah Anda akan menyetujui pinjaman sebesar Rp." + jumlah_pengajuan;
                             id_status = 0; //Default, Anggota Hanya Terdaftar
+                        } else {
+                            code_pengajuan = 1002;
+                            desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
+                            id_status = 7; //Menunggu Persetujuan Admin
                         }
                     });
                 } else {  //approve_max_10jt
                     await AccountRoleManagement.findOne({
-                        attributes: ['approve_max_10jt', 'approve_max_5jt', 'approve_max_3jt'],
+                        attributes: ['approve_max_10jt'],
                         where: {id_user: decoded.id}
                     }).then((approveStatus) => {
-                        if (approveStatus.approve_max_10jt !== 1 && approveStatus.approve_max_5jt !== 1 && approveStatus.approve_max_3jt !== 1) {
-                            code_pengajuan = 1002;
-                            desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
-                            id_status = 7; //Menunggu Persetujuan Admin
-                        } else {
+                        if (approveStatus.approve_max_10jt === 1) {
                             code_pengajuan = 1001;
                             desc_pengajuan = "Apakah Anda akan menyetujui pinjaman sebesar Rp." + jumlah_pengajuan;
                             id_status = 0; //Default, Anggota Hanya Terdaftar
+                        } else {
+                            code_pengajuan = 1002;
+                            desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
+                            id_status = 7; //Menunggu Persetujuan Admin
                         }
                     });
                 }
@@ -183,25 +212,27 @@ const TblLoanController = () => {
                 if (jumlah_pencairan <= 10000000) {
                     if (jumlah_pencairan <= 5000000) { //disburse_max_5jt
                         await AccountRoleManagement.findOne({
-                            attributes: ['disburse_max_5jt'],
+                            attributes: ['disburse_max_5jt', 'disburse_max_10jt'],
                             where: {id_user: decoded.id}
                         }).then((approveStatus) => {
-                            if (approveStatus.disburse_max_5jt !== 1) {
-                                code_pencairan = 1002;
-                                desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
-                                id_status = 2; //Menunggu Pencairan Admin
-                            } else {
+                            if (approveStatus.disburse_max_5jt === 1
+                                || approveStatus.disburse_max_10jt === 1) {
+
                                 code_pencairan = 1001;
                                 desc_pencairan = "Apakah Anda akan menyetujui Pencairan pinjaman sebesar Rp." + jumlah_pengajuan;
                                 id_status = 1; //Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
+                            } else {
+                                code_pencairan = 1002;
+                                desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
+                                id_status = 2; //Menunggu Pencairan Admin
                             }
                         });
                     } else {  //disburse_max_10jt
                         await AccountRoleManagement.findOne({
-                            attributes: ['disburse_max_10jt', 'disburse_max_5jt'],
+                            attributes: ['disburse_max_10jt'],
                             where: {id_user: decoded.id}
                         }).then((approveStatus) => {
-                            if (approveStatus.disburse_max_10jt !== 1 && approveStatus.disburse_max_5jt !== 1) {
+                            if (approveStatus.disburse_max_10jt !== 1) {
                                 code_pencairan = 1002;
                                 desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
                                 id_status = 2; //Menunggu Pencairan Admin

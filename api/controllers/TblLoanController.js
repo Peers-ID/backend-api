@@ -130,7 +130,7 @@ const TblLoanController = () => {
                     });
                 } else if (jumlah_pengajuan <= 5000000) { //approve_max_5jt
                     await AccountRoleManagement.findOne({
-                        attributes: ['approve_max_5jt'],
+                        attributes: ['approve_max_5jt', 'approve_max_3jt'],
                         where: {id_user: decoded.id}
                     }).then((approveStatus) => {
                         if (approveStatus.approve_max_5jt !== 1 && approveStatus.approve_max_3jt !== 1) {
@@ -145,7 +145,7 @@ const TblLoanController = () => {
                     });
                 } else {  //approve_max_10jt
                     await AccountRoleManagement.findOne({
-                        attributes: ['approve_max_10jt'],
+                        attributes: ['approve_max_10jt', 'approve_max_5jt', 'approve_max_3jt'],
                         where: {id_user: decoded.id}
                     }).then((approveStatus) => {
                         if (approveStatus.approve_max_10jt !== 1 && approveStatus.approve_max_5jt !== 1 && approveStatus.approve_max_3jt !== 1) {
@@ -198,10 +198,10 @@ const TblLoanController = () => {
                         });
                     } else {  //disburse_max_10jt
                         await AccountRoleManagement.findOne({
-                            attributes: ['disburse_max_10jt'],
+                            attributes: ['disburse_max_10jt', 'disburse_max_5jt'],
                             where: {id_user: decoded.id}
                         }).then((approveStatus) => {
-                            if (approveStatus.disburse_max_10jt !== 1) {
+                            if (approveStatus.disburse_max_10jt !== 1 && approveStatus.disburse_max_5jt !== 1) {
                                 code_pencairan = 1002;
                                 desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
                                 id_status = 2; //Menunggu Pencairan Admin

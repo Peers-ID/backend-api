@@ -43,6 +43,7 @@ const TblLoanController = () => {
             var simpanan_wajib = 0;
             var simpanan_pokok = 0;
             var id_status = 0;
+            var desc_status;
 
             /* ------------------------- CHECK ACTIVE LOAN --------------------------*/
             await TblLoan.findAndCountAll({
@@ -129,6 +130,7 @@ const TblLoanController = () => {
                             code_pengajuan = 1001;
                             desc_pengajuan = "Apakah Anda akan menyetujui pinjaman sebesar Rp." + jumlah_pengajuan;
                             id_status = 0; //Default, Anggota Hanya Terdaftar
+
                         } else {
                             code_pengajuan = 1002;
                             desc_pengajuan = "Jumlah Persetujuan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
@@ -221,10 +223,12 @@ const TblLoanController = () => {
                                 code_pencairan = 1001;
                                 desc_pencairan = "Apakah Anda akan menyetujui Pencairan pinjaman sebesar Rp." + jumlah_pengajuan;
                                 id_status = 1; //Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
+                                desc_status = "active";
                             } else {
                                 code_pencairan = 1002;
                                 desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
                                 id_status = 2; //Menunggu Pencairan Admin
+                                desc_status = "inactive";
                             }
                         });
                     } else {  //disburse_max_10jt
@@ -236,10 +240,12 @@ const TblLoanController = () => {
                                 code_pencairan = 1002;
                                 desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
                                 id_status = 2; //Menunggu Pencairan Admin
+                                desc_status = "inactive";
                             } else {
                                 code_pencairan = 1001;
                                 desc_pencairan = "Apakah Anda akan menyetujui Pencairan pinjaman sebesar Rp." + jumlah_pengajuan;
                                 id_status = 1; //Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
+                                desc_status = "active";
                             }
                         });
                     }
@@ -253,16 +259,19 @@ const TblLoanController = () => {
                             code_pencairan = 1002;
                             desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi"
                             id_status = 2; //Menunggu Pencairan Admin
+                            desc_status = "inactive";
                         } else {
                             code_pencairan = 1001;
                             desc_pencairan = "Apakah Anda akan menyetujui Pencairan pinjaman sebesar Rp." + jumlah_pengajuan;
                             id_status = 1; //Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
+                            desc_status = "active";
                         }
                     });
                 }
             } else {
                 code_pencairan = 1002;
                 desc_pencairan = "Proses Pencairan Tidak Dapat Dilanjutkan";
+                desc_status = "inactive";
             }
 
 
@@ -277,7 +286,8 @@ const TblLoanController = () => {
             });
 
             data.id_status = id_status;
-            data.desc_status = "active";
+            data.desc_status = desc_status;
+
             if (id_status === 1) {
                 data.approved_by = "AO/CMO/Sales";
                 data.disbursed_by = "AO/CMO/Sales";
@@ -422,15 +432,15 @@ const TblLoanController = () => {
                     data.disbursed_by = "AO/CMO/Sales";
                     break;
                 case 2: //-> Menunggu Pencairan Admin = (Disetujui Oleh AO/CMO/Sales)
-                    data.desc_status = "active";
+                    data.desc_status = "inactive";
                     data.approved_by = "AO/CMO/Sales";
                     break;
                 case 3: //-> Disetujui Admin
-                    data.desc_status = "active";
+                    data.desc_status = "inactive";
                     data.approved_by = "Admin Koperasi";
                     break;
                 case 4: // -> Pencairan Admin di Kantor (Muncul di status Anggota pada Android, sebagai informasi supaya borrower datang ke Kantor)
-                    data.desc_status = "active";
+                    data.desc_status = "inactive";
                     data.approved_by = "Admin Koperasi";
                     break;
                 case 5: // -> Dicairkan Oleh Admin  (Pinjaman Aktif)
@@ -438,11 +448,11 @@ const TblLoanController = () => {
                     data.disbursed_by = "Admin Koperasi";
                     break;
                 case 6: // -> Menunggu Pencairan AO/CMO/Sales (Muncul di menu pencairan Android)
-                    data.desc_status = "active";
+                    data.desc_status = "inactive";
                     data.approved_by = "Admin Koperasi";
                     break;
                 case 7: // -> Menunggu Persetujuan Admin
-                    data.desc_status = "active";
+                    data.desc_status = "inactive";
                     break;
                 case 8: // -> Ditolak Admin
                     data.desc_status = "inactive";

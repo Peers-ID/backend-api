@@ -505,7 +505,7 @@ const TblLoanController = () => {
     };
 
 
-    const list_loan_to_collect_per_ao = async (req, res) => {
+    const list_loan_to_disburse_per_ao = async (req, res) => {
         const {decoded} = req;
 
         try {
@@ -517,7 +517,7 @@ const TblLoanController = () => {
                     id_koperasi: id_koperasi,
                     id_ao: id_ao,
                     id_status: {
-                        [Op.or]: [1, 5]
+                        [Op.or]: [6] //Menunggu Pencairan AO/CMO/Sales
                     }
                 },
             }).then((loan) => {
@@ -759,7 +759,7 @@ const TblLoanController = () => {
     return {
         add,
         update_loan_status,
-        list_loan_to_collect_per_ao,
+        list_loan_to_disburse_per_ao,
         view_per_member,
         view_pending_loan, //muncul di halaman pending persetujuan dan pending pencairan Dashboard
         view_per_loan_id,

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d62b427f-3f0a-4d47-ac78-797d329559f5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controllers/TblLoanController.js" afterPath="$PROJECT_DIR$/api/controllers/TblLoanController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes/privateRoutes.js" afterPath="$PROJECT_DIR$/config/routes/privateRoutes.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -132,18 +133,8 @@
       <file leaf-file-name="MemberController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/controllers/MemberController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1804">
+            <state relative-caret-position="6375">
               <caret line="425" column="19" lean-forward="false" selection-start-line="425" selection-start-column="19" selection-end-line="425" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -152,8 +143,8 @@
       <file leaf-file-name="TblLoanController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="203" column="109" lean-forward="false" selection-start-line="203" selection-start-column="109" selection-end-line="203" selection-end-column="109" />
+            <state relative-caret-position="384">
+              <caret line="519" column="70" lean-forward="false" selection-start-line="519" selection-start-column="70" selection-end-line="519" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -162,7 +153,7 @@
       <file leaf-file-name="email.service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/services/email.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
+            <state relative-caret-position="1950">
               <caret line="130" column="54" lean-forward="false" selection-start-line="130" selection-start-column="47" selection-end-line="130" selection-end-column="54" />
               <folding />
             </state>
@@ -182,7 +173,7 @@
       <file leaf-file-name="TblLoanCollectionController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
+            <state relative-caret-position="7470">
               <caret line="498" column="16" lean-forward="false" selection-start-line="498" selection-start-column="16" selection-end-line="498" selection-end-column="33" />
               <folding />
             </state>
@@ -212,9 +203,22 @@
       <file leaf-file-name="privateRoutes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="71" column="50" lean-forward="true" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
+            <state relative-caret-position="237">
+              <caret line="72" column="42" lean-forward="true" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="acl.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/policies/acl.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-492">
+              <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+              <folding>
+                <element signature="e#310#4229#0" expanded="false" />
+                <element signature="e#4233#8149#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -453,7 +457,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34127000" />
+    <option name="totallyTimeSpent" value="34130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,7 +683,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/services/email.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
+        <state relative-caret-position="1950">
           <caret line="130" column="54" lean-forward="false" selection-start-line="130" selection-start-column="47" selection-end-line="130" selection-end-column="54" />
           <folding />
         </state>
@@ -801,16 +805,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes/privateRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="71" column="50" lean-forward="true" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
+        <state relative-caret-position="237">
+          <caret line="72" column="42" lean-forward="true" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/policies/acl.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6135">
-          <caret line="409" column="46" lean-forward="false" selection-start-line="409" selection-start-column="46" selection-end-line="409" selection-end-column="46" />
+        <state relative-caret-position="-492">
+          <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+          <folding>
+            <element signature="e#310#4229#0" expanded="false" />
+            <element signature="e#4233#8149#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -839,7 +847,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/MemberController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1804">
+        <state relative-caret-position="6375">
           <caret line="425" column="19" lean-forward="false" selection-start-line="425" selection-start-column="19" selection-end-line="425" selection-end-column="19" />
           <folding />
         </state>
@@ -847,15 +855,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="203" column="109" lean-forward="false" selection-start-line="203" selection-start-column="109" selection-end-line="203" selection-end-column="109" />
+        <state relative-caret-position="384">
+          <caret line="519" column="70" lean-forward="false" selection-start-line="519" selection-start-column="70" selection-end-line="519" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/TblLoanCollectionController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
+        <state relative-caret-position="7470">
           <caret line="498" column="16" lean-forward="false" selection-start-line="498" selection-start-column="16" selection-end-line="498" selection-end-column="33" />
           <folding />
         </state>

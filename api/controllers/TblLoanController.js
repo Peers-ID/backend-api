@@ -674,7 +674,7 @@ const TblLoanController = () => {
                     id_koperasi: id_koperasi,
                     id_ao: id_ao,
                     id_status: {
-                        [Op.or]: [1, 3, 4, 5, 6, 8]
+                        [Op.or]: [1, 2, 3, 4, 5, 6, 7, 8]
                     }
                 },
             }).then((loan) => {

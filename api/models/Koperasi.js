@@ -13,27 +13,27 @@ const Koperasi = sequelize.define('Koperasi', {
     },
     no_badan_hukum: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     tgl_badan_hukum: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     no_perubahan_anggaran_dasar: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     tgl_perubahan_anggaran_dasar: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     tgl_rat_terakhir: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     alamat: {
@@ -58,7 +58,7 @@ const Koperasi = sequelize.define('Koperasi', {
     },
     bentuk_koperasi: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     jenis_koperasi: {
@@ -71,47 +71,48 @@ const Koperasi = sequelize.define('Koperasi', {
     },
     nama_sekretaris: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     nama_bendahara: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     foto_ktp_ketua: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     nama_pengelola_harian: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     jml_anggota_pria: {
         type: Sequelize.INTEGER,
-
+        allowNull: true,
         defaultValue: 0
     },
     jml_anggota_wanita: {
         type: Sequelize.INTEGER,
-
+        allowNull: true,
         defaultValue: 0
     },
     total_anggota: {
         type: Sequelize.INTEGER,
-
+        allowNull: true,
         defaultValue: 0
     },
     total_manajer: {
         type: Sequelize.INTEGER,
-
+        allowNull: true,
         defaultValue: 0
     },
     total_karyawan: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true,
+        defaultValue: 0
     },
     no_induk_koperasi: {
         type: Sequelize.STRING,
@@ -119,17 +120,17 @@ const Koperasi = sequelize.define('Koperasi', {
     },
     status_nik: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     status_grade: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     jabatan: {
         type: Sequelize.STRING,
-
+        allowNull: true,
         defaultValue: null
     },
     hp_pengurus: {

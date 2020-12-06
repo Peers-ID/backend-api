@@ -1,4 +1,3 @@
-/*const Loan = require('../models/Loan');*/
 const User = require('../models/User');
 const Member = require('../models/Member');
 const Collection = require('../models/Collection');

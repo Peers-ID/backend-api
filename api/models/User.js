@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const TblLoan = require('../models/v2/TblLoan');
 const bcryptService = require('../services/bcrypt.service');
 const sequelize = require('../../config/database');
 

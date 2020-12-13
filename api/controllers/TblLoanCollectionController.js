@@ -371,10 +371,10 @@ const TblLoanCollectionController = () => {
 
                     var pengali;
                     switch (prd_loan_satuan_tenor) {
-                        case "Bulan":
+                        case "bulan":
                             pengali = param_hari_per_bulan;
                             break;
-                        case "Minggu":
+                        case "minggu":
                             pengali = 7;
                             break;
                         default:
@@ -455,8 +455,8 @@ const TblLoanCollectionController = () => {
                     //update pinjaman ke status 9: Pinjaman Tidak Aktif, karena sudah lunas
 
                     var data = {};
-                    var dataCollection = {};
                     let condition_update_loan = { where:{} };
+
 
                     await Status.findOne({
                         attributes: ['desc_status'],
@@ -469,7 +469,7 @@ const TblLoanCollectionController = () => {
                     });
                     data.desc_status = "inactive";
 
-                    condition_update_loan.where.id_loan = body.id_loan;
+                    condition_update_loan.where.id = body.id_loan;
                     condition_update_loan.where.id_koperasi = decoded.koperasi_id;
                     condition_update_loan.where.id_ao = decoded.id;
                     condition_update_loan.where.id_member = body.id_member;
@@ -496,8 +496,17 @@ const TblLoanCollectionController = () => {
                     });
 
                     //update table loan collection
+
+                    let condition_update_loan_collection = { where:{} };
+                    condition_update_loan_collection.where.id_loan = body.id_loan;
+                    condition_update_loan_collection.where.id_koperasi = decoded.koperasi_id;
+                    condition_update_loan_collection.where.id_ao = decoded.id;
+                    condition_update_loan_collection.where.id_member = body.id_member;
+
+                    var dataCollection = {};
                     dataCollection.id_status = 9;
-                    await TblLoanCollection.update(dataCollection, condition_update_loan, {
+
+                    await TblLoanCollection.update(dataCollection, condition_update_loan_collection, {
                         transaction: t
                     }).then((updated) => {
                         if (updated) {

@@ -25,7 +25,8 @@ const TblLoanCollectionController = () => {
 
     const add = async (req, res) => {
         const {body, decoded} = req;
-        const t = await sequelize.transaction();
+        const currentTransaction = await sequelize.transaction();
+        const nextTransaction = await sequelize.transaction();
 
         let param_hari_per_bulan;
         let param_id_angsuran_sebagian;
@@ -264,8 +265,8 @@ const TblLoanCollectionController = () => {
                 collection.simpanan_wajib = body.simpanan_wajib;
                 collection.simpanan_sukarela = body.simpanan_sukarela;
 
-                collection.id_status = previous_system_collection.id_status;
                 collection.id_ao = previous_system_collection.id_ao;
+                collection.id_status = previous_system_collection.id_status;
 
                 if (body.setoran >= previous_system_collection.pokok + previous_system_collection.bunga) {
                     collection.status_pembayaran = "lunas";
@@ -274,7 +275,7 @@ const TblLoanCollectionController = () => {
                 }
 
                 const android_collection = await TblLoanCollection.create(collection, {
-                    transaction: t
+                    transaction: currentTransaction
                 });
 
 
@@ -311,7 +312,7 @@ const TblLoanCollectionController = () => {
 
                 await TblSimpananWajib.create(simpanan_wajib, {
                     condition,
-                    transaction: t
+                    transaction: currentTransaction
                 });
 
 
@@ -349,8 +350,12 @@ const TblLoanCollectionController = () => {
 
                 await TblSimpananSukarela.create(simpanan_sukarela, {
                     conditionSimpananSukarela,
-                    transaction: t
+                    transaction: currentTransaction
                 });
+
+                /* --------------- Commit Current INPUT from Android --------------*/
+
+                await currentTransaction.commit();
 
 
                 /* --------------- Generate NEXT collection from System --------------*/
@@ -442,7 +447,7 @@ const TblLoanCollectionController = () => {
                     next_collection.id_ao = previous_system_collection.id_ao;
 
                     await TblLoanCollection.create(next_collection, {
-                        transaction: t
+                        transaction: nextTransaction
                     });
 
                     response_status = res.status(200).json({
@@ -450,13 +455,13 @@ const TblLoanCollectionController = () => {
                         data: {},
                         message: "Success add collection and generate new collection"
                     });
+
                 } else {
 
                     //update pinjaman ke status 9: Pinjaman Tidak Aktif, karena sudah lunas
 
                     var data = {};
                     let condition_update_loan = { where:{} };
-
 
                     await Status.findOne({
                         attributes: ['desc_status'],
@@ -478,25 +483,25 @@ const TblLoanCollectionController = () => {
 
                     //update table loan
                     await TblLoan.update(data, condition_update_loan, {
-                        transaction: t
-                    }).then((updated) => {
-                        if (updated) {
-                            response_status = res.status(200).json({
-                                status: 200,
-                                data: {},
-                                message: "Data loan successfully set inactive "
-                            });
-                        } else {
-                            response_status = res.status(200).json({
-                                status: 400,
-                                data: {},
-                                message: "Failed update data"
-                            });
-                        }
+                        transaction: nextTransaction
                     });
+                    //     .then((updated) => {
+                    //     if (updated) {
+                    //         response_status = res.status(200).json({
+                    //             status: 200,
+                    //             data: {},
+                    //             message: "Data loan collection successfully set inactive "
+                    //         });
+                    //     } else {
+                    //         response_status = res.status(200).json({
+                    //             status: 400,
+                    //             data: {},
+                    //             message: "Failed update data"
+                    //         });
+                    //     }
+                    // });
 
                     //update table loan collection
-
                     let condition_update_loan_collection = { where:{} };
                     condition_update_loan_collection.where.id_loan = body.id_loan;
                     condition_update_loan_collection.where.id_koperasi = decoded.koperasi_id;
@@ -507,7 +512,7 @@ const TblLoanCollectionController = () => {
                     dataCollection.id_status = 9;
 
                     await TblLoanCollection.update(dataCollection, condition_update_loan_collection, {
-                        transaction: t
+                        transaction: nextTransaction
                     }).then((updated) => {
                         if (updated) {
                             response_status = res.status(200).json({
@@ -526,15 +531,17 @@ const TblLoanCollectionController = () => {
                 }
 
 
-                /* --------------------------------- COMMIT TRANSACTION -------------------------------*/
+                /* --------------- Commit NEXT INPUT from Android --------------*/
 
-                await t.commit();
+                await nextTransaction.commit();
 
                 return response_status;
             });
 
         } catch (err) {
-            await t.rollback();
+            await currentTransaction.rollback();
+            await nextTransaction.rollback();
+
             return res.status(200).json({
                 status: 500,
                 data: {},

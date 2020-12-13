@@ -1,4 +1,8 @@
 const Sequelize = require('sequelize');
+const TblSimpananPokok = require('../v2/TblSimpananPokok');
+const TblSimpananWajib = require('../v2/TblSimpananWajib');
+const TblSimpananSukarela = require('../v2/TblSimpananSukarela');
+
 const sequelize = require('../../../config/database');
 const hooks = {};
 const tableName = 'tbl_loan';
@@ -80,6 +84,22 @@ const TblLoan = sequelize.define('TblLoan', {
 }, {
     hooks,
     tableName
+});
+
+
+TblLoan.hasMany(TblSimpananPokok, {
+    as: 'SimpananPokok',
+    foreignKey: "id_loan"
+});
+
+TblLoan.hasMany(TblSimpananWajib, {
+    as: 'SimpananWajib',
+    foreignKey: "id_loan"
+});
+
+TblLoan.hasMany(TblSimpananSukarela, {
+    as: 'SimpananSukarela',
+    foreignKey: "id_loan"
 });
 
 // eslint-disable-next-line

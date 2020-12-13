@@ -7,43 +7,25 @@ const TblLoanCollectionController = () => {
 
     const view_sum_simpanan_wajib = async (req, res) => {
         const {decoded} = req;
-        const {id_member} = req.params;
+        const {id_member, id_loan} = req.params;
 
         try {
-
-            await TblLoan.findOne({
-                attributes:['id'],
+            TblSimpananWajib.findOne({
+                attributes: ['total_simpanan'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: id_member,
-                    desc_status: 'active'
-                }
-            }).then(async (id_loan) => {
-                if (!id_loan) {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Simpanan Wajib not found"
-                    });
-                } else {
-                    TblSimpananWajib.findOne({
-                        attributes: ['total_simpanan'],
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        },
-                        order: [
-                            ['updatedAt', 'DESC']
-                        ]
-                    }).then((total) => {
-                        return res.status(201).json({
-                            status: 200,
-                            data: total,
-                            message: "Success retrieve Total Simpanan Wajib"
-                        });
-                    });
-                }
+                    id_loan: id_loan
+                },
+                order: [
+                    ['updatedAt', 'DESC']
+                ]
+            }).then((total) => {
+                return res.status(201).json({
+                    status: 200,
+                    data: total,
+                    message: "Success retrieve Total Simpanan Wajib"
+                });
             });
 
         } catch (err) {
@@ -58,43 +40,24 @@ const TblLoanCollectionController = () => {
 
     const view_detail_simpanan_wajib = async (req, res) => {
         const {decoded} = req;
-        const {id_member} = req.params;
+        const {id_member, id_loan} = req.params;
 
         try {
-
-            await TblLoan.findOne({
-                attributes:['id'],
+            TblSimpananWajib.findAll({
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: id_member,
-                    desc_status: 'active'
+                    id_loan: id_loan
                 }
-            }).then(async (id_loan) => {
-                if (!id_loan) {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Simpanan Wajib not found"
-                    });
-                } else {
-                    TblSimpananWajib.findAll({
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        }
-                    }).then((data) => {
-                        return res.status(201).json({
-                            status: 200,
-                            data: data,
-                            message: "Success retrieve Detail Simpanan Wajib"
-                        });
-                    });
-                }
+            }).then((data) => {
+                return res.status(201).json({
+                    status: 200,
+                    data: data,
+                    message: "Success retrieve Detail Simpanan Wajib"
+                });
             });
 
         } catch (err) {
-
             return res.status(200).json({
                 status: 500,
                 data: {},
@@ -107,46 +70,36 @@ const TblLoanCollectionController = () => {
         const {body, decoded} = req;
 
         try {
-            await TblLoan.findOne({
-                attributes:['id'],
+            //1. check last total and last updatedDate
+            const lastTotal = await TblSimpananWajib.findOne({
+                attributes: ['total_simpanan'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: body.id_member,
-                    desc_status: 'active'
-                }
-            }).then(async (id_loan) => {
+                    id_loan: body.id_loan
+                },
+                order: [
+                    ['updatedAt', 'DESC']
+                ]
+            });
 
-                //1. check last total and last updatedDate
-                const lastTotal = await TblSimpananWajib.findOne({
-                    attributes: ['total_simpanan'],
-                    where: {
-                        id_koperasi : decoded.koperasi_id,
-                        id_member : body.id_member,
-                        id_loan : id_loan.id
-                    },
-                    order: [
-                        ['updatedAt', 'DESC']
-                    ]
-                });
+            const simpanan_wajib = {
+                id_koperasi: decoded.koperasi_id,
+                id_ao: 0,
+                id_loan: body.id_loan,
+                id_member: body.id_member,
+                id_collection: 0,
+                simpanan_wajib: body.jumlah_penarikan,
+                total_simpanan: lastTotal.total_simpanan - body.jumlah_penarikan,
+                desc: "Penarikan"
+            };
 
-                const simpanan_wajib = {
-                    id_koperasi: decoded.koperasi_id,
-                    id_ao: 0,
-                    id_loan: id_loan.id,
-                    id_member: body.id_member,
-                    id_collection: 0,
-                    simpanan_wajib: body.jumlah_penarikan,
-                    total_simpanan: lastTotal.total_simpanan - body.jumlah_penarikan,
-                    desc: "Penarikan"
-                };
+            await TblSimpananWajib.create(simpanan_wajib);
 
-                await TblSimpananWajib.create(simpanan_wajib);
-
-                return res.status(201).json({
-                    status: 200,
-                    data: "",
-                    message: "Success withdrawal"
-                });
+            return res.status(201).json({
+                status: 200,
+                data: "",
+                message: "Success withdrawal"
             });
 
         } catch (err) {
@@ -161,43 +114,26 @@ const TblLoanCollectionController = () => {
 
     const view_sum_simpanan_pokok = async (req, res) => {
         const {decoded} = req;
-        const {id_member} = req.params;
+        const {id_member, id_loan} = req.params;
 
         try {
 
-            await TblLoan.findOne({
-                attributes:['id'],
+            TblSimpananPokok.findOne({
+                attributes: ['total_simpanan'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: id_member,
-                    desc_status: 'active'
-                }
-            }).then(async (id_loan) => {
-                if (!id_loan) {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Simpanan Pokok not found"
-                    });
-                } else {
-                    TblSimpananPokok.findOne({
-                        attributes: ['total_simpanan'],
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        },
-                        order: [
-                            ['updatedAt', 'DESC']
-                        ]
-                    }).then((total) => {
-                        return res.status(201).json({
-                            status: 200,
-                            data: total,
-                            message: "Success retrieve Total Simpanan Pokok"
-                        });
-                    });
-                }
+                    id_loan: id_loan
+                },
+                order: [
+                    ['updatedAt', 'DESC']
+                ]
+            }).then((total) => {
+                return res.status(201).json({
+                    status: 200,
+                    data: total,
+                    message: "Success retrieve Total Simpanan Pokok"
+                });
             });
 
         } catch (err) {
@@ -212,39 +148,21 @@ const TblLoanCollectionController = () => {
 
     const view_detail_simpanan_pokok = async (req, res) => {
         const {decoded} = req;
-        const {id_member} = req.params;
+        const {id_member, id_loan} = req.params;
 
         try {
-
-            await TblLoan.findOne({
-                attributes:['id'],
+            TblSimpananPokok.findAll({
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: id_member,
-                    desc_status: 'active'
+                    id_loan: id_loan
                 }
-            }).then(async (id_loan) => {
-                if (!id_loan) {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Simpanan Pokok not found"
-                    });
-                } else {
-                    TblSimpananPokok.findAll({
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        }
-                    }).then((data) => {
-                        return res.status(201).json({
-                            status: 200,
-                            data: data,
-                            message: "Success retrieve Detail Simpanan Pokok"
-                        });
-                    });
-                }
+            }).then((data) => {
+                return res.status(201).json({
+                    status: 200,
+                    data: data,
+                    message: "Success retrieve Detail Simpanan Pokok"
+                });
             });
 
         } catch (err) {
@@ -261,46 +179,36 @@ const TblLoanCollectionController = () => {
         const {body, decoded} = req;
 
         try {
-            await TblLoan.findOne({
-                attributes:['id'],
+            //1. check last total and last updatedDate
+            const lastTotal = await TblSimpananPokok.findOne({
+                attributes: ['total_simpanan'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: body.id_member,
-                    desc_status: 'active'
-                }
-            }).then(async (id_loan) => {
+                    id_loan: body.id_loan
+                },
+                order: [
+                    ['updatedAt', 'DESC']
+                ]
+            });
 
-                //1. check last total and last updatedDate
-                const lastTotal = await TblSimpananPokok.findOne({
-                    attributes: ['total_simpanan'],
-                    where: {
-                        id_koperasi : decoded.koperasi_id,
-                        id_member : body.id_member,
-                        id_loan : id_loan.id
-                    },
-                    order: [
-                        ['updatedAt', 'DESC']
-                    ]
-                });
+            const simpanan_pokok = {
+                id_koperasi: decoded.koperasi_id,
+                id_ao: 0,
+                id_loan: body.id_loan,
+                id_member: body.id_member,
+                id_collection: 0,
+                simpanan_pokok: body.jumlah_penarikan,
+                total_simpanan: lastTotal.total_simpanan - body.jumlah_penarikan,
+                desc: "Penarikan"
+            };
 
-                const simpanan_pokok = {
-                    id_koperasi: decoded.koperasi_id,
-                    id_ao: 0,
-                    id_loan: id_loan.id,
-                    id_member: body.id_member,
-                    id_collection: 0,
-                    simpanan_pokok: body.jumlah_penarikan,
-                    total_simpanan: lastTotal.total_simpanan - body.jumlah_penarikan,
-                    desc: "Penarikan"
-                };
+            await TblSimpananPokok.create(simpanan_pokok);
 
-                await TblSimpananPokok.create(simpanan_pokok);
-
-                return res.status(201).json({
-                    status: 200,
-                    data: "",
-                    message: "Success withdrawal"
-                });
+            return res.status(201).json({
+                status: 200,
+                data: "",
+                message: "Success withdrawal"
             });
 
         } catch (err) {
@@ -315,44 +223,26 @@ const TblLoanCollectionController = () => {
 
     const view_sum_simpanan_sukarela = async (req, res) => {
         const {decoded} = req;
-        const {id_member} = req.params;
+        const {id_member, id_loan} = req.params;
 
         try {
 
-            await TblLoan.findOne({
-                attributes:['id'],
+            TblSimpananSukarela.findOne({
+                attributes: ['total_simpanan'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: id_member,
-                    desc_status: 'active'
-                }
-            }).then(async (id_loan) => {
-
-                if (!id_loan) {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Simpanan Sukarela not found"
-                    });
-                } else {
-                    TblSimpananSukarela.findOne({
-                        attributes: ['total_simpanan'],
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        },
-                        order: [
-                            ['updatedAt', 'DESC']
-                        ]
-                    }).then((total) => {
-                        return res.status(201).json({
-                            status: 200,
-                            data: total,
-                            message: "Success retrieve Total Simpanan Sukarela"
-                        });
-                    });
-                }
+                    id_loan: id_loan
+                },
+                order: [
+                    ['updatedAt', 'DESC']
+                ]
+            }).then((total) => {
+                return res.status(201).json({
+                    status: 200,
+                    data: total,
+                    message: "Success retrieve Total Simpanan Sukarela"
+                });
             });
 
 
@@ -368,42 +258,22 @@ const TblLoanCollectionController = () => {
 
     const view_detail_simpanan_sukarela = async (req, res) => {
         const {decoded} = req;
-        const {id_member} = req.params;
+        const {id_member, id_loan} = req.params;
 
         try {
-
-            await TblLoan.findOne({
-                attributes:['id'],
+            TblSimpananSukarela.findAll({
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: id_member,
-                    desc_status: 'active'
+                    id_loan: id_loan
                 }
-            }).then(async (id_loan) => {
-
-                if (!id_loan) {
-                    return res.status(200).json({
-                        status: 404,
-                        data: "",
-                        message: "Simpanan Sukarela not found"
-                    });
-                } else {
-                    TblSimpananSukarela.findAll({
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        }
-                    }).then((data) => {
-                        return res.status(201).json({
-                            status: 200,
-                            data: data,
-                            message: "Success retrieve Detail Simpanan Sukarela"
-                        });
-                    });
-                }
+            }).then((data) => {
+                return res.status(201).json({
+                    status: 200,
+                    data: data,
+                    message: "Success retrieve Detail Simpanan Sukarela"
+                });
             });
-
 
         } catch (err) {
 
@@ -419,46 +289,36 @@ const TblLoanCollectionController = () => {
         const {body, decoded} = req;
 
         try {
-            await TblLoan.findOne({
-                attributes:['id'],
+            //1. check last total and last updatedDate
+            const lastTotal = await TblSimpananSukarela.findOne({
+                attributes: ['total_simpanan'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: body.id_member,
-                    desc_status: 'active'
-                }
-            }).then(async (id_loan) => {
+                    id_loan: body.id_loan
+                },
+                order: [
+                    ['updatedAt', 'DESC']
+                ]
+            });
 
-                //1. check last total and last updatedDate
-                const lastTotal = await TblSimpananSukarela.findOne({
-                    attributes: ['total_simpanan'],
-                    where: {
-                        id_koperasi : decoded.koperasi_id,
-                        id_member : body.id_member,
-                        id_loan : id_loan.id
-                    },
-                    order: [
-                        ['updatedAt', 'DESC']
-                    ]
-                });
+            const simpanan_sukarela = {
+                id_koperasi: decoded.koperasi_id,
+                id_ao: 0,
+                id_loan: body.id_loan,
+                id_member: body.id_member,
+                id_collection: 0,
+                simpanan_sukarela: body.jumlah_penarikan,
+                total_simpanan: lastTotal.total_simpanan - body.jumlah_penarikan,
+                desc: "Penarikan"
+            };
 
-                const simpanan_sukarela = {
-                    id_koperasi: decoded.koperasi_id,
-                    id_ao: 0,
-                    id_loan: id_loan.id,
-                    id_member: body.id_member,
-                    id_collection: 0,
-                    simpanan_sukarela: body.jumlah_penarikan,
-                    total_simpanan: lastTotal.total_simpanan - body.jumlah_penarikan,
-                    desc: "Penarikan"
-                };
+            await TblSimpananSukarela.create(simpanan_sukarela);
 
-                await TblSimpananSukarela.create(simpanan_sukarela);
-
-                return res.status(201).json({
-                    status: 200,
-                    data: "",
-                    message: "Success withdrawal"
-                });
+            return res.status(201).json({
+                status: 200,
+                data: "",
+                message: "Success withdrawal"
             });
 
         } catch (err) {
@@ -475,63 +335,52 @@ const TblLoanCollectionController = () => {
         const {decoded} = req;
         const {id_member} = req.params;
 
+        // TblLoan.hasMany(TblSimpananWajib, {as: 'Simpanan Wajib', foreignKey: 'id_loan'});
+        // TblLoan.hasMany(TblSimpananSukarela, {as: 'Simpanan Sukarela', foreignKey: 'id_loan'});
+
         try {
-            await TblLoan.findOne({
-                attributes:['id'],
+            await TblLoan.findAll({
+                attributes: ['id', 'nama_produk', 'nama_member', 'desc_status'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
-                    id_member: id_member,
-                    desc_status: 'active'
-                }
-            }).then(async (id_loan) => {
-                if (!id_loan) {
+                    id_member: id_member
+                },
+                include: [{
+                    model: TblSimpananPokok,
+                    as: "SimpananPokok",
+                    attributes: ['simpanan_pokok', 'total_simpanan'],
+                    order: [
+                        ['updatedAt', 'DESC']
+                    ],
+                    limit : 1
+                }, {
+                    model: TblSimpananWajib,
+                    as: "SimpananWajib",
+                    attributes: ['simpanan_wajib', 'total_simpanan'],
+                    order: [
+                        ['updatedAt', 'DESC']
+                    ],
+                    limit : 1
+                }, {
+                    model: TblSimpananSukarela,
+                    as: "SimpananSukarela",
+                    attributes: ['simpanan_sukarela', 'total_simpanan'],
+                    order: [
+                        ['updatedAt', 'DESC']
+                    ],
+                    limit : 1
+                }]
+            }).then(async (loan) => {
+                if (!loan) {
                     return res.status(200).json({
                         status: 404,
                         data: "",
                         message: "Simpanan not found"
                     });
                 } else {
-                    const simpanan_wajib = await TblSimpananWajib.findOne({
-                        attributes: [['total_simpanan', 'total']],
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        },
-                        order: [
-                            ['updatedAt', 'DESC']
-                        ]
-                    });
-
-
-                    const simpanan_pokok = await TblSimpananPokok.findOne({
-                        attributes: [['total_simpanan', 'total']],
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        },
-                        order: [
-                            ['updatedAt', 'DESC']
-                        ]
-                    });
-
-                    const simpanan_sukarela = await TblSimpananSukarela.findOne({
-                        attributes: [['total_simpanan', 'total']],
-                        where: {
-                            id_koperasi : decoded.koperasi_id,
-                            id_member : id_member,
-                            id_loan : id_loan.id
-                        },
-                        order: [
-                            ['updatedAt', 'DESC']
-                        ]
-                    });
-
-
                     return res.status(201).json({
                         status: 200,
-                        data: {simpanan_wajib, simpanan_pokok, simpanan_sukarela},
+                        data: {loan},
                         message: "Success retrieve Total Simpanan Sukarela"
                     });
 

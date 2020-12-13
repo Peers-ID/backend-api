@@ -455,6 +455,7 @@ const TblLoanCollectionController = () => {
                     //update pinjaman ke status 9: Pinjaman Tidak Aktif, karena sudah lunas
 
                     var data = {};
+                    var dataCollection = {};
                     let condition_update_loan = { where:{} };
 
                     await Status.findOne({
@@ -468,12 +469,14 @@ const TblLoanCollectionController = () => {
                     });
                     data.desc_status = "inactive";
 
+                    condition_update_loan.where.id_loan = body.id_loan;
                     condition_update_loan.where.id_koperasi = decoded.koperasi_id;
                     condition_update_loan.where.id_ao = decoded.id;
                     condition_update_loan.where.id_member = body.id_member;
 
                     console.log(data.id_status +"--"+ data.nama_status + "--" + decoded.koperasi_id + " -- " + decoded.id + " -- " + body.id_member);
 
+                    //update table loan
                     await TblLoan.update(data, condition_update_loan, {
                         transaction: t
                     }).then((updated) => {
@@ -482,6 +485,26 @@ const TblLoanCollectionController = () => {
                                 status: 200,
                                 data: {},
                                 message: "Data loan successfully set inactive "
+                            });
+                        } else {
+                            response_status = res.status(200).json({
+                                status: 400,
+                                data: {},
+                                message: "Failed update data"
+                            });
+                        }
+                    });
+
+                    //update table loan collection
+                    dataCollection.id_status = 9;
+                    await TblLoanCollection.update(dataCollection, condition_update_loan, {
+                        transaction: t
+                    }).then((updated) => {
+                        if (updated) {
+                            response_status = res.status(200).json({
+                                status: 200,
+                                data: {},
+                                message: "Data loan collection successfully set inactive "
                             });
                         } else {
                             response_status = res.status(200).json({

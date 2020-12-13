@@ -505,7 +505,7 @@ const TblLoanCollectionController = () => {
 
 
                     const simpanan_pokok = await TblSimpananPokok.findOne({
-                        attributes: [['simpanan_pokok', 'total']],
+                        attributes: [['total_simpanan', 'total']],
                         where: {
                             id_koperasi : decoded.koperasi_id,
                             id_member : id_member,

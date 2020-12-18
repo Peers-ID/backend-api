@@ -85,7 +85,7 @@ const KoperasiController = () => {
 
             let fotoKtpKetua = req.files.foto_ktp_ketua;
 
-            fotoKtpKetua.mv('/home/dev_peers_id/backend-api/pictures/koperasi/Kop-' + nama_kop[0] + '-' + now + '.jpg', function (err) {
+            fotoKtpKetua.mv('/home/dev_peers_id/backend-api/pictures/Kop-' + nama_kop[0] + '-' + now + '.jpg', function (err) {
                 if (err) {
                     errorUpload = true
                 }
@@ -286,7 +286,7 @@ const KoperasiController = () => {
 
                 let fotoKtpKetua = req.files.foto_ktp_ketua;
 
-                fotoKtpKetua.mv('/home/dev_peers_id/backend-api/pictures/koperasi/Kop-' + nama_kop[0] + '-' + now + '.jpg', function (err) {
+                fotoKtpKetua.mv('/home/dev_peers_id/backend-api/pictures/Kop-' + nama_kop[0] + '-' + now + '.jpg', function (err) {
                     if (err) {
                         return res.send({status: 500, data: "", message: "Failed to upload image!"});
                     }

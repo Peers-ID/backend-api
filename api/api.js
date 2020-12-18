@@ -38,8 +38,9 @@ app.use(helmet({
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(fileUpload());
-app.use(express.static('/home/dev_peers_id/backend-api/files'));
-app.use(express.static('/home/dev_peers_id/backend-api/pictures'));
+
+app.use('/files', express.static('/home/dev_peers_id/backend-api/files'));
+app.use('/files', express.static('/home/dev_peers_id/backend-api/pictures'));
 
 
 // Jwt auth middleware

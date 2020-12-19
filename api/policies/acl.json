@@ -532,7 +532,7 @@
         "action": "allow"
       },
       {
-        "resource": "member/picture/:member_id",
+        "resource": "member/picture",
         "methods": "*",
         "action": "allow"
       },

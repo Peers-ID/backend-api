@@ -369,14 +369,14 @@ const MemberController = () => {
 
             console.log(memberPicture.name);
 
-            memberPicture.mv('/home/dev_peers_id/backend-api/files/ID-' + memberPicture.name + '.jpg', async function (err) {
+            memberPicture.mv('/home/dev_peers_id/backend-api/files/ID-' + memberPicture.name, async function (err) {
                 if (err)
                     return res.status(500).send(err);
 
                 return res.status(201).json({
                     status: 201,
                     data: {
-                        file_name: 'ID-' + memberPicture.name + '.jpg'
+                        file_name: 'ID-' + memberPicture.name
                     },
                     message: "Files Uploaded"
                 });

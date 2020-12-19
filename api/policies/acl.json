@@ -424,6 +424,11 @@
         "action": "allow"
       },
       {
+        "resource": "member/picture",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
         "resource": "member/miscall",
         "methods": [
           "POST"
@@ -529,11 +534,6 @@
         "methods": [
           "GET"
         ],
-        "action": "allow"
-      },
-      {
-        "resource": "member/picture",
-        "methods": "*",
         "action": "allow"
       },
       {

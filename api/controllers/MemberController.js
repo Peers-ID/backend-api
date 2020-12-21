@@ -123,7 +123,8 @@ const MemberController = () => {
                             if (member) {
                                 await TblLoan.findOne({
                                     where: {
-                                        id_member: member.member_id
+                                        id_member: member.member_id,
+                                        desc_status: 'active'
                                     }
                                 }).then(async (loan) => {
                                     if (loan) {

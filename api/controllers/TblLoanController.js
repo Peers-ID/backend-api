@@ -321,10 +321,10 @@ const TblLoanController = () => {
             /*----------------- CREATE COLLECTION DATA ---------------*/
             var pengali;
             switch (loan_satuan_tenor) {
-                case "Bulan":
+                case "bulan":
                     pengali = hari_per_bulan;
                     break;
-                case "Minggu":
+                case "minggu":
                     pengali = 7;
                     break;
                 default:

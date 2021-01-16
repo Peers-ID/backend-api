@@ -159,7 +159,7 @@ const UserController = () => {
                 fullname: body.fullname,
                 phone_mobile: body.phone_mobile,
                 birthdate: body.birthdate,
-                email: body.email,
+                // email: body.email,
                 role: body.role,
                 status: "active",
                 ak_id: decoded.id
@@ -188,20 +188,20 @@ const UserController = () => {
             };
 
             //check email
-            await User.findAndCountAll({
-                attributes:['email'],
-                where: {
-                    email:body.email
-                }
-            }).then((data) => {
-                if (data.count > 0) {
-                    return res.status(200).json({
-                        status: 500,
-                        data: "",
-                        message: "Alamat Email sudah pernah terdaftar"
-                    });
-                }
-            });
+            // await User.findAndCountAll({
+            //     attributes:['email'],
+            //     where: {
+            //         email:body.email
+            //     }
+            // }).then((data) => {
+            //     if (data.count > 0) {
+            //         return res.status(200).json({
+            //             status: 500,
+            //             data: "",
+            //             message: "Alamat Email sudah pernah terdaftar"
+            //         });
+            //     }
+            // });
 
             await User.update(data, {
                 where: {

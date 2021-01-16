@@ -53,15 +53,16 @@ const emailService = () => {
             var mailOptions = {
                 from: '"Peers Indonesia" <admin@peers.id>',
                 to: email,
-                subject: 'Selamat datang di peers.id',
+                subject: 'Selamat datang di Peers',
                 text: 'Welcome',
                 html: '<p>Halo <strong>'+ name +'</strong>,</p>'+
-                '<p>Terima Kasih sudah mendaftar di Peers Indonesia.' +
+                '<p>Terima Kasih sudah mendaftar di plaftorm Peers Indonesia.' +
                 'Silahkan login dengan menggunakan akun berikut</p>' +
 
                 '<p>Username : '+ email +'<br />' +
-                'Password : '+ password +'</p>' +
+                'Password : '+ password +'</p><br /><br />' +
 
+                '<p>Hubungi admin@peers.id untuk informasi lebih lanjut atau kunjungi tautan berikut http://www.peers.id/</p><br /><br />' +
                 '<p>Terima Kasih,</p>' +
 
                 '<p>Salam</p>'

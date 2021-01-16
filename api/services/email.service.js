@@ -57,12 +57,12 @@ const emailService = () => {
                 text: 'Welcome',
                 html: '<p>Halo <strong>'+ name +'</strong>,</p>'+
                 '<p>Terima Kasih sudah mendaftar di plaftorm Peers Indonesia.' +
-                'Silahkan login dengan menggunakan akun berikut</p>' +
+                'Silahkan login dengan menggunakan akun berikut :</p>' +
 
                 '<p>Username : '+ email +'<br />' +
-                'Password : '+ password +'</p><br /><br />' +
+                'Password : '+ password +'</p>' +
 
-                '<p>Hubungi admin@peers.id untuk informasi lebih lanjut atau kunjungi tautan berikut http://www.peers.id/</p><br /><br />' +
+                '<p>Hubungi admin@peers.id untuk informasi lebih lanjut atau kunjungi tautan berikut http://www.peers.id/</p><br />' +
                 '<p>Terima Kasih,</p>' +
 
                 '<p>Salam</p>'

@@ -36,6 +36,10 @@ const LoanProduct = sequelize.define('LoanProduct', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    type_admin: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     provisi: {
         type: Sequelize.STRING,
         allowNull: false

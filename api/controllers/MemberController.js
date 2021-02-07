@@ -528,7 +528,7 @@ const MemberController = () => {
                             });
                         } else {
                             return res.status(200).json({
-                                status: 202,
+                                status: 203,
                                 data: member,
                                 message: "Anggota sudah terdaftar"
                             });

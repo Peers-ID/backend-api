@@ -129,13 +129,13 @@ const MemberController = () => {
                                 }).then(async (loan) => {
                                     if (loan) {
                                         return res.status(200).json({
-                                            status: 401,
+                                            status: 202,
                                             message: "Pinjaman sedang berjalan",
                                             data: {loan}
                                         });
                                     } else {
                                         return res.status(200).json({
-                                            status: 202,
+                                            status: 204,
                                             message: "Anggota sudah terdaftar",
                                             data: member
                                         });
@@ -517,7 +517,8 @@ const MemberController = () => {
 
                     await TblLoan.findOne({
                         where: {
-                            id_member: member.member_id
+                            id_member: member.member_id,
+                            desc_status: 'active'
                         }
                     }).then(async (loan) => {
                         if (loan) {

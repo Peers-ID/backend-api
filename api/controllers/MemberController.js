@@ -507,9 +507,13 @@ const MemberController = () => {
 
     const view_by_nik = async (req, res) => {
         const {nik} = req.params;
+        const {decoded} = req;
+
+
         try {
             await Member.findOne({
                 where: {
+                    koperasi_id: decoded.koperasi_id,
                     no_identitas: nik
                 },
             }).then(async (member) => {
@@ -517,6 +521,7 @@ const MemberController = () => {
 
                     await TblLoan.findOne({
                         where: {
+                            id_koperasi: decoded.koperasi_id,
                             id_member: member.member_id,
                             desc_status: 'active'
                         }

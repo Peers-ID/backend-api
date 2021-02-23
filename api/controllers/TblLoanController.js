@@ -38,7 +38,7 @@ const TblLoanController = () => {
             var code_pencairan;
             var desc_pencairan;
             var loan_tenor;
-            var loan_satuan_tenor = "Bulan";
+            var loan_satuan_tenor = "bulan";
             var hari_per_bulan = 30;
             var simpanan_wajib = 0;
             var simpanan_pokok = 0;
@@ -222,8 +222,12 @@ const TblLoanController = () => {
 
                                 code_pencairan = 1001;
                                 desc_pencairan = "Apakah Anda akan menyetujui Pencairan pinjaman sebesar Rp." + jumlah_pengajuan;
-                                id_status = 1; //Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
-                                desc_status = "active";
+
+                                //TODO ini harusnya Menunggu Pencairan AO/CMO/Sales (6) karena belum dicairkan
+                                id_status = 6;
+
+                                //TODO ini harusnya incative karena masih Menunggu Pencairan AO/CMO/Sales (6)
+                                desc_status = "inactive";
                             } else {
                                 code_pencairan = 1002;
                                 desc_pencairan = "Jumlah Pencairan diluar dari kriteria, proses Persetujuan pinjaman akan dilakukan oleh Admin Koperasi";
@@ -244,8 +248,12 @@ const TblLoanController = () => {
                             } else {
                                 code_pencairan = 1001;
                                 desc_pencairan = "Apakah Anda akan menyetujui Pencairan pinjaman sebesar Rp." + jumlah_pengajuan;
-                                id_status = 1; //Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
-                                desc_status = "active";
+
+                                //TODO ini harusnya Menunggu Pencairan AO/CMO/Sales (6) karena belum dicairkan
+                                id_status = 6;
+
+                                //TODO ini harusnya incative karena masih Menunggu Pencairan AO/CMO/Sales (6)
+                                desc_status = "inactive";
                             }
                         });
                     }
@@ -263,8 +271,12 @@ const TblLoanController = () => {
                         } else {
                             code_pencairan = 1001;
                             desc_pencairan = "Apakah Anda akan menyetujui Pencairan pinjaman sebesar Rp." + jumlah_pengajuan;
-                            id_status = 1; //Dicairkan Oleh AO/CMO/Sales (Pinjaman Aktif)
-                            desc_status = "active";
+
+                            //TODO ini harusnya Menunggu Pencairan AO/CMO/Sales (6) karena belum dicairkan
+                            id_status = 6;
+
+                            //TODO ini harusnya incative karena masih Menunggu Pencairan AO/CMO/Sales (6)
+                            desc_status = "inactive";
                         }
                     });
                 }

@@ -129,6 +129,11 @@ const privateRoutes = {
     'GET /graph/repayment': 'KinerjaKoperasiController.view_sum_pembayaran_angsuran',
     'GET /graph/loan': 'KinerjaKoperasiController.view_count_pinjaman_berjalan',
     'GET /graph': 'KinerjaKoperasiController.view_all_graph',
+
+    //CUSTOMER
+    'POST /customer/login': 'UserController.cust_login',
+    'GET /customer/loan/member/:id_member': 'CustomerController.view_customer_loan',
+    'GET /customer/loan/member/:id_member/:id_loan': 'CustomerController.view_customer_loan_collection',
 };
 
 module.exports = privateRoutes;

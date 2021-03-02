@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const Member = require('../Member');
+const TblLoanProduct = require('./LoanProduct');
 const sequelize = require('../../../config/database');
 const hooks = {};
 const tableName = 'tblloan_collection';
@@ -101,6 +101,11 @@ const TblLoanCollection = sequelize.define('TblLoanCollection', {
 }, {
     hooks,
     tableName
+});
+
+TblLoanCollection.hasMany(TblLoanProduct, {
+    as: 'loan_product',
+    foreignKey: "id"
 });
 
 // eslint-disable-next-line

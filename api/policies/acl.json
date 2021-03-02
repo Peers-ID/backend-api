@@ -572,10 +572,43 @@
     ]
   },
   {
+    "group": "Customer",
+    "permissions": [
+      {
+        "resource": "customer/loan/member/:id_member",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "customer/loan/member/:id_member/:id_loan",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "loan/simpanan/:id_member/total",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      }
+    ]
+  },
+  {
     "group": "guest",
     "permissions": [
       {
         "resource": "login/",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "customer/login",
         "methods": [
           "POST"
         ],

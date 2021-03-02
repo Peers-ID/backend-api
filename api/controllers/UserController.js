@@ -17,9 +17,9 @@ const UserController = () => {
 
             //check email
             await User.findAndCountAll({
-                attributes:['email'],
+                attributes: ['email'],
                 where: {
-                    email:body.email
+                    email: body.email
                 }
             }).then((data) => {
                 if (data.count > 0) {
@@ -492,6 +492,69 @@ const UserController = () => {
         });
     };
 
+    const cust_login = async (req, res) => {
+        const {phone_mobile, password} = req.body;
+
+        if (phone_mobile && password) {
+            try {
+                const user = await User.findOne({
+                    where: {
+                        phone_mobile,
+                    },
+                });
+
+
+                if (!user) {
+                    return res.status(200).json({
+                        status: 404,
+                        data: "",
+                        message: "User not found"
+                    });
+                }
+
+                if (user.status === "inactive") {
+                    return res.status(200).json({
+                        status: 202,
+                        data: "",
+                        message: "Akun Anda telah di Non-Aktifkan, silahkan hubungi Pihak Koperasi"
+                    });
+                }
+
+                if (bcryptService().comparePassword(password, user.password)) {
+                    const token = authService().issue({
+                        id: user.id,
+                        role: user.role,
+                        koperasi_id: user.koperasi_id
+                    });
+
+                    return res.status(201).json({
+                        status: 201,
+                        data: {token, user},
+                        message: "Successfully Logged In"
+                    });
+                }
+
+                return res.status(200).json({
+                    status: 401,
+                    data: "",
+                    message: "Invalid email or password"
+                });
+            } catch (err) {
+                return res.status(500).json({
+                    status: 500,
+                    data: "",
+                    message: "Sorry, try again later."
+                });
+            }
+        }
+
+        return res.status(200).json({
+            status: 400,
+            data: "",
+            message: "Email or password is wrong."
+        });
+    };
+
     const change_password = async (req, res) => {
         const {email, password, password_new} = req.body;
         const pwd_new = {password: password_new};
@@ -632,6 +695,7 @@ const UserController = () => {
         edit_ao,
         edit_ao_status,
         login,
+        cust_login,
         change_password,
         forgot_password,
         validate,

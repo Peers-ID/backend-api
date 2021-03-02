@@ -1,8 +1,10 @@
 const Member = require('../models/Member');
+const User = require('../models/User');
 const TblLoan = require('../models/v2/TblLoan');
 const Koperasi = require('../models/Koperasi');
 const Config = require('../models/Config');
 const Axios = require('axios');
+const sequelize = require('../../config/database');
 
 const MemberController = () => {
 
@@ -142,23 +144,41 @@ const MemberController = () => {
                                     }
                                 });
                             } else {
-                                //insert to db
-                                Member.create(data).then((reg_member) => {
-                                    if (reg_member) {
-                                        return res.status(201).json({
-                                            status: 201,
-                                            message: "Member registered successfully",
-                                            data: reg_member
-                                        });
-                                    } else {
-                                        return res.status(200).json({
-                                            status: 400,
-                                            message: "Member registered failed",
-                                            data: {}
-                                        });
-                                    }
+                                const t = await sequelize.transaction();
 
-                                });
+                                try {
+                                    //create data customer
+                                    const registered_cust = await Member.create(data, {transaction: t});
+
+                                    //create user
+                                    await User.create({
+                                        koperasi_id: decoded.koperasi_id,
+                                        fullname: registered_cust.nama_lengkap,
+                                        phone_mobile: registered_cust.member_handphone,
+                                        birthdate: registered_cust.tanggal_lahir,
+                                        email: registered_cust.email,
+                                        password: registered_cust.nama_lengkap.substr(0, 3) + registered_cust.member_handphone.substr(-4), //3 huruf nama pertama & 4 digit terakhir no HP
+                                        role: "Customer",
+                                        status: "active",
+                                        ak_id: decoded.id
+                                    }, {transaction: t});
+
+                                    await t.commit();
+
+                                    return res.status(201).json({
+                                        status: 201,
+                                        message: "Member registered successfully",
+                                        data: registered_cust
+                                    });
+                                } catch (err) {
+                                    await t.rollback();
+
+                                    return res.status(200).json({
+                                        status: 500,
+                                        data: [],
+                                        message: "Error create data and customer's password: " + err
+                                    });
+                                }
                             }
                         });
                     } else {

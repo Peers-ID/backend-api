@@ -23,6 +23,10 @@ const User = sequelize.define('User', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    no_identitas: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     birthdate: {
         type: Sequelize.STRING,
         allowNull: false

@@ -132,8 +132,9 @@ const privateRoutes = {
 
     //CUSTOMER
     'POST /customer/login': 'UserController.cust_login',
-    'GET /customer/loan/member/:id_member': 'CustomerController.view_customer_loan',
-    'GET /customer/loan/member/:id_member/:id_loan': 'CustomerController.view_customer_loan_collection',
+    'GET /customer/loan/list': 'CustomerController.view_customer_loan',
+    'GET /customer/loan/detail/:id_loan': 'CustomerController.view_customer_loan_collection',
+    'GET /customer/loan/simpanan': 'CustomerController.view_customer_loan_simpanan',
 };
 
 module.exports = privateRoutes;

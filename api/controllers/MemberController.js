@@ -155,6 +155,7 @@ const MemberController = () => {
                                         koperasi_id: decoded.koperasi_id,
                                         fullname: registered_cust.nama_lengkap,
                                         phone_mobile: registered_cust.member_handphone,
+                                        no_identitas: registered_cust.no_identitas,
                                         birthdate: registered_cust.tanggal_lahir,
                                         email: registered_cust.email,
                                         password: registered_cust.nama_lengkap.substr(0, 3) + registered_cust.member_handphone.substr(-4), //3 huruf nama pertama & 4 digit terakhir no HP

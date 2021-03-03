@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../config/database');
+const User = require('./User');
 
 const hooks = {};
 const tableName = 'member';
@@ -318,7 +319,6 @@ const Member = sequelize.define('Member', {
     hooks,
     tableName
 });
-
 
 // eslint-disable-next-line
 Member.prototype.toJSON = function () {

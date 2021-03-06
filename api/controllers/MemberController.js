@@ -161,7 +161,9 @@ const MemberController = () => {
                                         password: registered_cust.nama_lengkap.substr(0, 3) + registered_cust.no_identitas.substr(0, 3) + registered_cust.member_handphone.substr(-4), //3 huruf nama pertama & 4 digit terakhir no HP
                                         role: "Customer",
                                         status: "active",
-                                        ak_id: decoded.id
+
+                                        //ak_id was the AO id who create the user. But in this case, ak_id is a generated member id;
+                                        ak_id: registered_cust.member_id
                                     }, {transaction: t});
 
                                     await t.commit();

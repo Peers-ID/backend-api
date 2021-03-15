@@ -103,11 +103,6 @@ const TblLoanCollection = sequelize.define('TblLoanCollection', {
     tableName
 });
 
-TblLoanCollection.hasMany(TblLoanProduct, {
-    as: 'loan_product',
-    foreignKey: "id"
-});
-
 // eslint-disable-next-line
 TblLoanCollection.prototype.toJSON = function () {
     return Object.assign({}, this.get());

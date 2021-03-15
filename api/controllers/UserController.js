@@ -524,7 +524,8 @@ const UserController = () => {
                     const token = authService().issue({
                         id: user.id,
                         role: user.role,
-                        koperasi_id: user.koperasi_id
+                        koperasi_id: user.koperasi_id,
+                        ak_id: user.ak_id
                     });
 
                     return res.status(201).json({

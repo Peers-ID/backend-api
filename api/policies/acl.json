@@ -594,6 +594,13 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "customer/change_password",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
       }
     ]
   },

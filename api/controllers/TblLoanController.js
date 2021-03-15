@@ -47,7 +47,7 @@ const TblLoanController = () => {
 
             /* ------------------------- CHECK ACTIVE LOAN --------------------------*/
             await TblLoan.findAndCountAll({
-                attributes:['id_member'],
+                attributes: ['id_member'],
                 where: {
                     id_koperasi: decoded.koperasi_id,
                     id_member: body.id_member,
@@ -83,11 +83,13 @@ const TblLoanController = () => {
                     hari_per_bulan = parameter.hari_per_bulan
                 });
 
-                data.nama_produk = produk.nama_produk;
                 loan_tenor = produk.tenor;
                 loan_satuan_tenor = produk.satuan_tenor;
                 simpanan_wajib = produk.simpanan_wajib;
                 simpanan_pokok = produk.simpanan_pokok;
+
+                data.nama_produk = produk.nama_produk;
+                data.tenor = loan_tenor + ' ' + loan_satuan_tenor;
             });
 
             /* ------------------------- GET MEMBER --------------------------*/
@@ -137,7 +139,7 @@ const TblLoanController = () => {
                             id_status = 7; //Menunggu Persetujuan Admin
                         }
                     });
-                } else if (jumlah_pengajuan <= 3000000)  {
+                } else if (jumlah_pengajuan <= 3000000) {
                     await AccountRoleManagement.findOne({
                         attributes: ['approve_max_3jt', 'approve_max_5jt', 'approve_max_10jt', 'approve_more_10jt'],
                         where: {id_user: decoded.id}
@@ -307,7 +309,6 @@ const TblLoanController = () => {
                 data.approved_by = "AO/CMO/Sales";
             }
 
-
             /*----------------- CREATE LOAN ---------------*/
             const loan = await TblLoan.create(data, {
                 transaction: t
@@ -368,8 +369,8 @@ const TblLoanController = () => {
                     id_member: body.id_member,
                     nama_lengkap: data.nama_member,
                     id_loan: loan.id,
-                    id_status : loan.id_status,
-                    id_ao : loan.id_ao,
+                    id_status: loan.id_status,
+                    id_ao: loan.id_ao,
                     loan_due_date: due_date_iso,
                     angsuran: 1,
                     pembayaran_ke: 1,
@@ -413,7 +414,7 @@ const TblLoanController = () => {
 
     const update_loan_status = async (req, res) => {
         const {body, decoded} = req;
-        let condition = { where:{} };
+        let condition = {where: {}};
         const t = await sequelize.transaction();
 
         try {
@@ -648,9 +649,9 @@ const TblLoanController = () => {
 
             //produk
             const produk = await LoanProduct.findOne({
-               where: {
-                   id: loan.id_produk
-               }
+                where: {
+                    id: loan.id_produk
+                }
             });
 
 
@@ -725,9 +726,9 @@ const TblLoanController = () => {
             });
 
             const parameter = await LoanParameter.findOne({
-               where: {
-                   id_koperasi: decoded.koperasi_id
-               }
+                where: {
+                    id_koperasi: decoded.koperasi_id
+                }
             });
 
             if (!loan) {
@@ -741,8 +742,8 @@ const TblLoanController = () => {
             const product = await LoanProduct.findOne({
                 attributes: ['tenor', 'satuan_tenor', 'bunga', 'tenor_bunga'],
                 where: {
-                   id:loan.id_produk
-               }
+                    id: loan.id_produk
+                }
             });
 
             const collection = await TblLoanCollection.findAll({

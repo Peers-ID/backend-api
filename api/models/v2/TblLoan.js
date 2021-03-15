@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const TblSimpananPokok = require('../v2/TblSimpananPokok');
-const TblSimpananWajib = require('../v2/TblSimpananWajib');
-const TblSimpananSukarela = require('../v2/TblSimpananSukarela');
+const TblSimpananPokok = require('./TblSimpananPokok');
+const TblSimpananWajib = require('./TblSimpananWajib');
+const TblSimpananSukarela = require('./TblSimpananSukarela');
 
 const sequelize = require('../../../config/database');
 const hooks = {};
@@ -15,6 +15,10 @@ const TblLoan = sequelize.define('TblLoan', {
     nama_produk: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    tenor: {
+        type: Sequelize.STRING,
+        allowNull: true
     },
     id_koperasi: {
         type: Sequelize.INTEGER,

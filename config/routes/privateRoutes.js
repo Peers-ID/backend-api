@@ -135,6 +135,7 @@ const privateRoutes = {
     'GET /customer/loan/list': 'CustomerController.view_customer_loan',
     'GET /customer/loan/detail/:id_loan': 'CustomerController.view_customer_loan_collection',
     'GET /customer/loan/simpanan': 'CustomerController.view_customer_loan_simpanan',
+    'POST /customer/change_password': 'CustomerController.view_customer_change_pass',
 };
 
 module.exports = privateRoutes;

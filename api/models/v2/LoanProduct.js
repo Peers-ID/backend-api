@@ -32,6 +32,22 @@ const LoanProduct = sequelize.define('LoanProduct', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    asuransi: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    type_asuransi: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    dana_jpk: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    type_dana_jpk: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     admin: {
         type: Sequelize.INTEGER,
         allowNull: false

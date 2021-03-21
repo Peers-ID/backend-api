@@ -76,7 +76,7 @@ const CustomerController = () => {
                 include: [{
                     model: TblSimpananPokok,
                     as: "SimpananPokok",
-                    attributes: ['simpanan_pokok', 'total_simpanan'],
+                    attributes: ['simpanan_pokok', 'total_simpanan', 'createdAt'],
                     order: [
                         ['updatedAt', 'DESC']
                     ],
@@ -84,7 +84,7 @@ const CustomerController = () => {
                 }, {
                     model: TblSimpananWajib,
                     as: "SimpananWajib",
-                    attributes: ['simpanan_wajib', 'total_simpanan'],
+                    attributes: ['simpanan_wajib', 'total_simpanan', 'createdAt'],
                     order: [
                         ['updatedAt', 'DESC']
                     ],
@@ -92,7 +92,7 @@ const CustomerController = () => {
                 }, {
                     model: TblSimpananSukarela,
                     as: "SimpananSukarela",
-                    attributes: ['simpanan_sukarela', 'total_simpanan'],
+                    attributes: ['simpanan_sukarela', 'total_simpanan', 'createdAt'],
                     order: [
                         ['updatedAt', 'DESC']
                     ],

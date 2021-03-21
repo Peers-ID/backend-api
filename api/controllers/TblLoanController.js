@@ -348,7 +348,8 @@ const TblLoanController = () => {
             await TblLoanCollection.findOne({
                 where: {
                     id_produk: loan.id_produk,
-                    id_member: loan.id_member
+                    id_member: loan.id_member,
+                    id_loan: loan.id
                 }
             }).then(async (collection_data) => {
                 var start_date_iso;

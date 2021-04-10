@@ -251,6 +251,14 @@ const MemberConfig = sequelize.define('MemberConfig', {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0
     },
+    rembug: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
+    kelompok: {
+        type: Sequelize.INTEGER,
+        allowNull: false, defaultValue: 0
+    },
     survey_luas_rumah: {
         type: Sequelize.INTEGER,
         allowNull: false, defaultValue: 0

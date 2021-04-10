@@ -360,8 +360,8 @@ const TblLoanCollectionController = () => {
 
                 /* --------------- Generate NEXT collection from System --------------*/
 
-                // don't generate next collection if loan finished
-                if (previous_system_collection.angsuran < prd_tenor) {
+                // don't generate next collection if loan finished (tenor is achieved or bayar lunas)
+                if (previous_system_collection.angsuran < prd_tenor && android_collection.setoran < previous_system_collection.pokok) {
 
                     var next_collection = {
                         id_koperasi: decoded.koperasi_id,

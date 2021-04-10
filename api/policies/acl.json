@@ -213,6 +213,48 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "rembug/add",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "rembug/edit",
+        "methods": [
+          "PUT"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "rembug/view",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "kelompok/add",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "kelompok/edit",
+        "methods": [
+          "PUT"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "kelompok/view/:id_rembug",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
       }
     ]
   },
@@ -567,6 +609,20 @@
       {
         "resource": "parameter",
         "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "rembug/view",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "kelompok/view/:id_rembug",
+        "methods": [
+          "GET"
+        ],
         "action": "allow"
       }
     ]

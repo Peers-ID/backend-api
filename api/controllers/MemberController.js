@@ -86,6 +86,9 @@ const MemberController = () => {
                 dokumen_bpkb: body.dokumen_bpkb,
                 dokumen_lainnya: body.dokumen_lainnya,
 
+                rembug: body.rembug,
+                kelompok: body.kelompok,
+
                 survey_luas_rumah: body.survey_luas_rumah,
                 survey_jenis_atap: body.survey_jenis_atap,
                 survey_jenis_dinding: body.survey_jenis_dinding,
@@ -340,6 +343,9 @@ const MemberController = () => {
                     dokumen_akta_nikah: body.dokumen_akta_nikah,
                     dokumen_bpkb: body.dokumen_bpkb,
                     dokumen_lainnya: body.dokumen_lainnya,
+
+                    rembug: body.rembug,
+                    kelompok: body.kelompok,
 
                     survey_luas_rumah: body.survey_luas_rumah,
                     survey_jenis_atap: body.survey_jenis_atap,

@@ -255,6 +255,14 @@ const Member = sequelize.define('Member', {
         type: Sequelize.STRING,
         allowNull: true
     },
+    rembug: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    kelompok: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     survey_luas_rumah: {
         type: Sequelize.STRING,
         allowNull: true

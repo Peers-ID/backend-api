@@ -136,6 +136,14 @@ const privateRoutes = {
     'GET /customer/loan/detail/:id_loan': 'CustomerController.view_customer_loan_collection',
     'GET /customer/loan/simpanan': 'CustomerController.view_customer_loan_simpanan',
     'POST /customer/change_password': 'CustomerController.view_customer_change_pass',
+
+    //REMBUG & KELOMPOK
+    'POST /rembug/add': 'TblRembugController.add_rembug',
+    'PUT /rembug/edit': 'TblRembugController.edit_rembug',
+    'GET /rembug/view': 'TblRembugController.view_rembug',
+    'POST /kelompok/add': 'TblKelompokController.add_kelompok',
+    'PUT /kelompok/edit': 'TblKelompokController.edit_kelompok',
+    'GET /kelompok/view/:id_rembug': 'TblKelompokController.view_kelompok',
 };
 
 module.exports = privateRoutes;

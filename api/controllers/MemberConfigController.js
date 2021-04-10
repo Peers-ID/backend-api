@@ -39,7 +39,7 @@ const MemberConfigController = () => {
             memiliki_npwp: body.memiliki_npwp,
             nomer_npwp: body.nomer_npwp,
             pekerja_usaha: body.pekerja_usaha,
-            jenis_umkm:body.jenis_umkm,
+            jenis_umkm: body.jenis_umkm,
             nama_perusahaan: body.nama_perusahaan,
             lama_bekerja: body.lama_bekerja,
             penghasilan_omset: body.penghasilan_omset,
@@ -72,6 +72,9 @@ const MemberConfigController = () => {
             dokumen_bpkb: body.dokumen_bpkb,
             dokumen_lainnya: body.dokumen_lainnya,
 
+            rembug: body.rembug,
+            kelompok: body.kelompok,
+
             survey_luas_rumah: body.survey_luas_rumah,
             survey_jenis_atap: body.survey_jenis_atap,
             survey_jenis_dinding: body.survey_jenis_dinding,
@@ -98,8 +101,7 @@ const MemberConfigController = () => {
 
             if (count !== 0) {
                 var config = await MemberConfig.update(
-                    data
-                    , {
+                    data, {
                         where: {
                             koperasi_id: decoded.koperasi_id
                         }

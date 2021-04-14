@@ -64,7 +64,8 @@ const UserController = () => {
                 mn_tambah_admin: body.mn_tambah_admin,
                 mn_tambah_super_admin: body.mn_tambah_super_admin,
                 mn_management_pinjaman: body.mn_management_pinjaman,
-                mn_management_anggota: body.mn_management_anggota
+                mn_management_anggota: body.mn_management_anggota,
+                mn_management_rembug: body.mn_management_rembug
             }, {transaction: t});
 
             await t.commit();
@@ -184,7 +185,8 @@ const UserController = () => {
                 mn_tambah_admin: body.mn_tambah_admin,
                 mn_tambah_super_admin: body.mn_tambah_super_admin,
                 mn_management_pinjaman: body.mn_management_pinjaman,
-                mn_management_anggota: body.mn_management_anggota
+                mn_management_anggota: body.mn_management_anggota,
+                mn_management_rembug: body.mn_management_rembug
             };
 
             //check email

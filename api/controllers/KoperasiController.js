@@ -121,6 +121,7 @@ const KoperasiController = () => {
                     mn_tambah_admin: 1,
                     mn_tambah_super_admin: 1,
                     mn_management_anggota: 1,
+                    mn_management_rembug: 1,
                     mn_management_pinjaman: 1
 
                 }, {transaction: t});

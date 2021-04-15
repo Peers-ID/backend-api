@@ -475,6 +475,27 @@
           "GET"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "kelompok/add",
+        "methods": [
+          "POST"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "kelompok/edit",
+        "methods": [
+          "PUT"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "kelompok/view/:id_rembug",
+        "methods": [
+          "GET"
+        ],
+        "action": "allow"
       }
     ]
   },

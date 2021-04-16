@@ -154,7 +154,7 @@ const UserController = () => {
         const {body, decoded} = req;
         try {
 
-            var data = {
+            var updateData = {
                 id: body.id_user,
                 koperasi_id: decoded.koperasi_id,
                 fullname: body.fullname,
@@ -190,39 +190,72 @@ const UserController = () => {
             };
 
             //check email
-            // await User.findAndCountAll({
-            //     attributes:['email'],
-            //     where: {
-            //         email:body.email
-            //     }
-            // }).then((data) => {
-            //     if (data.count > 0) {
-            //         return res.status(200).json({
-            //             status: 500,
-            //             data: "",
-            //             message: "Alamat Email sudah pernah terdaftar"
-            //         });
-            //     }
-            // });
-
-            await User.update(data, {
+            await User.findOne({
+                attributes: ['email'],
                 where: {
-                    id: body.id_user,
-                    koperasi_id: decoded.koperasi_id,
+                    id: updateData.id
                 }
-            });
+            }).then((data) => {
+                if (data.email !== body.email) {
+                    User.findAndCountAll({
+                        attributes: ['email'],
+                        where: {
+                            email: body.email
+                        }
+                    }).then((countEmail) => {
+                        if (countEmail.count > 0) {
+                            return res.status(200).json({
+                                status: 500,
+                                data: "",
+                                message: "Alamat Email sudah pernah terdaftar"
+                            });
+                        } else {
+                            updateData.email = body.email;
 
-            await AccountRoleManagement.update(role, {
-                where: {
-                    id_user: body.id_user,
-                    id_koperasi: decoded.koperasi_id,
+                            //bad code structure !!!
+                            User.update(updateData, {
+                                where: {
+                                    id: body.id_user,
+                                    koperasi_id: decoded.koperasi_id,
+                                }
+                            });
+
+                            AccountRoleManagement.update(role, {
+                                where: {
+                                    id_user: body.id_user,
+                                    id_koperasi: decoded.koperasi_id,
+                                }
+                            });
+
+                            return res.status(200).json({
+                                status: 200,
+                                data: [],
+                                message: "Data updated successfully"
+                            });
+                        }
+                    });
+                } else {
+                    //bad code structure !!!
+                    User.update(updateData, {
+                        where: {
+                            id: body.id_user,
+                            koperasi_id: decoded.koperasi_id,
+                        }
+                    });
+
+                    AccountRoleManagement.update(role, {
+                        where: {
+                            id_user: body.id_user,
+                            id_koperasi: decoded.koperasi_id,
+                        }
+                    });
+
+                    return res.status(200).json({
+                        status: 200,
+                        data: [],
+                        message: "Data updated successfully"
+                    });
                 }
-            });
-
-            return res.status(200).json({
-                status: 200,
-                data: [],
-                message: "Data updated  successfully"
             });
 
         } catch (err) {

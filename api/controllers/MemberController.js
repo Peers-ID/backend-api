@@ -5,6 +5,7 @@ const Koperasi = require('../models/Koperasi');
 const Config = require('../models/Config');
 const Axios = require('axios');
 const sequelize = require('../../config/database');
+const bcryptService = require('../services/bcrypt.service');
 
 const MemberController = () => {
 
@@ -147,29 +148,12 @@ const MemberController = () => {
                                     }
                                 });
                             } else {
-                                const t = await sequelize.transaction();
-
                                 try {
                                     //create data customer
-                                    const registered_cust = await Member.create(data, {transaction: t});
 
-                                    //create user
-                                    await User.create({
-                                        koperasi_id: decoded.koperasi_id,
-                                        fullname: registered_cust.nama_lengkap,
-                                        phone_mobile: registered_cust.member_handphone,
-                                        no_identitas: registered_cust.no_identitas,
-                                        birthdate: registered_cust.tanggal_lahir,
-                                        email: registered_cust.email,
-                                        password: registered_cust.nama_lengkap.substr(0, 3) + registered_cust.no_identitas.substr(0, 3) + registered_cust.member_handphone.substr(-4), //3 huruf nama pertama & 4 digit terakhir no HP
-                                        role: "Customer",
-                                        status: "active",
-
-                                        //ak_id was the AO id who create the user. But in this case, ak_id is a generated member id;
-                                        ak_id: registered_cust.member_id
-                                    }, {transaction: t});
-
-                                    await t.commit();
+                                    //3 huruf nama pertama & 4 digit terakhir no HP
+                                    data.password = bcryptService().password(data.nama_lengkap.substr(0, 3) + data.no_identitas.substr(0, 3) + data.member_handphone.substr(-4));
+                                    const registered_cust = await Member.create(data);
 
                                     return res.status(201).json({
                                         status: 201,
@@ -177,8 +161,6 @@ const MemberController = () => {
                                         data: registered_cust
                                     });
                                 } catch (err) {
-                                    await t.rollback();
-
                                     return res.status(200).json({
                                         status: 500,
                                         data: [],

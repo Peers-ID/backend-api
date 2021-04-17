@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../../config/database');
-const User = require('./User');
+const bcryptService = require('../services/bcrypt.service');
 
 const hooks = {};
 const tableName = 'member';
@@ -322,7 +322,11 @@ const Member = sequelize.define('Member', {
     survey_perkembangan_usaha: {
         type: Sequelize.STRING,
         allowNull: true
-    }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
 }, {
     hooks,
     tableName

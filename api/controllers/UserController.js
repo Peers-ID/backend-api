@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Member = require('../models/Member');
 const AccountRoleManagement = require('../models/v2/AccountRoleManagement');
 const authService = require('../services/auth.service');
 const bcryptService = require('../services/bcrypt.service');
@@ -532,7 +533,7 @@ const UserController = () => {
 
         if (nik && password) {
             try {
-                const user = await User.findOne({
+                const user = await Member.findOne({
                     where: {
                         no_identitas: nik,
                     },
@@ -557,10 +558,10 @@ const UserController = () => {
 
                 if (bcryptService().comparePassword(password, user.password)) {
                     const token = authService().issue({
-                        id: user.id,
-                        role: user.role,
+                        id: user.member_id,
+                        role: "Customer",
                         koperasi_id: user.koperasi_id,
-                        ak_id: user.ak_id
+                        ak_id: user.member_id
                     });
 
                     return res.status(201).json({

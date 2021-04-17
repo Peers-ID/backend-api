@@ -361,8 +361,17 @@ const TblLoanCollectionController = () => {
                 /* --------------- Generate NEXT collection from System --------------*/
 
                 // don't generate next collection if loan finished (tenor is achieved or bayar lunas)
-                if (previous_system_collection.angsuran < prd_tenor && android_collection.setoran < previous_system_collection.pokok) {
 
+                var sisa_pokok = previous_system_collection.pokok * (prd_tenor - previous_system_collection.angsuran);
+                var sisa_bunga = previous_system_collection.bunga * (prd_tenor - previous_system_collection.angsuran);
+
+                console.log("###-###-### + " + previous_system_collection.angsuran +"<"+ prd_tenor);
+                console.log("###-###-### + " + android_collection.setoran +"<"+ (sisa_pokok + sisa_bunga));
+                console.log("###-###-SISA-POKOK + " + sisa_pokok);
+                console.log("###-###-SISA-BUNGA + " + sisa_bunga);
+
+                if (previous_system_collection.angsuran < prd_tenor
+                    && android_collection.setoran < (sisa_pokok + sisa_bunga)) {
                     var next_collection = {
                         id_koperasi: decoded.koperasi_id,
                         id_produk: android_collection.id_produk,

@@ -104,7 +104,10 @@ const MemberController = () => {
                 survey_kepemilikan_asset: body.survey_kepemilikan_asset,
                 survey_pendapatan_luar_usaha: body.survey_pendapatan_luar_usaha,
                 survey_perkembangan_asset: body.survey_perkembangan_asset,
-                survey_perkembangan_usaha: body.survey_perkembangan_usaha
+                survey_perkembangan_usaha: body.survey_perkembangan_usaha,
+
+                //3 huruf nama pertama & 3 NIK & 4 digit terakhir no HP
+                password: body.nama_lengkap.substr(0, 3) + body.no_identitas.substr(0, 3) + body.member_handphone.substr(-4)
             };
 
             await Koperasi.findOne({
@@ -150,9 +153,6 @@ const MemberController = () => {
                             } else {
                                 try {
                                     //create data customer
-
-                                    //3 huruf nama pertama & 4 digit terakhir no HP
-                                    data.password = bcryptService().password(data.nama_lengkap.substr(0, 3) + data.no_identitas.substr(0, 3) + data.member_handphone.substr(-4));
                                     const registered_cust = await Member.create(data);
 
                                     return res.status(201).json({

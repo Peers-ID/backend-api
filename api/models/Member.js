@@ -2,7 +2,11 @@ const Sequelize = require('sequelize');
 const sequelize = require('../../config/database');
 const bcryptService = require('../services/bcrypt.service');
 
-const hooks = {};
+const hooks = {
+    beforeCreate(member) {
+        member.password = bcryptService().password(member); // eslint-disable-line no-param-reassign
+    },
+};
 const tableName = 'member';
 
 const Member = sequelize.define('Member', {

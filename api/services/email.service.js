@@ -10,31 +10,6 @@ const emailService = () => {
 
         const welcomeMessage = (name, email, password) => {
 
-                /*const msg = {
-                        to: email,
-                        from: 'no-reply@peers.id',
-                        subject: 'Selamat datang di Peers.id',
-                        text: 'Welcome',
-                        html: '<p>Halo <strong>'+ name +'</strong>,</p>'+
-                                '<p>Terima Kasih sudah mendaftar di Peers Indonesia.' +
-                                'Silahkan login dengan menggunakan akun berikut</p>' +
-
-                                '<p>Username : '+ email +'<br />' +
-                                'Password : '+ password +'</p>' +
-
-                                '<p>Terima Kasih,</p>' +
-
-                                '<p>Salam</p>'
-                };
-
-                sgMail.send(msg)
-                        .then(() => {}, error => {
-                                if (error.response) {
-                                        return error.response.body;
-                                }
-                        });*/
-
-
             /*------------------------------- USE NODEMAILER -----------------------------*/
 
             const gmUser = process.env.GM_USER;

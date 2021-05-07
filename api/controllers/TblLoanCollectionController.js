@@ -37,11 +37,15 @@ const TblLoanCollectionController = () => {
         let loan_utang_pokok;
         let loan_bunga;
         let loan_cicilan;
+        let loan_jumlah_pengajuan;
         let param_id_urutan_simpanan;
         let prd_denda_keterlambatan;
         let prd_loan_satuan_tenor;
         let prd_tenor;
         let prd_nama_produk;
+        let prd_dana_jpk;
+        let prd_type_dana_jpk;
+        let dana_jpk;
         let prd_simpanan_wajib;
         let prd_simpanan_pokok;
         let lastTotalSimpananWajib;
@@ -96,7 +100,7 @@ const TblLoanCollectionController = () => {
 
             //check loan of this product
             await TblLoan.findOne({
-                attributes: ['utang_pokok', 'bunga_pinjaman', 'jumlah_cicilan'],
+                attributes: ['utang_pokok', 'bunga_pinjaman', 'jumlah_cicilan', 'jumlah_pengajuan'],
                 where: {
                     id: body.id_loan,
                     id_koperasi: decoded.koperasi_id,
@@ -106,6 +110,7 @@ const TblLoanCollectionController = () => {
                 loan_utang_pokok = loan.utang_pokok;
                 loan_bunga = loan.bunga_pinjaman;
                 loan_cicilan = loan.jumlah_cicilan;
+                loan_jumlah_pengajuan = loan.jumlah_pengajuan;
             });
 
             //check simpanan wajib
@@ -172,6 +177,8 @@ const TblLoanCollectionController = () => {
                     prd_tenor = produk.tenor;
                     prd_denda_keterlambatan = produk.denda_keterlambatan;
                     prd_nama_produk = produk.nama_produk;
+                    prd_dana_jpk = produk.dana_jpk;
+                    prd_type_dana_jpk = produk.type_dana_jpk;
                     prd_simpanan_wajib = produk.simpanan_wajib;
                     prd_simpanan_pokok = produk.simpanan_pokok;
                 });
@@ -262,6 +269,7 @@ const TblLoanCollectionController = () => {
                 collection.denda = body.denda;
                 collection.pokok = body.utang_pokok;
                 collection.bunga = body.bunga_pinjaman;
+                collection.dana_jpk = body.dana_jpk;
                 collection.simpanan_wajib = body.simpanan_wajib;
                 collection.simpanan_sukarela = body.simpanan_sukarela;
 
@@ -379,6 +387,7 @@ const TblLoanCollectionController = () => {
                         id_member: body.id_member,
                         nama_lengkap: android_collection.nama_lengkap,
                         id_loan: android_collection.id_loan,
+                        dana_jpk: android_collection.dana_jpk,
                         simpanan_wajib: android_collection.simpanan_wajib,
                         created_by: "system"
                     };
@@ -450,7 +459,11 @@ const TblLoanCollectionController = () => {
                     }
 
                     next_collection.simpanan_wajib = prd_simpanan_wajib;
-                    next_collection.total_tagihan = next_collection.pokok + next_collection.bunga + next_collection.denda + next_collection.simpanan_wajib;
+                    next_collection.total_tagihan = next_collection.pokok
+                        + next_collection.bunga
+                        + next_collection.denda
+                        + next_collection.simpanan_wajib
+                        + next_collection.dana_jpk;
 
                     next_collection.id_status = previous_system_collection.id_status;
                     next_collection.id_ao = previous_system_collection.id_ao;

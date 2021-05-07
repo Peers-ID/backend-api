@@ -40,6 +40,9 @@ const TblLoanController = () => {
             var loan_tenor;
             var loan_satuan_tenor = "bulan";
             var hari_per_bulan = 30;
+            var dana_jpk = 0;
+            var prd_dana_jpk;
+            var type_dana_jpk;
             var simpanan_wajib = 0;
             var simpanan_pokok = 0;
             var id_status = 0;
@@ -85,6 +88,8 @@ const TblLoanController = () => {
 
                 loan_tenor = produk.tenor;
                 loan_satuan_tenor = produk.satuan_tenor;
+                prd_dana_jpk = produk.dana_jpk;
+                type_dana_jpk = produk.type_dana_jpk;
                 simpanan_wajib = produk.simpanan_wajib;
                 simpanan_pokok = produk.simpanan_pokok;
 
@@ -363,6 +368,14 @@ const TblLoanController = () => {
 
                 // var total_tagihan = loan.utang_pokok + loan.bunga_pinjaman + simpanan_wajib; //TODO apakah simpanan wajib masuk ke
                 var total_tagihan = data.jumlah_cicilan;
+
+                if (type_dana_jpk === "Persen") {
+                    dana_jpk = prd_dana_jpk * jumlah_pengajuan;
+                } else {
+                    //https://flaviocopes.com/how-to-convert-string-to-number-javascript/
+                    dana_jpk = prd_dana_jpk * 1;
+                }
+
                 var collection = {
                     id_koperasi: decoded.koperasi_id,
                     id_produk: body.id_produk,
@@ -377,6 +390,7 @@ const TblLoanController = () => {
                     pembayaran_ke: 1,
                     pokok: loan.utang_pokok,
                     bunga: loan.bunga_pinjaman,
+                    dana_jpk: dana_jpk,
                     simpanan_wajib: simpanan_wajib,
                     total_tagihan: total_tagihan,
                     created_by: "system"

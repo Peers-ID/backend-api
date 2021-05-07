@@ -65,6 +65,11 @@ const TblLoanCollection = sequelize.define('TblLoanCollection', {
         allowNull: true,
         default: 0
     },
+    dana_jpk: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        default: 0
+    },
     total_tagihan: {
         type: Sequelize.INTEGER,
         allowNull: false,

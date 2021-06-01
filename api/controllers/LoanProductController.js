@@ -1,5 +1,6 @@
 const LoanProduct = require('../models/v2/LoanProduct');
 const LoanParameter = require('../models/v2/LoanParameter');
+const TblLoanCollection = require('../models/v2/TblLoanCollection');
 
 const LoanProductController = () => {
 
@@ -89,6 +90,26 @@ const LoanProductController = () => {
                 }
             }).then((updated) => {
                 if (updated) {
+
+                    //TODO update tblloan_collection here
+                    // Step by step :
+                    // - create product
+                    // - create loan
+                    // - edit product
+                    // - do collection
+
+                    console.log("##### " + data.dana_jpk);
+
+                    var jpk_loan_collection = {
+                        dana_jpk: data.dana_jpk
+                    };
+
+                    TblLoanCollection.update(jpk_loan_collection, {
+                       where: {
+                           id_koperasi: decoded.koperasi_id
+                       }
+                    });
+
                     return res.status(200).json({
                         status: 200,
                         data: [],
@@ -102,7 +123,6 @@ const LoanProductController = () => {
                     });
                 }
             });
-
 
 
         } catch (err) {

@@ -144,6 +144,9 @@ const privateRoutes = {
     'POST /kelompok/add': 'TblKelompokController.add_kelompok',
     'PUT /kelompok/edit': 'TblKelompokController.edit_kelompok',
     'GET /kelompok/view/:id_rembug': 'TblKelompokController.view_kelompok',
+
+    // REPORT
+    'POST /report/lampiran': 'ReportController.lampiran',
 };
 
 module.exports = privateRoutes;

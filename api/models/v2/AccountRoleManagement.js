@@ -85,6 +85,10 @@ const AccountRoleManagement = sequelize.define('AccountRoleManagement', {
     mn_management_rembug: {
         type: Sequelize.INTEGER,
         allowNull: true
+    },
+    mn_management_laporan: {
+        type: Sequelize.INTEGER,
+        allowNull: true
     }
 }, {
     hooks,

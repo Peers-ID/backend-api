@@ -1,7 +1,7 @@
 const development = {
         database: 'peers_db_v2',
         username: 'root',
-        password: 'root12345',
+        password: '',
         host: 'localhost',
         dialect: 'mysql',
 };

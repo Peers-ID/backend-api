@@ -14,6 +14,11 @@
           "PUT"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "report/*",
+        "methods": "*",
+        "action": "allow"
       }
     ]
   },
@@ -22,6 +27,11 @@
     "permissions": [
       {
         "resource": "account",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "report/*",
         "methods": "*",
         "action": "allow"
       },
@@ -263,6 +273,11 @@
     "permissions": [
       {
         "resource": "account",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "report/*",
         "methods": "*",
         "action": "allow"
       },
@@ -509,6 +524,11 @@
       },
       {
         "resource": "member/picture",
+        "methods": "*",
+        "action": "allow"
+      },
+      {
+        "resource": "report/*",
         "methods": "*",
         "action": "allow"
       },

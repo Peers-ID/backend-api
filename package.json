@@ -38,7 +38,7 @@
                 "core-js": "^2.6.9",
                 "cors": "^2.8.4",
                 "dotenv": "^8.2.0",
-                "express": "^4.16.3",
+                "express": "^4.17.3",
                 "express-acl": "^2.0.8",
                 "express-fileupload": "^1.1.7-alpha.1",
                 "express-routes-mapper": "^1.0.2",
